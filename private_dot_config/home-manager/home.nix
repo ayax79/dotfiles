@@ -15,6 +15,11 @@
   # release notes.
   home.stateVersion = "23.05"; # Please read the comment before changing.
 
+  nix = {
+    package = pkgs.nix;
+    settings.experimental-features = [ "nix-command" "flakes" ];
+  };
+
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = [
@@ -29,6 +34,11 @@
     pkgs.luarocks
     pkgs.atuin
     pkgs._1password
+    pkgs.ripgrep
+    pkgs.eza
+    pkgs.bat
+    pkgs.zsh
+    pkgs.tabnine
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
