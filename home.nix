@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -20,41 +20,44 @@
     settings.experimental-features = [ "nix-command" "flakes" ];
   };
 
+
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = [
+    pkgs.alacritty
+    pkgs.zsh
     pkgs.ncurses
-
-    ## fancy history 
-    pkgs.atuin
+    pkgs.atuin                                          # Fancy history
+    pkgs._1password                                     # One password cli
+    pkgs.ripgrep                                        # grep but better and faster
+    pkgs.eza                                            # supported version of exa the cd replacement
+    pkgs.bat                                            # Cat but with syntax highlighting
+    pkgs.broot                                          # newer tree view
+    pkgs.nodejs
+    pkgs.cargo-lambda                                   # AWS rust lambda toolkit
 
     ## Neovim related
     pkgs.neovim
     pkgs.hadolint
+    pkgs.dprint
     pkgs.yq
     pkgs.markdownlint-cli
     pkgs.tree-sitter
-    pkgs.luarocks
-    pkgs.nil                    # nix language server
-
-    pkgs._1password
-
-
-    pkgs.ripgrep
-    pkgs.eza
-    pkgs.bat
-    pkgs.zsh
-
-    # newer tree view
-    pkgs.broot 
-    # newer process viewer
+    # pkgs.luarocks
+    pkgs.nil                                            # nix language server
+    pkgs.jdt-language-server                            # java language server
+    pkgs.nodePackages.vscode-json-languageserver        # json language server
+    pkgs.nodePackages.vscode-html-languageserver-bin    # HTML language server
+    pkgs.yaml-language-server                           # YAML language server
+    pkgs.efm-langserver                                 # EFM language server
+    pkgs.terraform-lsp                                  # terrform language server
+    pkgs.nodePackages.pyright                           # Pyright language server
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
     # # fonts?
     (pkgs.nerdfonts.override { fonts = [ "SpaceMono" ]; })
-
 
     # # You can also create simple shell scripts directly inside your
     # # configuration. For example, this adds a command 'my-hello' to your
@@ -79,9 +82,7 @@
     # '';
   };
 
-  # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
- 
+
   # You can also manage environment variables but you will have to manually
   # source
   #
@@ -159,4 +160,38 @@
         bind-key -T copy-mode-vi 'C-Space' select-pane -t:.+
     '';
   };
+
+  programs.git = {
+    enable = true;
+    userName = "Jack Wright";
+    userEmail = "jack.wright@disqo.com";
+  };
+
+  # home.activation = {
+  #   trampolineApps = let
+  #     apps = pkgs.buildEnv {
+  #       name = "home-manager-applications";
+  #       paths = config.home.packages;
+  #       pathsToLink = "/Applications";
+  #     };
+  #   in
+  #     lib.hm.dag.entryAfter ["writeBoundary"] ''
+  #       toDir="$HOME/Applications/Home Manager Trampolines"
+  #       fromDir="${apps}/Applications"
+  #       rm -rf "$toDir"
+  #       mkdir "$toDir"
+  #       (
+  #         cd "$fromDir"
+  #         for app in *.app; do
+  #           /usr/bin/osacompile -o "$toDir/$app" -e 'do shell script "open \"$fromDir/$app\""'
+  #           icon="$(/usr/bin/plutil -extract CFBundleIconFile raw "$fromDir/$app/Contents/Info.plist")"
+  #           mkdir -p "$toDir/$app/Contents/Resources"
+  #           cp -f "$fromDir/$app/Contents/Resources/$icon" "$toDir/$app/Contents/Resources/applet.icns"
+  #         done
+  #       )
+  #     '';
+  # };
+
+
+
 }
