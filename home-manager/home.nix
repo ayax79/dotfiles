@@ -1,36 +1,56 @@
-{ config, pkgs, lib, ... }:
-
+# This is your home-manager configuration file
+# Use this to configure your home environment (it replaces ~/.config/nixpkgs/home.nix)
 {
+  inputs,
+  lib,
+  config,
+  pkgs,
+  ...
+}: {
+  # You can import other home-manager modules here
+  imports = [
+    # If you want to use home-manager modules from other flakes (such as nix-colors):
+    # inputs.nix-colors.homeManagerModule
+
+    # You can also split up your configuration and import pieces of it here:
+    # ./nvim.nix
+  ];
+
+  nixpkgs = {
+    # You can add overlays here
+    overlays = [
+      # If you want to use overlays exported from other flakes:
+      # neovim-nightly-overlay.overlays.default
+
+      # Or define it inline, for example:
+      # (final: prev: {
+      #   hi = final.hello.overrideAttrs (oldAttrs: {
+      #     patches = [ ./change-hello-to-hi.patch ];
+      #   });
+      # })
+    ];
+    # Configure your nixpkgs instance
+    config = {
+      # Disable if you don't want unfree packages
+      allowUnfree = true;
+      # Workaround for https://github.com/nix-community/home-manager/issues/2942
+      allowUnfreePredicate = _: true;
+    };
+  };
+
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "jack.wright";
   home.homeDirectory = "/Users/jack.wright";
 
-  # This value determines the Home Manager release that your configuration is
-  # compatible with. This helps avoid breakage when a new Home Manager release
-  # introduces backwards incompatible changes.
-  #
-  # You should not change this value, even if you update Home Manager. If you do
-  # want to update the value, then make sure to first check the Home Manager
-  # release notes.
-  home.stateVersion = "23.05"; # Please read the comment before changing.
-
-  nix = {
-    package = pkgs.nix;
-    settings.experimental-features = [ "nix-command" "flakes" ];
-  };
-
-
-  # The home.packages option allows you to install Nix packages into your
-  # environment.
-  home.packages = [
+   home.packages = [
     pkgs.alacritty
     pkgs.zsh
     pkgs.ncurses
     pkgs.atuin                                          # Fancy history
     pkgs._1password                                     # One password cli
     pkgs.ripgrep                                        # grep but better and faster
-    pkgs.eza                                            # supported version of exa the cd replacement
+    #pkgs.eza                                            # supported version of exa the cd replacement
     pkgs.bat                                            # Cat but with syntax highlighting
     pkgs.broot                                          # newer tree view
     pkgs.nodejs
@@ -41,7 +61,7 @@
     pkgs.hadolint
     pkgs.dprint
     pkgs.yq
-    pkgs.markdownlint-cli
+    #pkgs.markdownlint-cli
     pkgs.tree-sitter
     # pkgs.luarocks
     pkgs.nil                                            # nix language server
@@ -67,36 +87,20 @@
     # '')
   ];
 
-  # Home Manager is pretty good at managing dotfiles. The primary way to manage
-  # plain files is through 'home.file'.
-  home.file = {
-    # # Building this configuration will create a copy of 'dotfiles/screenrc' in
-    # # the Nix store. Activating the configuration will then make '~/.screenrc' a
-    # # symlink to the Nix store copy.
-    # ".screenrc".source = dotfiles/screenrc;
+ 
 
-    # # You can also set the file content immediately.
-    # ".gradle/gradle.properties".text = ''
-    #   org.gradle.console=verbose
-    #   org.gradle.daemon.idletimeout=3600000
-    # '';
-  };
+  # Add stuff for your user as you see fit:
+  # programs.neovim.enable = true;
+  # home.packages = with pkgs; [ steam ];
 
+  # Enable home-manager and git
+  programs.home-manager.enable = true;
 
-  # You can also manage environment variables but you will have to manually
-  # source
-  #
-  #  ~/.nix-profile/etc/profile.d/hm-session-vars.sh
-  #
-  # or
-  #
-  #  /etc/profiles/per-user/jack.wright/etc/profile.d/hm-session-vars.sh
-  #
-  # if you don't want to manage your shell through Home Manager.
-  # home.sessionVariables = {
-  #   # EDITOR = "emacs";
-  # };
-  #
+  # Nicely reload system units when changing configs
+  systemd.user.startServices = "sd-switch";
+
+  # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
+  home.stateVersion = "23.05";
 
   programs.starship = {
     enable = true;
@@ -166,32 +170,5 @@
     userName = "Jack Wright";
     userEmail = "jack.wright@disqo.com";
   };
-
-  # home.activation = {
-  #   trampolineApps = let
-  #     apps = pkgs.buildEnv {
-  #       name = "home-manager-applications";
-  #       paths = config.home.packages;
-  #       pathsToLink = "/Applications";
-  #     };
-  #   in
-  #     lib.hm.dag.entryAfter ["writeBoundary"] ''
-  #       toDir="$HOME/Applications/Home Manager Trampolines"
-  #       fromDir="${apps}/Applications"
-  #       rm -rf "$toDir"
-  #       mkdir "$toDir"
-  #       (
-  #         cd "$fromDir"
-  #         for app in *.app; do
-  #           /usr/bin/osacompile -o "$toDir/$app" -e 'do shell script "open \"$fromDir/$app\""'
-  #           icon="$(/usr/bin/plutil -extract CFBundleIconFile raw "$fromDir/$app/Contents/Info.plist")"
-  #           mkdir -p "$toDir/$app/Contents/Resources"
-  #           cp -f "$fromDir/$app/Contents/Resources/$icon" "$toDir/$app/Contents/Resources/applet.icns"
-  #         done
-  #       )
-  #     '';
-  # };
-
-
 
 }
