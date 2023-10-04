@@ -57,6 +57,7 @@
     pkgs.broot # newer tree view
     pkgs.nodejs
     pkgs.cargo-lambda # AWS rust lambda toolkit
+    pkgs.lazygit # lazygit git tool
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
