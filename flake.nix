@@ -3,7 +3,6 @@
   description = "Jack's Nix config";
 
   inputs = {
-
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-23.05-darwin";
     nixos-23_05.url = "github:nixos/nixpkgs/nixos-23.05";
@@ -30,20 +29,16 @@
   } @ inputs: let
     inherit (self) outputs;
   in {
-
     # Standalone home-manager configuration entrypoint
     # Available through 'home-manager --flake .#your-username@your-hostname'
     homeConfigurations = {
       # FIXME replace with your username@hostname
       "work-mbp" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.aarch64-darwin; 
+        pkgs = nixpkgs.legacyPackages.aarch64-darwin;
         extraSpecialArgs = {inherit inputs outputs;};
         # > Our main home-manager configuration file <
-        imports = [
-         ./systems/darwin.nix
-        ];
         modules = [
-         ./home-manager/home.nix
+          ./home-manager/darwin.nix
         ];
       };
     };

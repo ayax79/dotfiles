@@ -1,8 +1,10 @@
-{ lib, ... }:
-let
-  mySystemSubmodule = lib.types.submodule {
+{lib, ...}: let
+  currentSystemSubmodule = lib.types.submodule {
     options = {
       username = lib.mkOption {
+        type = lib.types.str;
+      };
+      fullname = lib.mkOption {
         type = lib.types.str;
       };
       email = lib.mkOption {
@@ -13,15 +15,7 @@ let
       };
     };
   };
-  currentSystemSubmodule = lib.types.submodule {
-    options = {
-      currentSystem = lib.mkOption {
-        type = lib.types.attrsOf mySystemSubmodule;
-      };
-    };
-  };
-in
-{
+in {
   options = {
     currentSystem = lib.mkOption {
       type = currentSystemSubmodule;
@@ -29,10 +23,10 @@ in
   };
   config = {
     currentSystem = {
-        username = "jack.wright";
-        email = "jack.wright@disqo.com";
-        homeDirectory = "/Users/jack.wright";
+      fullname = "Jack Wright";
+      username = "jack.wright";
+      email = "jack.wright@disqo.com";
+      homeDirectory = "/Users/jack.wright";
     };
   };
 }
-
