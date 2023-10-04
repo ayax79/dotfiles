@@ -15,6 +15,7 @@
     # You can also split up your configuration and import pieces of it here:
     # ./nvim.nix
     ./git.nix
+    ./neovim.nix
   ];
 
   nixpkgs = {
@@ -56,24 +57,6 @@
     pkgs.broot # newer tree view
     pkgs.nodejs
     pkgs.cargo-lambda # AWS rust lambda toolkit
-
-    ## Neovim related
-    pkgs.neovim
-    pkgs.hadolint
-    pkgs.dprint
-    pkgs.yq
-    #pkgs.markdownlint-cli
-    pkgs.tree-sitter
-    # pkgs.luarocks
-    pkgs.nil # nix language server
-    pkgs.jdt-language-server # java language server
-    pkgs.nodePackages.vscode-json-languageserver # json language server
-    pkgs.nodePackages.vscode-html-languageserver-bin # HTML language server
-    pkgs.yaml-language-server # YAML language server
-    pkgs.efm-langserver # EFM language server
-    pkgs.terraform-lsp # terrform language server
-    pkgs.nodePackages.pyright # Pyright language server
-    pkgs.alejandra # Alejandra nix formatting
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
