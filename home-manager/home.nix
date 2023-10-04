@@ -72,6 +72,7 @@
     pkgs.efm-langserver                                 # EFM language server
     pkgs.terraform-lsp                                  # terrform language server
     pkgs.nodePackages.pyright                           # Pyright language server
+    pkgs.alejandra                                      # Alejandra nix formatting
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
