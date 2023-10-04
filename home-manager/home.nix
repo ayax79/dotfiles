@@ -40,8 +40,8 @@
 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
-  home.username = "jack.wright";
-  home.homeDirectory = "/Users/jack.wright";
+  home.username = config.currentSystem.username;
+  home.homeDirectory = config.currentSystem.homeDirectory;
 
    home.packages = [
     pkgs.alacritty

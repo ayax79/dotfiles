@@ -36,10 +36,15 @@
     homeConfigurations = {
       # FIXME replace with your username@hostname
       "work-mbp" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.aarch64-darwin; # Home-manager requires 'pkgs' instance
+        pkgs = nixpkgs.legacyPackages.aarch64-darwin; 
         extraSpecialArgs = {inherit inputs outputs;};
         # > Our main home-manager configuration file <
-        modules = [./home-manager/home.nix];
+        imports = [
+         ./systems/darwin.nix
+        ];
+        modules = [
+         ./home-manager/home.nix
+        ];
       };
     };
   };
