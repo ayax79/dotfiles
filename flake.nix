@@ -38,7 +38,7 @@
         extraSpecialArgs = {inherit inputs outputs;};
         # > Our main home-manager configuration file <
         modules = [
-          ./home-manager/darwin.nix
+          ./home-manager/work-mbp.nix
         ];
       };
     };

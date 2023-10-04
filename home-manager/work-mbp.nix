@@ -4,7 +4,7 @@
   ...
 }: {
   imports = [
-    ../systems/darwin.nix
-    ./home.nix
+    ../systems/work-mbp.nix
+    ./common.nix
   ];
 }
