@@ -41,6 +41,14 @@
           ./home-manager/work-mbp.nix
         ];
       };
+      "home-pop" = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        extraSpecialArgs = {inherit inputs outputs;};
+        # > Our main home-manager configuration file <
+        modules = [
+          ./home-manager/home-pop.nix
+        ];
+      };
     };
   };
 }
