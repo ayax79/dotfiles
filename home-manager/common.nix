@@ -7,6 +7,7 @@
     ./git.nix
     ./neovim.nix
     ./tmux.nix
+    ./starship.nix
   ];
 
   nixpkgs = {
@@ -50,10 +51,6 @@
     pkgs.cargo-lambda # AWS rust lambda toolkit
     pkgs.lazygit # lazygit git tool
 
-    # # It is sometimes useful to fine-tune packages, for example, by applying
-    # # overrides. You can do that directly here, just don't forget the
-    # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-    # # fonts?
     (pkgs.nerdfonts.override {fonts = ["SpaceMono"];})
 
     # # You can also create simple shell scripts directly inside your
@@ -66,9 +63,6 @@
     pkgs.aws-sam-cli
   ];
 
-  # Add stuff for your user as you see fit:
-  # programs.neovim.enable = true;
-  # home.packages = with pkgs; [ steam ];
 
   # Enable home-manager and git
   programs.home-manager.enable = true;
@@ -78,16 +72,5 @@
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   home.stateVersion = "23.05";
-
-  programs.starship = {
-    enable = true;
-    settings = {
-      shell = {
-        nu_indicator = "󱆀";
-        zsh_indicator = "󱍢";
-      };
-    };
-  };
-
 
 }
