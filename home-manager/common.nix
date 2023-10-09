@@ -8,6 +8,7 @@
     ./neovim.nix
     ./tmux.nix
     ./starship.nix
+    ./alacritty.nix
   ];
 
   nixpkgs = {
@@ -38,7 +39,6 @@
   home.homeDirectory = config.currentSystem.homeDirectory;
 
   home.packages = [
-    pkgs.alacritty
     pkgs.zsh
     pkgs.ncurses
     pkgs.atuin # Fancy history
@@ -50,6 +50,7 @@
     pkgs.nodejs
     pkgs.cargo-lambda # AWS rust lambda toolkit
     pkgs.lazygit # lazygit git tool
+    pkgs.jq # json utility
 
     (pkgs.nerdfonts.override {fonts = ["SpaceMono"];})
 
