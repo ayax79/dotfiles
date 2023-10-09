@@ -38,15 +38,40 @@
         extraSpecialArgs = {inherit inputs outputs;};
         # > Our main home-manager configuration file <
         modules = [
-          ./home-manager/work-mbp.nix
+          {
+            imports = [
+              ./systems/common.nix
+              ./home-manager/common.nix
+            ];
+            config = {
+              currentSystem = {
+                fullname = "Jack Wright";
+                username = "jack.wright";
+                email = "jack.wright@disqo.com";
+                homeDirectory = "/Users/jack.wright";
+              };
+            };
+          }
         ];
       };
       "home-pop" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         extraSpecialArgs = {inherit inputs outputs;};
-        # > Our main home-manager configuration file <
         modules = [
-          ./home-manager/home-pop.nix
+          {
+            imports = [
+              ./systems/common.nix
+              ./home-manager/common.nix
+            ];
+            config = {
+              currentSystem = {
+                fullname = "Jack Wright";
+                username = "jack";
+                email = "ayax79@gmail.com";
+                homeDirectory = "/home/jack";
+              };
+            };
+          }
         ];
       };
     };
