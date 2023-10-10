@@ -19,8 +19,8 @@ in {
       font = {
         normal = {
           family = "SpaceMono Nerd Font Mono";
-          size = 14.0;
         };
+        size = 12.0;
       };
 
       # mac option behavior
