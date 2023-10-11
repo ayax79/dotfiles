@@ -6,7 +6,7 @@
 }: {
   home.packages = [
     ## Neovim related
-    pkgs.neovim
+    # pkgs.neovim
     pkgs.hadolint
     pkgs.dprint
     pkgs.yq
@@ -24,4 +24,18 @@
     pkgs.alejandra # Alejandra nix formatting
     pkgs.lua-language-server # Lua language server
   ];
+
+  programs.neovim = {
+    enable = true;
+    extraConfig = ":luafile ~/.config/nvim/init.lua";
+    plugins = [
+      pkgs.vimPlugins.lazy-nvim
+    ];
+  };
+
+  home.file."./.config/nvim/" = {
+     source = ./nvim;
+     recursive = true;
+   };
+
 }
