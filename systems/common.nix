@@ -1,5 +1,5 @@
 {lib, ...}: let
-  currentSystemSubmodule = lib.types.submodule {
+  mySystemSubmodule = lib.types.submodule {
     options = {
       username = lib.mkOption {
         type = lib.types.str;
@@ -17,8 +17,8 @@
   };
 in {
   options = {
-    currentSystem = lib.mkOption {
-      type = currentSystemSubmodule;
+    mySystem = lib.mkOption {
+      type = mySystemSubmodule;
     };
   };
 }

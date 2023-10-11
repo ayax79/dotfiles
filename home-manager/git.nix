@@ -5,8 +5,8 @@
 }: {
   programs.git = {
     enable = true;
-    userName = config.currentSystem.fullname;
-    userEmail = config.currentSystem.email;
+    userName = config.mySystem.fullname;
+    userEmail = config.mySystem.email;
     aliases = {
       st = "status";
       ci = "commit";

@@ -35,8 +35,8 @@
 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
-  home.username = config.currentSystem.username;
-  home.homeDirectory = config.currentSystem.homeDirectory;
+  home.username = config.mySystem.username;
+  home.homeDirectory = config.mySystem.homeDirectory;
 
   home.packages = [
     pkgs.zsh

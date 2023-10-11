@@ -44,7 +44,7 @@
               ./home-manager/common.nix
             ];
             config = {
-              currentSystem = {
+              mySystem = {
                 fullname = "Jack Wright";
                 username = "jack.wright";
                 email = "jack.wright@disqo.com";
@@ -64,7 +64,7 @@
               ./home-manager/common.nix
             ];
             config = {
-              currentSystem = {
+              mySystem = {
                 fullname = "Jack Wright";
                 username = "jack";
                 email = "ayax79@gmail.com";
