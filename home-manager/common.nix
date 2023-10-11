@@ -9,6 +9,7 @@
     ./tmux.nix
     ./starship.nix
     ./alacritty.nix
+    ./zsh.nix
   ];
 
   nixpkgs = {
@@ -39,7 +40,6 @@
   home.homeDirectory = config.mySystem.homeDirectory;
 
   home.packages = [
-    pkgs.zsh
     pkgs.ncurses
     pkgs.atuin # Fancy history
     pkgs._1password # One password cli

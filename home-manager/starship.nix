@@ -7,5 +7,6 @@
         zsh_indicator = "󱍢";
       };
     };
+    enableZshIntegration = true;
   };
 }
