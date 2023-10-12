@@ -62,6 +62,7 @@
     # '')
 
     pkgs.aws-sam-cli
+    pkgs.rustup
   ];
 
 
