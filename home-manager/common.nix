@@ -51,6 +51,7 @@
     pkgs.cargo-lambda # AWS rust lambda toolkit
     pkgs.lazygit # lazygit git tool
     pkgs.jq # json utility
+    pkgs.taskwarrior
 
     (pkgs.nerdfonts.override {fonts = ["SpaceMono"];})
 
