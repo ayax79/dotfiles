@@ -528,7 +528,17 @@ return {
     --------------------------------------------------------
 
     -- LSP configuration
-    { "neovim/nvim-lspconfig" },
+    {
+        "neovim/nvim-lspconfig",
+        dependencies = {
+            "SmiteshP/nvim-navbuddy",
+            dependencies = {
+                "SmiteshP/nvim-navic",
+                "MunifTanjim/nui.nvim"
+            },
+            opts = { lsp = { auto_attach = true } }
+        }
+    },
     -- provides the underlying debugger support
     { "mfussenegger/nvim-dap" },
     -- debugger ui
