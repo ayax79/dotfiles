@@ -1,9 +1,6 @@
 # This is your home-manager configuration file
 # Use this to configure your home environment (it replaces ~/.config/nixpkgs/home.nix)
-{
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   home.packages = [
     ## Neovim related
     # pkgs.neovim
@@ -34,8 +31,7 @@
   };
 
   home.file."./.config/nvim/" = {
-     source = ./nvim;
-     recursive = true;
-   };
-
+    source = ./nvim;
+    recursive = true;
+  };
 }

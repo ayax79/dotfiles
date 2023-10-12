@@ -10,6 +10,7 @@
     ./starship.nix
     ./alacritty.nix
     ./zsh.nix
+    ./helix.nix
   ];
 
   nixpkgs = {
