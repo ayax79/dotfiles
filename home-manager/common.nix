@@ -65,6 +65,8 @@
 
     pkgs.aws-sam-cli
     pkgs.rustup
+    pkgs.pueue
+    pkgs.vivid
   ];
 
 
