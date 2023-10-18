@@ -1,5 +1,5 @@
 local debug = function(msg)
-  -- print(msg)
+    -- print(msg)
 end
 
 local debug_file_status = function(path)
@@ -260,8 +260,8 @@ local config = {
 -- or attaches to an existing client & server depending on the `root_dir`.
 local ok = pcall(jdtls.start_or_attach, config)
 if not ok then
-  vim.notify("Failed to start or attach jdtls", vim.log.levels.ERROR)
-  return
+    vim.notify("Failed to start or attach jdtls", vim.log.levels.ERROR)
+    return
 end
 
 -- require('jdtls').setup_dap()
