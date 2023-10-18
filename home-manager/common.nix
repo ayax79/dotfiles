@@ -46,7 +46,7 @@
     pkgs.atuin # Fancy history
     pkgs._1password # One password cli
     pkgs.ripgrep # grep but better and faster
-    #pkgs.eza                                            # supported version of exa the cd replacement
+    pkgs.eza # supported version of exa the cd replacement
     pkgs.bat # Cat but with syntax highlighting
     pkgs.broot # newer tree view
     pkgs.nodejs
@@ -66,10 +66,11 @@
 
     pkgs.aws-sam-cli
     pkgs.rustup
-    pkgs.pueue
-    pkgs.vivid
+    pkgs.pueue # background tasks
+    pkgs.vivid #LS_COLORS theming
+    pkgs.htop # activity
+    pkgs.bottom # another activity app written in rust
   ];
-
 
   # Enable home-manager and git
   programs.home-manager.enable = true;
@@ -79,5 +80,4 @@
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   home.stateVersion = "23.05";
-
 }
