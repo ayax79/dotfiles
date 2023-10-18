@@ -52,6 +52,7 @@
               };
             };
           }
+          ./home-manager/mac.nix
         ];
       };
       "home-pop" = home-manager.lib.homeManagerConfiguration {
