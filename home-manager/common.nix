@@ -11,6 +11,7 @@
     ./alacritty.nix
     ./zsh.nix
     ./helix.nix
+    ./nushell.nix
   ];
 
   nixpkgs = {
