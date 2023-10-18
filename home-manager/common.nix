@@ -70,6 +70,7 @@
     pkgs.vivid #LS_COLORS theming
     pkgs.htop # activity
     pkgs.bottom # another activity app written in rust
+    pkgs.fzf
   ];
 
   # Enable home-manager and git
