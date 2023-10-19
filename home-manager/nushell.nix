@@ -11,7 +11,7 @@
     configFile.source = ./nushell/config.nu;
     envFile.source = ./nushell/env.nu;
     extraConfig = ''
-      source ${config.home.homeDirectory}/.local/share/atuin/init.nu
+      source ${config.home.homeDirectory}/.cache/atuin/init.nu
     '';
     extraEnv = ''
       let atuin_cache = "${config.home.homeDirectory}/.cache/atuin"
