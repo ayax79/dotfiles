@@ -65,6 +65,7 @@
     # '')
 
     pkgs.aws-sam-cli
+    pkgs.gimme-aws-creds
     pkgs.rustup
     pkgs.pueue # background tasks
     pkgs.vivid #LS_COLORS theming
