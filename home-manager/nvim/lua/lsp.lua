@@ -1,5 +1,8 @@
 M = {}
 
+local home = os.getenv "HOME"
+local nix_profile_bin = home .. "/.nix-profile/bin"
+
 M.setup_codelens_refresh = function(client, bufnr)
     if client.supports_method("textDocument/codeLens") then
         -- refresh codelens on TextChanged and InsertLeave as well
@@ -254,6 +257,7 @@ M.setup = function()
 
     lspconfig.jsonls.setup {
         on_attach = M.on_attach_common,
+        cmd = { nix_profile_bin .. "/vscode-json-languageserver", "--stdio" },
         settings = {
             json = {
                 schemas = require('schemastore').json.schemas(),
@@ -270,6 +274,7 @@ M.setup = function()
 
     null_ls.setup({
         sources = {
+            null_ls.builtins.formatting.dprint,
             null_ls.builtins.diagnostics.eslint,
             null_ls.builtins.completion.spell,
             null_ls.builtins.formatting.alejandra,
