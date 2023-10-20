@@ -12,8 +12,9 @@
     # pkgs.luarocks
     pkgs.nil # nix language server
     pkgs.jdt-language-server # java language server
-    pkgs.nodePackages.vscode-json-languageserver # json language server
-    pkgs.nodePackages.vscode-html-languageserver-bin # HTML language server
+    # pkgs.nodePackages.vscode-json-languageserver # json language server
+    # pkgs.nodePackages.vscode-html-languageserver-bin # HTML language server
+    pkgs.nodePackages.vscode-langservers-extracted
     pkgs.yaml-language-server # YAML language server
     pkgs.efm-langserver # EFM language server
     pkgs.terraform-lsp # terrform language server

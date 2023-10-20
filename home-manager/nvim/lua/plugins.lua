@@ -550,11 +550,11 @@ return {
     { "simrat39/rust-tools.nvim" },
     -- Injecting diagnostics, formatting, etc into LSP
     "nvimtools/none-ls.nvim",
-    {
-        "hinell/lsp-timeout.nvim",
-        lazy = false,
-        dependencies = { "neovim/nvim-lspconfig" }
-    },
+    -- {
+    --     "hinell/lsp-timeout.nvim",
+    --     lazy = false,
+    --     dependencies = { "neovim/nvim-lspconfig" }
+    -- },
     {
         "saecki/crates.nvim",
         tag = "v0.3.0",

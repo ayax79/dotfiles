@@ -257,7 +257,6 @@ M.setup = function()
 
     lspconfig.jsonls.setup {
         on_attach = M.on_attach_common,
-        cmd = { nix_profile_bin .. "/vscode-json-languageserver", "--stdio" },
         settings = {
             json = {
                 schemas = require('schemastore').json.schemas(),
