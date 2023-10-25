@@ -27,6 +27,6 @@ home-manager switch --flake .#work-mbp
 
 ## Updating installed packages
 ```shellscript
-nix-channel --update
-nix-env -u '*'
+nix flake update
 ```
+Then run home-manager switch like above

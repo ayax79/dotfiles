@@ -18,7 +18,7 @@
       if not ($atuin_cache | path exists) {
          mkdir $atuin_cache
       }
-      ${config.home.homeDirectory}/.nix-profile/bin/atuin init nu | save --force ${config.home.homeDirectory}/.cache/atuin/init.nu
+      ${config.home.homeDirectory}/.nix-profile/bin/atuin init nu --disable-up-arrow | save --force ${config.home.homeDirectory}/.cache/atuin/init.nu
     '';
   };
 }
