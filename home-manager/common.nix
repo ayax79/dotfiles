@@ -54,6 +54,7 @@
     pkgs.lazygit # lazygit git tool
     pkgs.jq # json utility
     pkgs.taskwarrior
+    pkgs.openjdk21
 
     (pkgs.nerdfonts.override {fonts = ["SpaceMono"];})
 

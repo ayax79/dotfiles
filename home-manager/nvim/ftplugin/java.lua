@@ -20,10 +20,10 @@ else
     debug "JDTLS: Unsupported operating system"
 end
 
-local jabba_jdk_dir = home .. '/.jabba/jdk/'
-local jdk8_dir = jabba_jdk_dir .. 'amazon-corretto@8/Contents/Home'
-local jdk11_dir = jabba_jdk_dir .. 'amazon-corretto@11.0/Contents/Home'
-local jdk17_dir = jabba_jdk_dir .. 'amazon-corretto@17.0/Contents/Home'
+-- local jabba_jdk_dir = home .. '/.jabba/jdk/'
+-- local jdk8_dir = jabba_jdk_dir .. 'amazon-corretto@8/Contents/Home'
+-- local jdk11_dir = jabba_jdk_dir .. 'amazon-corretto@11.0/Contents/Home'
+-- local jdk17_dir = jabba_jdk_dir .. 'amazon-corretto@17.0/Contents/Home'
 
 local lsp = require('lsp')
 local on_attach = function(client, bufnr)
@@ -92,8 +92,9 @@ vim.list_extend(
     )
 )
 
-local jdtls_java = jdk17_dir .. '/bin/java'
-debug_file_status(jdtls_java)
+-- local jdtls_java = jdk17_dir .. '/bin/java'
+local jdtls_java = home .. "/.nix-profile/bin/java"
+-- debug_file_status(jdtls_java)
 
 local launcher = jdtls_dir .. "/plugins/org.eclipse.equinox.launcher.jar"
 debug_file_status(launcher)
@@ -173,21 +174,21 @@ local config = {
                 updateBuildConfiguration = "interactive",
                 -- Valid entries
                 -- https://github.com/redhat-developer/vscode-java/blob/c0e0a6376809e6c1d5f60bc5a2bfd07452e9a6db/package.json
-                runtimes = {
-                    {
-                        name = 'JavaSE-1.8',
-                        path = jdk8_dir
-                    },
-                    {
-                        name = 'JavaSE-11',
-                        path = jdk11_dir
-                    },
-                    {
-                        name = 'JavaSE-17',
-                        path = jdk17_dir,
-                        default = true,
-                    },
-                }
+            --     runtimes = {
+            --         {
+            --             name = 'JavaSE-1.8',
+            --             path = jdk8_dir
+            --         },
+            --         {
+            --             name = 'JavaSE-11',
+            --             path = jdk11_dir
+            --         },
+            --         {
+            --             name = 'JavaSE-17',
+            --             path = jdk17_dir,
+            --             default = true,
+            --         },
+            --     }
             },
             maven = {
                 downloadSources = true,
