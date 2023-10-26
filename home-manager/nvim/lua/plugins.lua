@@ -547,19 +547,13 @@ return {
         dependencies = { "mfussenegger/nvim-dap" },
     },
     -- configures lsp and debugger for rust
-    -- { "simrat39/rust-tools.nvim" },
-    -- Injecting diagnostics, formatting, etc into LSP
     {
         'mrcjkb/rustaceanvim',
         version = '^3', -- Recommended
         ft = { 'rust' },
     },
+    -- fork of null-ls
     "nvimtools/none-ls.nvim",
-    -- {
-    --     "hinell/lsp-timeout.nvim",
-    --     lazy = false,
-    --     dependencies = { "neovim/nvim-lspconfig" }
-    -- },
     {
         "saecki/crates.nvim",
         tag = "v0.3.0",

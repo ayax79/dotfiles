@@ -120,64 +120,67 @@ M.setup = function()
         return {}
     end
 
-    -- rust support
-    local rt = require("rust-tools")
-    rt.setup({
+    vim.g.rustaceanvim = {
+        -- Plugin configuration
         tools = {
             runnables = {
                 use_telescope = true,
             },
-            inlay_hints = {
-                -- auto = false,
-                auto = true,
-                show_parameter_hints = true,
-                parameter_hints_prefix = "<-",
-                other_hints_prefix = "=>",
-                max_len_align = false,
-                max_len_align_padding = 1,
-                right_align = false,
-                right_align_padding = 7,
-            },
         },
+        -- LSP configuration
         server = {
             on_attach = function(client, bufnr)
-                navic.attach(client, bufnr)
+                M.on_attach_common(client, bufnr)
                 -- Hover actions
                 vim.keymap.set(
                     "n",
                     "<C-space>",
-                    rt.hover_actions.hover_actions,
+                    function() vim.cmd.RustLsp { 'hover', 'actions' } end,
                     { buffer = bufnr, desc = "Show hover actions" }
                 )
                 -- Code action groups
                 vim.keymap.set(
                     "n",
                     "<Leader>la",
-                    rt.code_action_group.code_action_group,
+                    function() vim.cmd.RustLsp('codeAction') end,
                     { buffer = bufnr, desc = "Code Action Group" }
                 )
                 -- Runnables
-                vim.keymap.set("n", "<Leader>lr", rt.runnables.runnables, { buffer = bufnr, desc = "Runnables" })
+
+                vim.keymap.set("n", "<Leader>lr", function() vim.cmd.RustLsp { 'runnables' } end,
+                    { buffer = bufnr, desc = "Runnables" })
+                vim.keymap.set("n", "<Leader>lR", function() vim.cmd.RustLsp { 'runnables', 'last' } end,
+                    { buffer = bufnr, desc = "Run Last" })
+
+                vim.keymap.set("n", "<Leader>ldr", function() vim.cmd.RustLsp { 'debuggables' } end,
+                    { buffer = bufnr, desc = "Debuggables" })
+                vim.keymap.set("n", "<Leader>ldR", function() vim.cmd.RustLsp { 'debuggables', 'last' } end,
+                    { buffer = bufnr, desc = "Debug Last" })
+
                 M.setup_codelens_refresh(client, bufnr)
             end,
-            settings = {
-                ['rust-analyzer'] = vim.tbl_deep_extend(
-                    "force",
-                    {
-                        cargo = {
-                            autoReload = true,
-                        },
+            -- rust-analyzer language server configuration
+            ['rust-analyzer'] = vim.tbl_deep_extend(
+                "force",
+                {
+                    cargo = {
+                        autoReload = true,
                     },
-                    get_project_rustanalyzer_settings(),
-                    {
+                },
+                get_project_rustanalyzer_settings(),
+                {
 
-                        procMacro = { enable = true },
-                        diagnostics = { disabled = { "inactive-code" } },
-                    }
-                )
-            },
+                    procMacro = { enable = true },
+                    diagnostics = { disabled = { "inactive-code" } },
+                }
+            )
+            ,
         },
-    })
+        -- DAP configuration
+        dap = {
+        },
+    }
+
 
     --------------------------------------------------------
     --- LUA configuration
