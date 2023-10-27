@@ -1,5 +1,5 @@
 local debug = function(msg)
-    -- print(msg)
+    print(msg)
 end
 
 local debug_file_status = function(path)
@@ -55,9 +55,7 @@ if not status then
     return
 end
 
-local mason_dir = vim.fn.stdpath("data") .. "/mason"
-debug_file_status(mason_dir)
-local jdtls_dir = mason_dir .. "/share/jdtls"
+local jdtls_dir = vim.fn.system("nix eval --raw nixpkgs#jdt-language-server") .. "/share"
 debug_file_status(jdtls_dir)
 local cfg_dir = home .. "/.config/nvim"
 debug_file_status(cfg_dir)
@@ -96,7 +94,7 @@ vim.list_extend(
 local jdtls_java = home .. "/.nix-profile/bin/java"
 -- debug_file_status(jdtls_java)
 
-local launcher = jdtls_dir .. "/plugins/org.eclipse.equinox.launcher.jar"
+local launcher = vim.fn.glob(jdtls_dir .. "/java/plugins/org.eclipse.equinox.launcher*" .. CONFIG .. "*.jar")
 debug_file_status(launcher)
 
 local lombok = jdtls_dir .. "/lombok.jar"
