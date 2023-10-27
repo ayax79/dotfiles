@@ -32,6 +32,7 @@ in {
     pkgs.nodePackages.pyright # Pyright language server
     pkgs.alejandra # Alejandra nix formatting
     pkgs.lua-language-server # Lua language server
+    pkgs.vscode-extensions.vscjava.vscode-java-test
     java-debug
   ];
 
