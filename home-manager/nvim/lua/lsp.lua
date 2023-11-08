@@ -104,21 +104,21 @@ M.setup = function()
     --------------------------------------------------------
 
     -- HACK to add per project support for rust analyzer
-    local get_project_rustanalyzer_settings = function()
-        -- local rust_config_path = vim.fn.resolve(vim.fn.getcwd() .. '/./.rust-analyzer.json')
-        local rust_config_path = vim.fn.getcwd() .. '/./.rust-analyzer.json'
-        local handle = io.open(rust_config_path)
-        if not handle then
-            return {}
-        end
-        local out = handle:read("*a")
-        handle:close()
-        local config = vim.json.decode(out, {})
-        if type(config) == "table" then
-            return config
-        end
-        return {}
-    end
+    -- local get_project_rustanalyzer_settings = function()
+    --     -- local rust_config_path = vim.fn.resolve(vim.fn.getcwd() .. '/./.rust-analyzer.json')
+    --     local rust_config_path = vim.fn.getcwd() .. '/./.rust-analyzer.json'
+    --     local handle = io.open(rust_config_path)
+    --     if not handle then
+    --         return {}
+    --     end
+    --     local out = handle:read("*a")
+    --     handle:close()
+    --     local config = vim.json.decode(out, {})
+    --     if type(config) == "table" then
+    --         return config
+    --     end
+    --     return {}
+    -- end
 
     vim.g.rustaceanvim = {
         -- Plugin configuration
@@ -160,21 +160,35 @@ M.setup = function()
                 M.setup_codelens_refresh(client, bufnr)
             end,
             -- rust-analyzer language server configuration
-            ['rust-analyzer'] = vim.tbl_deep_extend(
-                "force",
-                {
+            settings = {
+                ['rust-analyzer'] = {
+                    check = {
+                        features = "all",
+                    },
                     cargo = {
                         autoReload = true,
+                        features = "all",
                     },
-                },
-                get_project_rustanalyzer_settings(),
-                {
-
                     procMacro = { enable = true },
                     diagnostics = { disabled = { "inactive-code" } },
-                }
-            )
-            ,
+
+                },
+            },
+            -- ['rust-analyzer'] = vim.tbl_deep_extend(
+            --     "force",
+            --     {
+            --         cargo = {
+            --             autoReload = true,
+            --         },
+            --     },
+            --     get_project_rustanalyzer_settings(),
+            --     {
+            --
+            --         procMacro = { enable = true },
+            --         diagnostics = { disabled = { "inactive-code" } },
+            --     }
+            -- )
+            -- ,
         },
         -- DAP configuration
         dap = {
