@@ -15,7 +15,7 @@ wk.register({
         r = { telescope_builtin.registers, "Find Register" },
         G = { telescope_builtin.git_files, "Find Git Files" },
         s = { telescope_builtin.git_status, "Modified Git files" },
-        j = { telescope_builtin.jump_list, "Jump List" },
+        j = { telescope_builtin.jumplist, "Jump List" },
     },
     g = {
         name = "git",
