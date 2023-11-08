@@ -62,11 +62,13 @@ wk.register({
         s = { telescope_builtin.lsp_document_symbols, "Document symbols" },
         S = { telescope_builtin.lsp_workspace_symbols, "Workspace symbols" },
         l = { vim.lsp.codelens.run, "CodeLens Action" },
-        d = {
+        D = {
             name = "Debugger",
             b = { "<cmd>DapToggleBreakpoint<cr>", "Toggle breakpoint" },
             u = { require("dapui").toggle, "Toggle Debugger UI" },
-        }
+        },
+        t = { "<cmd>TroubleToggle lsp_type_definitions<cr>", "Type Definitions (trouble)" },
+        d = { "<cmd>TroubleToggle lsp_definitions<cr>", "Definitions (trouble)" },
     },
     t = {
         name = "Terminal",
@@ -121,6 +123,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
         vim.keymap.set("n", "K", vim.lsp.buf.hover, util.with_description(opts, "LSP hover"))
         vim.keymap.set("n", "gi", vim.lsp.buf.implementation, util.with_description(opts, "Go to implementation"))
         vim.keymap.set("n", "<M-k>", vim.lsp.buf.signature_help, opts)
+        vim.keymap.set("n", "gR", function() require("trouble").toggle("lsp_references") end, util.with_description(opts, "Lsp References"))
         vim.keymap.set(
             "n",
             "<space>wa",
