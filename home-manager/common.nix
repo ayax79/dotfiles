@@ -45,6 +45,7 @@
     pkgs.ncurses
     pkgs.atuin # Fancy history
     pkgs._1password # One password cli
+    pkgs._1password-gui 
     pkgs.ripgrep # grep but better and faster
     pkgs.eza # supported version of exa the cd replacement
     pkgs.bat # Cat but with syntax highlighting
@@ -73,8 +74,16 @@
     pkgs.htop # activity
     pkgs.bottom # another activity app written in rust
     pkgs.fzf
+    pkgs.gcc
   ];
 
+  # programs._1password-gui = {
+  #   enable = true;
+  #   # Certain features, including CLI integration and system authentication support,
+  #   # require enabling PolKit integration on some desktop environments (e.g. Plasma).
+  #   polkitPolicyOwners = ["jack"];
+  # };
+  #
   # Enable home-manager and git
   programs.home-manager.enable = true;
 

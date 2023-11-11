@@ -55,7 +55,7 @@
           ./home-manager/mac.nix
         ];
       };
-      "home-pop" = home-manager.lib.homeManagerConfiguration {
+      "home-nix" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         extraSpecialArgs = {inherit inputs outputs;};
         modules = [
