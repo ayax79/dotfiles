@@ -41,44 +41,45 @@
   home.username = config.mySystem.username;
   home.homeDirectory = config.mySystem.homeDirectory;
 
-  home.packages = [
-    pkgs.ncurses
-    pkgs.atuin # Fancy history
-    pkgs._1password # One password cli
-    pkgs._1password-gui
-    pkgs.ripgrep # grep but better and faster
-    pkgs.eza # supported version of exa the cd replacement
-    pkgs.bat # Cat but with syntax highlighting
-    pkgs.broot # newer tree view
-    pkgs.nodejs
-    pkgs.cargo-lambda # AWS rust lambda toolkit
-    pkgs.lazygit # lazygit git tool
-    pkgs.jq # json utility
-    pkgs.taskwarrior
-    pkgs.openjdk21
-    pkgs.spotify
-    pkgs.signal-desktop
-    pkgs.discord
-    pkgs.kitty
+  home.packages = with pkgs; [
+    ncurses
+    atuin # Fancy history
+    _1password # One password cli
+    _1password-gui
+    ripgrep # grep but better and faster
+    eza # supported version of exa the cd replacement
+    bat # Cat but with syntax highlighting
+    broot # newer tree view
+    nodejs
+    cargo-lambda # AWS rust lambda toolkit
+    lazygit # lazygit git tool
+    jq # json utility
+    taskwarrior
+    openjdk21
+    spotify
+    signal-desktop
+    discord
+    kitty
 
-    (pkgs.nerdfonts.override {fonts = ["SpaceMono"];})
+    (nerdfonts.override {fonts = ["SpaceMono"];})
 
     # # You can also create simple shell scripts directly inside your
     # # configuration. For example, this adds a command 'my-hello' to your
     # # environment:
-    # (pkgs.writeShellScriptBin "my-hello" ''
+    # (writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
 
-    pkgs.aws-sam-cli
-    pkgs.gimme-aws-creds
-    pkgs.rustup
-    pkgs.pueue # background tasks
-    pkgs.vivid #LS_COLORS theming
-    pkgs.htop # activity
-    pkgs.bottom # another activity app written in rust
-    pkgs.fzf
-    pkgs.gcc
+    aws-sam-cli
+    gimme-aws-creds
+    rustup
+    pueue # background tasks
+    vivid #LS_COLORS theming
+    htop # activity
+    bottom # another activity app written in rust
+    fzf
+    gcc
+    slack
   ];
 
   # programs._1password-gui = {
