@@ -45,7 +45,7 @@
     pkgs.ncurses
     pkgs.atuin # Fancy history
     pkgs._1password # One password cli
-    pkgs._1password-gui 
+    pkgs._1password-gui
     pkgs.ripgrep # grep but better and faster
     pkgs.eza # supported version of exa the cd replacement
     pkgs.bat # Cat but with syntax highlighting
@@ -56,6 +56,10 @@
     pkgs.jq # json utility
     pkgs.taskwarrior
     pkgs.openjdk21
+    pkgs.spotify
+    pkgs.signal-desktop
+    pkgs.discord
+    pkgs.kitty
 
     (pkgs.nerdfonts.override {fonts = ["SpaceMono"];})
 
