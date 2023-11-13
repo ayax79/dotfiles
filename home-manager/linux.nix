@@ -40,6 +40,9 @@
         "eDP-1" = {
           mode = "1600x900@60Hz";
         };
+        "*" = {
+          bg = "~/backgrounds/utterly-nord.png fill";
+        };
       };
       bars = [
         {
@@ -50,9 +53,11 @@
         names = ["SpaceMono"];
         size = 12.0;
       };
+      gaps = {
+        inner = 8;
+      };
     };
     extraConfig = ''
-      gaps inner 8
       default_border pixel 2
       for_window [title=".*"] border pixel 2
 
