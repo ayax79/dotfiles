@@ -15,7 +15,6 @@
     grim # screenshot functionality
     slurp # screenshot functionality
     wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
-    mako # notification system developed by swaywm maintainer
     wdisplays # tool to configure displays
     nordic
   ];
@@ -390,6 +389,36 @@
     };
   };
 
+  services.mako = {
+    enable = true;
+    sort = "-time";
+    layer = "overlay";
+    backgroundColor = "#4c566a";
+    width = 300;
+    height = 110;
+    borderSize = 2;
+    borderColor = "#88c0d0";
+    borderRadius = 5;
+    icons = true;
+    maxIconSize = 64;
+    defaultTimeout = 5000;
+    ignoreTimeout = true;
+    padding = "14";
+    font = "SpaceMono 11";
+    margin = "20";
+    extraConfig = ''
+      [urgency=low]
+      border-color=#81a1c1
+
+      [urgency=normal]
+      border-color=#88c0d0
+
+      [urgency=high]
+      border-color=#bf616a
+      default-timeout=0
+    '';
+  };
+
   # qt = {
   #   enable = true;
   #   platformTheme = "gtk";
@@ -398,5 +427,4 @@
   #     package = pkgs.nordic;
   #   };
   # };
-
 }
