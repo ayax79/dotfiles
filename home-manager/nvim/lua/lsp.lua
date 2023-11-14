@@ -1,7 +1,8 @@
 M = {}
 
-local home = os.getenv "HOME"
-local nix_profile_bin = home .. "/.nix-profile/bin"
+-- local home = os.getenv "HOME"
+-- local nix_profile_bin = home .. "/.nix-profile/bin"
+local navic = require("nvim-navic")
 
 M.setup_codelens_refresh = function(client, bufnr)
     if client.supports_method("textDocument/codeLens") then
@@ -16,7 +17,6 @@ M.setup_codelens_refresh = function(client, bufnr)
 end
 
 M.on_attach_common = function(client, bufnr)
-    local navic = require("nvim-navic")
     local inlayhints = require("lsp-inlayhints")
     M.setup_codelens_refresh(client, bufnr)
     navic.attach(client, bufnr)
@@ -95,7 +95,6 @@ M.setup = function()
         dapui.open()
     end
 
-    local navic = require("nvim-navic")
     local capabilities = M.get_capabilities()
     local lspconfig = require("lspconfig")
 

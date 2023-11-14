@@ -192,9 +192,9 @@ return {
                             require("noice").api.status.search.get,
                             cond = require("noice").api.status.search.has,
                             color = { fg = "#ff9e64" },
-                        }, "encoding", "fileformat", "filetype", "tabnine",
+                            -- }, "encoding", "fileformat", "filetype", "tabnine",
+                        }, "encoding", "fileformat", "filetype",
                     },
-                    -- lualine_x = { "encoding", "fileformat", "filetype", "tabnine" },
                     lualine_y = { "progress" },
                     lualine_z = { "location" },
                 },
@@ -387,24 +387,26 @@ return {
     { "hrsh7th/cmp-nvim-lsp-signature-help" },
     { "hrsh7th/cmp-nvim-lua" },
     -- github copilot
-    -- {
-    --     "zbirenbaum/copilot.lua",
-    --     cmd = "Copilot",
-    --     event = "InsertEnter",
-    -- },
+    {
+        "zbirenbaum/copilot.lua",
+        cmd = "Copilot",
+        event = "InsertEnter",
+    },
     -- cmp source for copilot
-    -- { "zbirenbaum/copilot-cmp" },
+    {
+        "zbirenbaum/copilot-cmp",
+    },
 
     -- official tabnine plugin
-    { "codota/tabnine-nvim",                build = "./dl_binaries.sh" },
+    -- { "codota/tabnine-nvim",                build = "./dl_binaries.sh" },
 
     -- integrates tab-nine with cmp
-    {
-        "tzachar/cmp-tabnine",
-        build = "./install.sh",
-        dependencies = "hrsh7th/nvim-cmp",
-    },
-    -- vscode like completion icons
+    -- {
+    --     "tzachar/cmp-tabnine",
+    --     build = "./install.sh",
+    --     dependencies = "hrsh7th/nvim-cmp",
+    -- },
+    -- -- vscode like completion icons
     "onsails/lspkind.nvim",
     {
         "epwalsh/obsidian.nvim",
@@ -646,6 +648,15 @@ return {
         lazy = false,
         config = function()
             require("noice").setup({
+                views = {
+                    mini = {
+                        win_options = {
+                            -- transparency for lsp status
+                            winblend = 0
+
+                        },
+                    },
+                },
                 lsp = {
                     -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
                     override = {
@@ -664,7 +675,7 @@ return {
                 },
             })
             require("notify").setup({
-                background_colour = "#000000",
+                background_colour = "#4c566a",
             })
         end
     },

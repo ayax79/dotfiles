@@ -3,12 +3,12 @@
   pkgs,
   ...
 }: {
-
   imports = [
     ./sway
   ];
 
   home.packages = with pkgs; [
+    gimp
     signal-desktop
     jetbrains.rust-rover
     jetbrains.idea-ultimate
@@ -18,7 +18,6 @@
     source = ./backgrounds;
     recursive = true;
   };
-
 
   gtk = {
     enable = true;
@@ -36,7 +35,7 @@
       size = 32;
     };
   };
-  #
+
   dconf = {
     settings = {
       "org/gnome/desktop/interface" = {
@@ -56,7 +55,6 @@
       };
     };
   };
-
 
   # qt = {
   #   enable = true;

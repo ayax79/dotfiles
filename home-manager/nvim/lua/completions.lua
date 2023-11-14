@@ -1,39 +1,39 @@
 -- Completion Plugin Setup
 -- setup copilot support
--- require("copilot").setup({
---     suggestion = { enabled = false },
---     panel = { enabled = false },
+require("copilot").setup({
+    suggestion = { enabled = false },
+    panel = { enabled = false },
+})
+
+-- local tabnine = require("cmp_tabnine.config")
+--
+-- tabnine:setup({
+--     max_lines = 1000,
+--     max_num_results = 20,
+--     sort = true,
+--     run_on_every_keystroke = true,
+--     snippet_placeholder = "..",
+--     ignored_file_types = {
+--         -- default is not to ignore
+--         -- uncomment to ignore in lua:
+--         -- lua = true
+--     },
+--     show_prediction_strength = false,
 -- })
-
-local tabnine = require("cmp_tabnine.config")
-
-tabnine:setup({
-    max_lines = 1000,
-    max_num_results = 20,
-    sort = true,
-    run_on_every_keystroke = true,
-    snippet_placeholder = "..",
-    ignored_file_types = {
-        -- default is not to ignore
-        -- uncomment to ignore in lua:
-        -- lua = true
-    },
-    show_prediction_strength = false,
-})
--- official tab nine
-require("tabnine").setup({
-    disable_auto_comment = true,
-    -- accept_keymap = "<Tab>", -- don't conflict with cmp
-    accept_keymap = "<F9>", -- don't conflict with cmp
-    dismiss_keymap = "<C->",
-    debounce_ms = 800,
-    suggestion_color = { gui = "#808080", cterm = 244 },
-    exclude_filetypes = { "TelescopePrompt" },
-    log_file_path = nil, -- absolute path to Tabnine log file
-})
-
+-- -- official tab nine
+-- require("tabnine").setup({
+--     disable_auto_comment = true,
+--     -- accept_keymap = "<Tab>", -- don't conflict with cmp
+--     accept_keymap = "<F9>", -- don't conflict with cmp
+--     dismiss_keymap = "<C->",
+--     debounce_ms = 800,
+--     suggestion_color = { gui = "#808080", cterm = 244 },
+--     exclude_filetypes = { "TelescopePrompt" },
+--     log_file_path = nil, -- absolute path to Tabnine log file
+-- })
+--
 -- github copilot
--- require("copilot_cmp").setup()
+require("copilot_cmp").setup()
 
 -- vscode like icons
 local lspkind = require("lspkind")
@@ -42,7 +42,8 @@ local source_mapping = {
     buffer = "[Buffer]",
     nvim_lsp = "[LSP]",
     nvim_lua = "[Lua]",
-    cmp_tabnine = "[TN]",
+    -- cmp_tabnine = "[TN]",
+    copilot = "[CP]",
     path = "[Path]",
 }
 
@@ -71,11 +72,11 @@ cmp.setup({
     },
     -- Installed sources:
     sources = {
-        -- { name = "copilot" },-- github copilot support
         { name = "path" },                                       -- file paths
         { name = "nvim_lsp",               keyword_length = 3 }, -- from language server
         { name = "nvim_lsp_signature_help" },                    -- display function signatures with current parameter emphasized
-        { name = "cmp_tabnine" },
+        { name = "copilot" },-- github copilot support
+        -- { name = "cmp_tabnine" },
         { name = "nvim_lua",               keyword_length = 2 }, -- complete neovim's Lua runtime API such vim.lsp.*
         { name = "buffer",                 keyword_length = 2 }, -- source current buffer
         { name = "vsnip",                  keyword_length = 2 }, -- nvim-cmp source for vim-vsnip
@@ -92,7 +93,8 @@ cmp.setup({
             -- in the following line:
             vim_item.kind = lspkind.symbolic(vim_item.kind, { mode = "symbol" })
             vim_item.menu = source_mapping[entry.source.name]
-            if entry.source.name == "cmp_tabnine" then
+            -- if entry.source.name == "cmp_tabnine" then
+            if entry.source.name == "copilot" then
                 local detail = (entry.completion_item.labelDetails or {}).detail
                 vim_item.kind = ""
                 if detail and detail:find(".*%%.*") then
