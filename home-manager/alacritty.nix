@@ -27,7 +27,7 @@ in {
       # mac option behavior
       window = {
         option_as_alt = "Both";
-        opacity = 0.9;
+        opacity = 0.95;
       };
 
       # Nord theme colors
