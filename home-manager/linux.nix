@@ -8,8 +8,6 @@
     keepassxc
     shotman
     dmenu
-    #dbus-sway-environment
-    #configure-gtk
     xdg-utils # for opening default programs when clicking links
     glib # gsettings
     swaylock
@@ -370,9 +368,6 @@
       package = pkgs.nordzy-cursor-theme;
       size = 32;
     };
-    # gtk2 = {
-    #   configLocation = "${config.home.homeDirectory}/.gtkrc-2.0";
-    # };
   };
   #
   dconf = {
@@ -404,35 +399,4 @@
   #   };
   # };
 
-  # https://hoverbear.org/blog/declarative-gnome-configuration-in-nixos/
-
-  # dconf.settings = {
-  #   # ...
-  #   "org/gnome/shell" = {
-  #     favorite-apps = [
-  #       "firefox.desktop"
-  #       "code.desktop"
-  #       "org.gnome.Terminal.desktop"
-  #       "spotify.desktop"
-  #       "virt-manager.desktop"
-  #       "org.gnome.Nautilus.desktop"
-  #     ];
-  #   };
-  #   "org/gnome/desktop/interface" = {
-  #     color-scheme = "prefer-dark";
-  #     enable-hot-corners = false;
-  #   };
-  #   "org/gnome/desktop/wm/preferences" = {
-  #     workspace-names = ["Main"];
-  #   };
-  #   "org/gnome/desktop/background" = {
-  #     picture-uri = "file:///run/current-system/sw/share/backgrounds/gnome/vnc-l.png";
-  #     picture-uri-dark = "file:///run/current-system/sw/share/backgrounds/gnome/vnc-d.png";
-  #   };
-  #   "org/gnome/desktop/screensaver" = {
-  #     picture-uri = "file:///run/current-system/sw/share/backgrounds/gnome/vnc-d.png";
-  #     primary-color = "#3465a4";
-  #     secondary-color = "#000000";
-  #   };
-  # };
 }
