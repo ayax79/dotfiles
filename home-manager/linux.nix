@@ -16,6 +16,7 @@
     wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
     wdisplays # tool to configure displays
     nordic
+    signal-desktop
   ];
 
   home.file.backgrounds = {

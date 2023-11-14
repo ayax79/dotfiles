@@ -57,7 +57,6 @@
     taskwarrior
     openjdk21
     spotify
-    signal-desktop
     discord
     kitty
 
