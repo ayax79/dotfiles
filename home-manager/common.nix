@@ -80,6 +80,8 @@
     fzf
     gcc
     slack
+    jetbrains.rust-rover
+    jetbrains.idea-ultimate
   ];
 
   # programs._1password-gui = {

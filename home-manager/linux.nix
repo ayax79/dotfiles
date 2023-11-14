@@ -11,7 +11,6 @@
     xdg-utils # for opening default programs when clicking links
     glib # gsettings
     swaylock
-    swayidle
     grim # screenshot functionality
     slurp # screenshot functionality
     wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
@@ -55,29 +54,46 @@
       };
     };
     extraConfig = ''
-      default_border pixel 2
-      for_window [title=".*"] border pixel 2
+            default_border pixel 2
+            for_window [title=".*"] border pixel 2
 
-      # Themes
-      set $gnome-schema org.gnome.desktop.interface
-      exec_always {
-          gsettings set $gnome-schema gtk-theme "Nordic-bluish-accent"
-          gsettings set $gnome-schema icon-theme "NordArc-Icons"
-          gsettings set org.gnome.desktop.wm.preferences theme "Nordic-bluish-accent"
-      }
+            # Themes
+            set $gnome-schema org.gnome.desktop.interface
+            exec_always {
+                gsettings set $gnome-schema gtk-theme "Nordic-bluish-accent"
+                gsettings set $gnome-schema icon-theme "NordArc-Icons"
+                gsettings set org.gnome.desktop.wm.preferences theme "Nordic-bluish-accent"
+            }
 
-      # Notification
-      exec_always mako
+            # Notification
+            exec_always mako
 
-      # Src : https://github.com/lokesh-krishna/dotfiles/blob/master/nord-v3/config/sway/config
-      ## Window decoration
-      # class                 border  backgr. text    indicator child_border
-      client.focused          #88c0d0 #434c5e #eceff4 #8fbcbb   #88c0d0
-      client.focused_inactive #88c0d0 #2e3440 #d8dee9 #4c566a   #4c566a
-      client.unfocused        #88c0d0 #2e3440 #d8dee9 #4c566a   #4c566a
-      client.urgent           #ebcb8b #ebcb8b #2e3440 #8fbcbb   #ebcb8b
+            # Src : https://github.com/lokesh-krishna/dotfiles/blob/master/nord-v3/config/sway/config
+            ## Window decoration
+            # class                 border  backgr. text    indicator child_border
+            client.focused          #88c0d0 #434c5e #eceff4 #8fbcbb   #88c0d0
+            client.focused_inactive #88c0d0 #2e3440 #d8dee9 #4c566a   #4c566a
+            client.unfocused        #88c0d0 #2e3440 #d8dee9 #4c566a   #4c566a
+            client.urgent           #ebcb8b #ebcb8b #2e3440 #8fbcbb   #ebcb8b
 
-      include /etc/sway/config.d/*
+            include /etc/sway/config.d/*
+
+      # Sink volume raise optionally with --device
+      bindsym XF86AudioRaiseVolume exec swayosd-client --output-volume raise
+      # Sink volume lower optionally with --device
+      bindsym XF86AudioLowerVolume exec  swayosd-client --output-volume lower --device alsa_output.pci-0000_11_00.4.analog-stereo.monitor
+      # Sink volume toggle mute
+      bindsym XF86AudioMute exec swayosd-client --output-volume mute-toggle
+      # Source volume toggle mute
+      bindsym XF86AudioMicMute exec swayosd-client --input-volume mute-toggle
+
+      # Capslock (If you don't want to use the backend)
+      bindsym --release Caps_Lock exec swayosd-client --caps-lock
+
+      # Brightness raise
+      bindsym XF86MonBrightnessUp exec swayosd-client --brightness raise
+      # Brightness lower
+      bindsym XF86MonBrightnessDown exec swayosd-client --brightness lower
     '';
   };
 
@@ -387,6 +403,31 @@
         ];
       };
     };
+  };
+
+  services.swayidle = {
+    enable = true;
+    timeouts = [
+      {
+        timeout = 300;
+        command = "${pkgs.swaylock}/bin/swaylock -fF";
+      }
+      {
+        timeout = 600;
+        command = "${pkgs.swaylock}/bin/swaymsg  \"output * power off\"";
+        resumeCommand = "${pkgs.swaylock}/bin/swaymsg \"output * power on\"";
+      }
+    ];
+    events = [
+      {
+        event = "before-sleep";
+        command = "${pkgs.swaylock}/bin/swaylock -fF";
+      }
+    ];
+  };
+
+  services.swayosd = {
+    enable = true;
   };
 
   services.mako = {
