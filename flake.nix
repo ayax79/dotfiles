@@ -14,7 +14,6 @@
       url = "github:lnl7/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs-darwin";
     };
-    hyprland.url = "github:hyprwm/Hyprland";
 
     # Shameless plug: looking for a way to nixify your themes and make
     # everything match nicely? Try nix-colors!
@@ -26,7 +25,6 @@
     nixpkgs,
     darwin,
     home-manager,
-    hyprland,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -61,8 +59,6 @@
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         extraSpecialArgs = {inherit inputs outputs;};
         modules = [
-          hyprland.homeManagerModules.default
-          {wayland.windowManager.hyprland.enable = true;}
           {
             imports = [
               ./systems/common.nix
