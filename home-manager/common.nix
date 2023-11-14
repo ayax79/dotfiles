@@ -58,7 +58,6 @@
     openjdk21
     spotify
     discord
-    kitty
 
     (nerdfonts.override {fonts = ["SpaceMono"];})
 
