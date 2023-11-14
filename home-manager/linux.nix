@@ -17,6 +17,8 @@
     wdisplays # tool to configure displays
     nordic
     signal-desktop
+    jetbrains.rust-rover
+    jetbrains.idea-ultimate
   ];
 
   home.file.backgrounds = {
