@@ -4,8 +4,8 @@
     settings = {
       shell = {
         disabled = false;
-        nu_indicator = "󱆀";
-        zsh_indicator = "󱍢";
+        nu_indicator = "󰎔";
+        zsh_indicator = "󱆃";
       };
     };
     enableZshIntegration = true;
