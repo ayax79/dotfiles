@@ -307,6 +307,12 @@ M.setup = function()
     --------------------------------------------------------
     --- NIL LS CONFIGURATION (NIX)
     --------------------------------------------------------
-    require 'lspconfig'.nil_ls.setup {}
+    require 'lspconfig'.nil_ls.setup {
+        settings = {
+            ['nil'] = {
+                autoArchive = true;
+            },
+        },
+    }
 end
 return M
