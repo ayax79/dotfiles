@@ -1,5 +1,6 @@
 {pkgs, ...}: let
   font = "SpaceMono";
+  background_image = "~/backgrounds/utterly-nord.png";
 in {
 
   home.packages = with pkgs; [
@@ -44,7 +45,7 @@ in {
     # daemonize
 
     # Display the given image
-    image ~/backgrounds/utterly-nord.png
+    image=${background_image}
 
     # Display the current xkb layout while typing
     show-keyboard-layout
