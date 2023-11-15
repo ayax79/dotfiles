@@ -660,7 +660,7 @@ return {
                     mini = {
                         win_options = {
                             -- transparency for lsp status
-                            winblend = 0
+                            -- winblend = 0
 
                         },
                     },
@@ -682,9 +682,10 @@ return {
                     lsp_doc_border = false,       -- add a border to hover docs and signature help
                 },
             })
-            require("notify").setup({
-                background_colour = "#4c566a",
-            })
+        -- when using transparency
+        --     require("notify").setup({
+        --         background_colour = "#4c566a",
+        --     })
         end
     },
     {
