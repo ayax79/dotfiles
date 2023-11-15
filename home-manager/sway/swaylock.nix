@@ -48,11 +48,11 @@ in {
     image=${background_image}
 
     # Display the current xkb layout while typing
-    show-keyboard-layout
+    # show-keyboard-layout
 
     # Force hiding the current xkb layout while typing, even if more than one layout
     # is configured or the show-keyboard-layout option is set
-    # hide-keyboard-layout
+    hide-keyboard-layout
 
     # Disable the Caps Lock Text
     # disable-caps-lock-text
