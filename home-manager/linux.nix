@@ -8,8 +8,10 @@
   ];
 
   home.packages = with pkgs; [
+    nomacs
     gimp
     signal-desktop
+    pavucontrol
     jetbrains.rust-rover
     jetbrains.idea-ultimate
   ];
@@ -56,12 +58,13 @@
     };
   };
 
-  # qt = {
-  #   enable = true;
-  #   platformTheme = "gtk";
-  #   style = {
-  #     name = "Nordic";
-  #     package = pkgs.nordic;
-  #   };
-  # };
+  qt = {
+    enable = true;
+    platformTheme = "gtk";
+  
+    style = {
+      name = "Nordic";
+      #package = pkgs.nordic;
+    };
+  };
 }
