@@ -76,7 +76,6 @@
     htop # activity
     bottom # another activity app written in rust
     fzf
-    gcc
     slack
   ];
 

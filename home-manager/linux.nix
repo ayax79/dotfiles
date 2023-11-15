@@ -14,6 +14,7 @@
     pavucontrol
     jetbrains.rust-rover
     jetbrains.idea-ultimate
+    gcc
   ];
 
   home.file.backgrounds = {
