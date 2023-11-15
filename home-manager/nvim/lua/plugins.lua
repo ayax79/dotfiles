@@ -3,24 +3,32 @@ return {
     --------------------------------------------------------
     --- THEME, UI, & VISUALS
     --------------------------------------------------------
+    -- {
+    --     "shaunsingh/nord.nvim",
+    --     lazy = false,
+    --     priority = 1000,
+    --     config = function()
+    --         -- Example config in lua
+    --         vim.g.nord_contrast = true
+    --         vim.g.nord_borders = true
+    --         vim.g.nord_disable_background = true
+    --         vim.g.nord_italic = false
+    --         vim.g.nord_uniform_diff_background = true
+    --         vim.g.nord_bold = false
+    --
+    --         -- Load the colorscheme
+    --         require('nord').set()
+    --     end
+    -- },
     {
-        "shaunsingh/nord.nvim",
+        'AlexvZyl/nordic.nvim',
         lazy = false,
         priority = 1000,
         config = function()
-            -- Example config in lua
-            vim.g.nord_contrast = true
-            vim.g.nord_borders = true
-            vim.g.nord_disable_background = true
-            vim.g.nord_italic = false
-            vim.g.nord_uniform_diff_background = true
-            vim.g.nord_bold = false
-
-            -- Load the colorscheme
-            require('nord').set()
+            require 'nordic'.load()
         end
     },
-    -- Start Screen
+    -- -- Start Screen
     {
         "glepnir/dashboard-nvim",
         event = "VimEnter",
@@ -125,15 +133,15 @@ return {
         version = "*",
         dependencies = { "nvim-tree/nvim-web-devicons" },
         config = function()
-            local highlights = require("nord").bufferline.highlights({
-                italic = true,
-                bold = true,
-            })
+            -- local highlights = require("nord").bufferline.highlights({
+            --     italic = true,
+            --     bold = true,
+            -- })
             require("bufferline").setup({
                 options = {
                     separator_style = "thin",
                 },
-                highlights = highlights,
+                -- highlights = highlights,
             })
         end,
     },
@@ -181,17 +189,17 @@ return {
                         {
                             require("noice").api.status.command.get,
                             cond = require("noice").api.status.command.has,
-                            color = { fg = "#ff9e64" },
+                            color = { fg = "#D08770" },
                         },
                         {
                             require("noice").api.status.mode.get,
                             cond = require("noice").api.status.mode.has,
-                            color = { fg = "#ff9e64" },
+                            color = { fg = "#D08770" },
                         },
                         {
                             require("noice").api.status.search.get,
                             cond = require("noice").api.status.search.has,
-                            color = { fg = "#ff9e64" },
+                            color = { fg = "#D08770" },
                             -- }, "encoding", "fileformat", "filetype", "tabnine",
                         }, "encoding", "fileformat", "filetype",
                     },
@@ -700,6 +708,10 @@ return {
         "preservim/vimux",
         dependencies = { "jtdowney/vimux-cargo" },
         lazy = false,
+    },
+    {
+        "norcalli/nvim-colorizer.lua",
+        lazy = false,
+        config = function() require("colorizer").setup() end,
     }
-
 }
