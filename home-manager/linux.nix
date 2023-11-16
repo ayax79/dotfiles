@@ -15,6 +15,7 @@
     jetbrains.rust-rover
     jetbrains.idea-ultimate
     gcc
+    thunderbird
   ];
 
   home.file.backgrounds = {
