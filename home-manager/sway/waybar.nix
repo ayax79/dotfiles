@@ -4,13 +4,13 @@
     settings = {
       mainBar = {
         name = "bar1";
-        height = 35;
+        height = 40;
         margin-top = 7;
         margin-right = 7;
         margin-left = 7;
         modules-left = ["sway/workspaces" "sway/mode" "sway/window"];
         modules-center = [];
-        modules-right = ["pulseaudio" "backlight" "network" "cpu" "memory" "battery" "clock" "tray"];
+        modules-right = ["keyboard-state" "pulseaudio" "backlight" "network" "cpu" "memory" "battery" "clock" "tray"];
         "sway/mode" = {
           format = "<span style=\"italic\">{}</span>";
         };
@@ -79,6 +79,17 @@
             "default" = ["" "" ""];
           };
           on-click = "pavucontrol";
+        };
+        "keyboard-state" = {
+          "capslock" = true;
+          "format" = {
+            "capslock" = "{icon}";
+          };
+          "format-icons" = {
+            "locked" = "";
+            # "unlocked" = "";
+            "unlocked" = "";
+          };
         };
       };
     };
@@ -156,6 +167,7 @@
       /*
       * Right part
       */
+      #keyboard-state label.locked,
       #pulseaudio,
       #network,
       #cpu,
@@ -170,6 +182,7 @@
           color: @nord6;
       }
 
+      #keyboard-state label.locked,
       #backlight,
       #language,
       #battery,
@@ -180,6 +193,7 @@
           border-bottom-right-radius: 5px;
       }
 
+      #keyboard-state label.locked,
       #pulseaudio,
       #network,
       #clock,
@@ -205,6 +219,7 @@
           background-color: @nord1;
       }
 
+      #keyboard-state label.locked,
       #network.disabled,
       #network.disconnected {
           background-color: @nord13;
