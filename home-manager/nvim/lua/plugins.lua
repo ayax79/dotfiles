@@ -1,33 +1,50 @@
-return {
+M = {}
 
-    --------------------------------------------------------
-    --- THEME, UI, & VISUALS
-    --------------------------------------------------------
-    -- {
-    --     "shaunsingh/nord.nvim",
-    --     lazy = false,
-    --     priority = 1000,
-    --     config = function()
-    --         -- Example config in lua
-    --         vim.g.nord_contrast = true
-    --         vim.g.nord_borders = true
-    --         vim.g.nord_disable_background = true
-    --         vim.g.nord_italic = false
-    --         vim.g.nord_uniform_diff_background = true
-    --         vim.g.nord_bold = false
-    --
-    --         -- Load the colorscheme
-    --         require('nord').set()
-    --     end
-    -- },
-    {
-        'AlexvZyl/nordic.nvim',
+--------------------------------------------------------
+--- THEME, UI, & VISUALS
+--------------------------------------------------------
+if vim.g.theme_name == "nord" then
+    table.insert(M, {
+        "shaunsingh/nord.nvim",
         lazy = false,
         priority = 1000,
         config = function()
-            require 'nordic'.load()
+            -- Example config in lua
+            vim.g.nord_contrast = true
+            vim.g.nord_borders = true
+            vim.g.nord_disable_background = false
+            vim.g.nord_italic = false
+            vim.g.nord_uniform_diff_background = true
+            vim.g.nord_bold = false
+
+            -- Load the colorscheme
+            require('nord').set()
         end
-    },
+    })
+elseif vim.g.theme_name == "nordic" then
+    table.insert(M,
+        {
+            'AlexvZyl/nordic.nvim',
+            lazy = false,
+            priority = 1000,
+            config = function()
+                require 'nordic'.load()
+            end
+        })
+elseif vim.g.theme_name == "onenord" then
+    table.insert(M,
+        {
+            'rmehri01/onenord.nvim',
+            lazy = false,
+            priority = 1000,
+            config = function()
+                require 'onenord'.setup()
+            end
+        })
+end
+
+table.insert(M, {
+
     -- -- Start Screen
     {
         "glepnir/dashboard-nvim",
@@ -133,16 +150,20 @@ return {
         version = "*",
         dependencies = { "nvim-tree/nvim-web-devicons" },
         config = function()
-            -- local highlights = require("nord").bufferline.highlights({
-            --     italic = true,
-            --     bold = true,
-            -- })
-            require("bufferline").setup({
+            local cfg = {
                 options = {
                     separator_style = "thin",
                 },
-                -- highlights = highlights,
-            })
+            }
+
+            if vim.g.theme_name == "nord" then
+                cfg.highlights = require("nord").bufferline.highlights({
+                    italic = true,
+                    bold = true,
+                })
+            end
+
+            require("bufferline").setup(cfg)
         end,
     },
     -- Status line support
@@ -682,10 +703,10 @@ return {
                     lsp_doc_border = false,       -- add a border to hover docs and signature help
                 },
             })
-        -- when using transparency
-        --     require("notify").setup({
-        --         background_colour = "#4c566a",
-        --     })
+            -- when using transparency
+            --     require("notify").setup({
+            --         background_colour = "#4c566a",
+            --     })
         end
     },
     {
@@ -715,4 +736,6 @@ return {
         lazy = false,
         config = function() require("colorizer").setup() end,
     }
-}
+})
+
+return M
