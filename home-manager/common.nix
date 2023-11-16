@@ -58,6 +58,7 @@
     openjdk21
     spotify
     discord
+    bash
 
     (nerdfonts.override {fonts = ["SpaceMono"];})
 
