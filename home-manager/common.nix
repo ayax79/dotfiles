@@ -59,6 +59,7 @@
     spotify
     discord
     bash
+    wget
 
     (nerdfonts.override {fonts = ["SpaceMono"];})
 
