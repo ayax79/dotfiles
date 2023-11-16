@@ -20,6 +20,9 @@
           "tap" = "enabled";
           "natural_scroll" = "enabled";
         };
+        "type:mouse" = {
+          "natural_scroll" = "enabled";
+        };
       };
       output = {
         "HDMI-A-2" = {
