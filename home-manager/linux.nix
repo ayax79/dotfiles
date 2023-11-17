@@ -17,6 +17,7 @@
     gcc
     thunderbird
     libreoffice
+    firefox
   ];
 
   home.file.backgrounds = {

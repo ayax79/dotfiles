@@ -64,7 +64,6 @@
     discord
     bash
     wget
-    firefox
 
     (nerdfonts.override {fonts = ["SpaceMono"];})
 
