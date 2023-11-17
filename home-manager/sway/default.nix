@@ -1,5 +1,4 @@
 {
-  config,
   pkgs,
   ...
 }: {
@@ -96,8 +95,8 @@
       }
       {
         timeout = 600;
-        command = ''${pkgs.swaylock}/bin/swaymsg  "output * power off"'';
-        resumeCommand = ''${pkgs.swaylock}/bin/swaymsg "output * power on"'';
+        command = ''${pkgs.swaylock}/bin/swaymsg  "output * dpms off"'';
+        resumeCommand = ''${pkgs.swaylock}/bin/swaymsg "output * dpms on"'';
       }
     ];
     events = [
