@@ -41,6 +41,10 @@
   home.username = config.mySystem.username;
   home.homeDirectory = config.mySystem.homeDirectory;
 
+  home.sessionVariables = {
+    EDITOR = "nvim";
+  };
+
   home.packages = with pkgs; [
     ncurses
     atuin # Fancy history
