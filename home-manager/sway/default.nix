@@ -11,7 +11,6 @@
   ];
 
   home.packages = with pkgs; [
-    sov
     wayshot
     workstyle
   ];
@@ -54,40 +53,18 @@
       gaps = {
         inner = 8;
       };
-      keybindings = let
-        mod = config.wayland.windowManager.sway.config.modifier;
-      in
-        lib.mkOptionDefault {
-          # "${mod}+1" = ''workspace number 1; exec "echo 1 > /tmp/sovpipe'';
-          # "${mod}+2" = ''workspace number 2; exec "echo 1 > /tmp/sovpipe'';
-          # "${mod}+3" = ''workspace number 3; exec "echo 1 > /tmp/sovpipe'';
-          # "${mod}+4" = ''workspace number 4; exec "echo 1 > /tmp/sovpipe'';
-          # "${mod}+5" = ''workspace number 5; exec "echo 1 > /tmp/sovpipe'';
-          # "${mod}+6" = ''workspace number 6; exec "echo 1 > /tmp/sovpipe'';
-          # "${mod}+7" = ''workspace number 7; exec "echo 1 > /tmp/sovpipe'';
-          # "${mod}+8" = ''workspace number 8; exec "echo 1 > /tmp/sovpipe'';
-          # "${mod}+9" = ''workspace number 9; exec "echo 1 > /tmp/sovpipe'';
-          # "${mod}+0" = ''workspace number 10; exec "echo 1 > /tmp/sovpipe'';
-          # "${mod}+1" = ''exec "echo 0 > /tmp/sovpipe'';
-          # "${mod}+2" = ''exec "echo 0 > /tmp/sovpipe'';
-          # "${mod}+3" = ''exec "echo 0 > /tmp/sovpipe'';
-          # "${mod}+4" = ''exec "echo 0 > /tmp/sovpipe'';
-          # "${mod}+5" = ''exec "echo 0 > /tmp/sovpipe'';
-          # "${mod}+6" = ''exec "echo 0 > /tmp/sovpipe'';
-          # "${mod}+7" = ''exec "echo 0 > /tmp/sovpipe'';
-          # "${mod}+8" = ''exec "echo 0 > /tmp/sovpipe'';
-          # "${mod}+9" = ''exec "echo 0 > /tmp/sovpipe'';
-          # "${mod}+0" = ''exec "echo 0 > /tmp/sovpipe'';
-          # # Brightness
-          "XF86MonBrightnessDown" = "exec light -U 10";
-          "XF86MonBrightnessUp" = "exec light -A 10'";
+      keybindings = lib.mkOptionDefault {
+        # # Brightness
+        "XF86MonBrightnessDown" = "exec light -U 10";
+        "XF86MonBrightnessUp" = "exec light -A 10'";
 
-          # Volume
-          "XF86AudioRaiseVolume" = "exec 'pactl set-sink-volume @DEFAULT_SINK@ +1%'";
-          "XF86AudioLowerVolume" = "exec 'pactl set-sink-volume @DEFAULT_SINK@ -1%'";
-          "XF86AudioMute" = "exec 'pactl set-sink-mute @DEFAULT_SINK@ toggle'";
-        };
+        # Volume
+        "XF86AudioRaiseVolume" = "exec 'pactl set-sink-volume @DEFAULT_SINK@ +1%'";
+        "XF86AudioLowerVolume" = "exec 'pactl set-sink-volume @DEFAULT_SINK@ -1%'";
+        "XF86AudioMute" = "exec 'pactl set-sink-mute @DEFAULT_SINK@ toggle'";
+      };
     };
+
     extraConfig = let
       mod = config.wayland.windowManager.sway.config.modifier;
     in ''
@@ -103,11 +80,7 @@
       }
 
       #workspace renaming
-      exec_always --no-startup-id ${pkgs.workstyle}bin/workstyle &> /tmp/workstyle.log
-
-      # workspace schema viewer
-      exec rm -f /tmp/sovpipe && mkfifo /tmp/sovpipe && tail -f /tmp/sovpipe | ${pkgs.sov}/bin/sov -t 500
-
+      exec_always --no-startup-id ${pkgs.workstyle}/bin/workstyle &> /tmp/workstyle.log
 
       # Notification
       exec_always mako
@@ -119,9 +92,6 @@
       client.focused_inactive #88c0d0 #2e3440 #d8dee9 #4c566a   #4c566a
       client.unfocused        #88c0d0 #2e3440 #d8dee9 #4c566a   #4c566a
       client.urgent           #ebcb8b #ebcb8b #2e3440 #8fbcbb   #ebcb8b
-
-      include /etc/sway/config.d/*
-
 
       # give sway a little time to startup before starting kanshi.
       exec sleep 5; systemctl --user start kanshi.service
@@ -200,4 +170,37 @@
       default-timeout=0
     '';
   };
+
+  home.file.".config/workstyle/config.toml".text = ''
+  "alacritty" = ""
+  "github" = ""
+  "rust" = ""
+  "google" = ""
+  "private browsing" = ""
+  "firefox" = ""
+  "chrome" = ""
+  "file manager" = ""
+  "libreoffice calc" = ""
+  "libreoffice writer" = ""
+  "libreoffice" = ""
+  "nvim" = ""
+  "gthumb" = ""
+  "menu" = ""
+  "calculator" = ""
+  "transmission" = ""
+  "videostream" = ""
+  "mpv" = ""
+  "music" = ""
+  "disk usage" = ""
+  ".pdf" = ""
+  "slack" = ""
+  "1password" = "󰎦"
+  "spotify" = ""
+
+  [other]
+  fallback_icon = ""
+  deduplicate_icons = true 
+  separator = ":"
+  '';
+
 }
