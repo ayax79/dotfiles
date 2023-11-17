@@ -13,6 +13,7 @@ in {
 
   home.packages = with pkgs; [
     wayshot
+    workstyle
   ];
 
   wayland.windowManager.sway = {
@@ -65,6 +66,9 @@ in {
           gsettings set $gnome-schema icon-theme "NordArc-Icons"
           gsettings set org.gnome.desktop.wm.preferences theme "Nordic-bluish-accent"
       }
+
+      #workspace renaming
+      exec_always --no-startup-id workstyle &> /tmp/workstyle.log
 
       # Notification
       exec_always mako
