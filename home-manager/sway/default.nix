@@ -1,10 +1,9 @@
 {
+  config,
   pkgs,
+  lib,
   ...
-}: 
-let 
-  modifier_key = "Mod4";
-in {
+}: {
   imports = [
     ./swaylock.nix
     ./wofi.nix
@@ -12,6 +11,7 @@ in {
   ];
 
   home.packages = with pkgs; [
+    sov
     wayshot
     workstyle
   ];
@@ -19,7 +19,7 @@ in {
   wayland.windowManager.sway = {
     enable = true;
     config = rec {
-      modifier = modifier_key;
+      modifier = "Mod4";
       terminal = "alacritty";
       menu = "wofi -S drun";
       input = {
@@ -54,8 +54,43 @@ in {
       gaps = {
         inner = 8;
       };
+      keybindings = let
+        mod = config.wayland.windowManager.sway.config.modifier;
+      in
+        lib.mkOptionDefault {
+          # "${mod}+1" = ''workspace number 1; exec "echo 1 > /tmp/sovpipe'';
+          # "${mod}+2" = ''workspace number 2; exec "echo 1 > /tmp/sovpipe'';
+          # "${mod}+3" = ''workspace number 3; exec "echo 1 > /tmp/sovpipe'';
+          # "${mod}+4" = ''workspace number 4; exec "echo 1 > /tmp/sovpipe'';
+          # "${mod}+5" = ''workspace number 5; exec "echo 1 > /tmp/sovpipe'';
+          # "${mod}+6" = ''workspace number 6; exec "echo 1 > /tmp/sovpipe'';
+          # "${mod}+7" = ''workspace number 7; exec "echo 1 > /tmp/sovpipe'';
+          # "${mod}+8" = ''workspace number 8; exec "echo 1 > /tmp/sovpipe'';
+          # "${mod}+9" = ''workspace number 9; exec "echo 1 > /tmp/sovpipe'';
+          # "${mod}+0" = ''workspace number 10; exec "echo 1 > /tmp/sovpipe'';
+          # "${mod}+1" = ''exec "echo 0 > /tmp/sovpipe'';
+          # "${mod}+2" = ''exec "echo 0 > /tmp/sovpipe'';
+          # "${mod}+3" = ''exec "echo 0 > /tmp/sovpipe'';
+          # "${mod}+4" = ''exec "echo 0 > /tmp/sovpipe'';
+          # "${mod}+5" = ''exec "echo 0 > /tmp/sovpipe'';
+          # "${mod}+6" = ''exec "echo 0 > /tmp/sovpipe'';
+          # "${mod}+7" = ''exec "echo 0 > /tmp/sovpipe'';
+          # "${mod}+8" = ''exec "echo 0 > /tmp/sovpipe'';
+          # "${mod}+9" = ''exec "echo 0 > /tmp/sovpipe'';
+          # "${mod}+0" = ''exec "echo 0 > /tmp/sovpipe'';
+          # # Brightness
+          "XF86MonBrightnessDown" = "exec light -U 10";
+          "XF86MonBrightnessUp" = "exec light -A 10'";
+
+          # Volume
+          "XF86AudioRaiseVolume" = "exec 'pactl set-sink-volume @DEFAULT_SINK@ +1%'";
+          "XF86AudioLowerVolume" = "exec 'pactl set-sink-volume @DEFAULT_SINK@ -1%'";
+          "XF86AudioMute" = "exec 'pactl set-sink-mute @DEFAULT_SINK@ toggle'";
+        };
     };
-    extraConfig = ''
+    extraConfig = let
+      mod = config.wayland.windowManager.sway.config.modifier;
+    in ''
       default_border pixel 2
       for_window [title=".*"] border pixel 2
 
@@ -68,7 +103,11 @@ in {
       }
 
       #workspace renaming
-      exec_always --no-startup-id workstyle &> /tmp/workstyle.log
+      exec_always --no-startup-id ${pkgs.workstyle}bin/workstyle &> /tmp/workstyle.log
+
+      # workspace schema viewer
+      exec rm -f /tmp/sovpipe && mkfifo /tmp/sovpipe && tail -f /tmp/sovpipe | ${pkgs.sov}/bin/sov -t 500
+
 
       # Notification
       exec_always mako
@@ -83,14 +122,6 @@ in {
 
       include /etc/sway/config.d/*
 
-      # Brightness
-      bindsym XF86MonBrightnessDown exec light -U 10
-      bindsym XF86MonBrightnessUp exec light -A 10
-
-      # Volume
-      bindsym XF86AudioRaiseVolume exec 'pactl set-sink-volume @DEFAULT_SINK@ +1%'
-      bindsym XF86AudioLowerVolume exec 'pactl set-sink-volume @DEFAULT_SINK@ -1%'
-      bindsym XF86AudioMute exec 'pactl set-sink-mute @DEFAULT_SINK@ toggle'
 
       # give sway a little time to startup before starting kanshi.
       exec sleep 5; systemctl --user start kanshi.service
@@ -100,18 +131,18 @@ in {
       #
       set $screenshot 1 selected, 2 whole, 3 selected clipboard, 4 whole clipboard, 5 hex color
       mode "$screenshot" {
-          bindsym 1 exec 'wayshot -s "$(slurp -f \"%x %y %w %h\")" -f ~/Downloads/ps_$(date +"%Y%m%d%H%M%S").png', mode "default"
-          bindsym 2 exec 'wayshot -f ~/Downloads/ps_$(date +"%Y%m%d%H%M%S").png', mode "default"
-          bindsym 3 exec 'wayshot -s "$(slurp -f \"%x %y %w %h\")" --stdout | wl-copy', mode "default"
-          bindsym 4 exec 'wayshot --stdout | wl-copy', mode "default"
+          bindsym 1 exec '${pkgs.wayshot}/bin/wayshot -s "$(slurp -f \"%x %y %w %h\")" -f ~/Downloads/ps_$(date +"%Y%m%d%H%M%S").png', mode "default"
+          bindsym 2 exec '${pkgs.wayshot}/bin/wayshot -f ~/Downloads/ps_$(date +"%Y%m%d%H%M%S").png', mode "default"
+          bindsym 3 exec '${pkgs.wayshot}/bin/wayshot -s "$(slurp -f \"%x %y %w %h\")" --stdout | wl-copy', mode "default"
+          bindsym 4 exec '${pkgs.wayshot}/bin/wayshot --stdout | wl-copy', mode "default"
 
           # back to normal: Enter or Escape
           bindsym Return mode "default"
           bindsym Escape mode "default"
-          bindsym ${modifier_key}+Print mode "default"
+          bindsym ${mod}+Print mode "default"
       }
 
-      bindsym ${modifier_key}+Print mode "$screenshot"
+      bindsym ${mod}+Print mode "$screenshot"
     '';
   };
 
