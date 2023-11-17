@@ -1,17 +1,24 @@
 {
   pkgs,
   ...
-}: {
+}: 
+let 
+  modifier_key = "Mod4";
+in {
   imports = [
     ./swaylock.nix
     ./wofi.nix
     ./waybar.nix
   ];
 
+  home.packages = with pkgs; [
+    wayshot
+  ];
+
   wayland.windowManager.sway = {
     enable = true;
     config = rec {
-      modifier = "Mod4"; # Super key
+      modifier = modifier_key;
       terminal = "alacritty";
       menu = "wofi -S drun";
       input = {
@@ -83,6 +90,24 @@
 
       # give sway a little time to startup before starting kanshi.
       exec sleep 5; systemctl --user start kanshi.service
+
+      #
+      # Screen capture
+      #
+      set $screenshot 1 selected, 2 whole, 3 selected clipboard, 4 whole clipboard, 5 hex color
+      mode "$screenshot" {
+          bindsym 1 exec 'wayshot -s "$(slurp -f \"%x %y %w %h\")" -f ~/Downloads/ps_$(date +"%Y%m%d%H%M%S").png', mode "default"
+          bindsym 2 exec 'wayshot -f ~/Downloads/ps_$(date +"%Y%m%d%H%M%S").png', mode "default"
+          bindsym 3 exec 'wayshot -s "$(slurp -f \"%x %y %w %h\")" --stdout | wl-copy', mode "default"
+          bindsym 4 exec 'wayshot --stdout | wl-copy', mode "default"
+
+          # back to normal: Enter or Escape
+          bindsym Return mode "default"
+          bindsym Escape mode "default"
+          bindsym ${modifier_key}+Print mode "default"
+      }
+
+      bindsym ${modifier_key}+Print mode "$screenshot"
     '';
   };
 
