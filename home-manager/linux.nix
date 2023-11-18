@@ -16,6 +16,7 @@
     jetbrains.idea-ultimate
     gcc
     thunderbird
+    libreoffice
   ];
 
   home.file.backgrounds = {
