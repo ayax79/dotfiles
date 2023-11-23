@@ -201,6 +201,7 @@
   "1password" = "󰎦"
   "spotify" = ""
   "thunderbird" = ""
+  "signal" = "󰈎"
 
   [other]
   fallback_icon = ""
