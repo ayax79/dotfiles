@@ -200,6 +200,7 @@
   "slack" = ""
   "1password" = "󰎦"
   "spotify" = ""
+  "thunderbird" = ""
 
   [other]
   fallback_icon = ""
