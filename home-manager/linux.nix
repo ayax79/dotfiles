@@ -14,10 +14,11 @@
     pavucontrol
     jetbrains.rust-rover
     jetbrains.idea-ultimate
-    gcc
     thunderbird
     libreoffice
     firefox
+    winetricks
+    wineWowPackages.waylandFull
   ];
 
   home.file.backgrounds = {
