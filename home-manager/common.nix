@@ -10,6 +10,7 @@
     ./starship.nix
     ./alacritty.nix
     ./zsh.nix
+    ./bash.nix
     ./helix.nix
     ./nushell.nix
   ];
