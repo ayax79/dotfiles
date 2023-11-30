@@ -121,7 +121,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
         vim.keymap.set("n", "gD", vim.lsp.buf.declaration, util.with_description(opts, "Go to Declaration"))
         vim.keymap.set("n", "gd", vim.lsp.buf.definition, util.with_description(opts, "Go to definition"))
         vim.keymap.set("n", "K", vim.lsp.buf.hover, util.with_description(opts, "LSP hover"))
-        vim.keymap.set("n", "gi", vim.lsp.buf.implementation, util.with_description(opts, "Go to implementation"))
+        vim.keymap.set("n", "gI", vim.lsp.buf.implementation, util.with_description(opts, "Go to implementation"))
         vim.keymap.set("n", "<M-k>", vim.lsp.buf.signature_help, opts)
         vim.keymap.set("n", "gR", function() require("trouble").toggle("lsp_references") end, util.with_description(opts, "Lsp References"))
         vim.keymap.set(
