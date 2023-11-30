@@ -5,7 +5,6 @@
 }: {
   imports = [
     ./git.nix
-    ./neovim.nix
     ./tmux.nix
     ./starship.nix
     ./alacritty.nix
@@ -13,26 +12,18 @@
     ./bash.nix
     ./helix.nix
     ./nushell.nix
+    ./neovim.nix
   ];
 
+  # home.sessionVariables = {
+  #   DIDTHISWORK = "yes";
+  # };
+  
   nixpkgs = {
-    # You can add overlays here
     overlays = [
-      # If you want to use overlays exported from other flakes:
-      # neovim-nightly-overlay.overlays.default
-
-      # Or define it inline, for example:
-      # (final: prev: {
-      #   hi = final.hello.overrideAttrs (oldAttrs: {
-      #     patches = [ ./change-hello-to-hi.patch ];
-      #   });
-      # })
     ];
-    # Configure your nixpkgs instance
     config = {
-      # Disable if you don't want unfree packages
       allowUnfree = true;
-      # Workaround for https://github.com/nix-community/home-manager/issues/2942
       allowUnfreePredicate = _: true;
     };
   };
@@ -42,13 +33,8 @@
   home.username = config.mySystem.username;
   home.homeDirectory = config.mySystem.homeDirectory;
 
-  home.sessionVariables = {
-    EDITOR = "nvim";
-  };
-
   home.packages = with pkgs; [
     ncurses
-    atuin # Fancy history
     _1password # One password cli
     _1password-gui
     ripgrep # grep but better and faster
@@ -63,7 +49,6 @@
     openjdk21
     spotify
     discord
-    bash
     wget
 
     (nerdfonts.override {fonts = ["SpaceMono"];})
@@ -86,13 +71,6 @@
     slack
   ];
 
-  # programs._1password-gui = {
-  #   enable = true;
-  #   # Certain features, including CLI integration and system authentication support,
-  #   # require enabling PolKit integration on some desktop environments (e.g. Plasma).
-  #   polkitPolicyOwners = ["jack"];
-  # };
-  #
   # Enable home-manager and git
   programs.home-manager.enable = true;
 
@@ -101,4 +79,11 @@
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   home.stateVersion = "23.05";
+
+  programs.atuin = {
+    enable = true;
+    flags = [
+      "--disable-ctrl-r"
+    ];
+  };
 }
