@@ -102,23 +102,6 @@ M.setup = function()
     --- RUST CONFIGURATION
     --------------------------------------------------------
 
-    -- HACK to add per project support for rust analyzer
-    -- local get_project_rustanalyzer_settings = function()
-    --     -- local rust_config_path = vim.fn.resolve(vim.fn.getcwd() .. '/./.rust-analyzer.json')
-    --     local rust_config_path = vim.fn.getcwd() .. '/./.rust-analyzer.json'
-    --     local handle = io.open(rust_config_path)
-    --     if not handle then
-    --         return {}
-    --     end
-    --     local out = handle:read("*a")
-    --     handle:close()
-    --     local config = vim.json.decode(out, {})
-    --     if type(config) == "table" then
-    --         return config
-    --     end
-    --     return {}
-    -- end
-
     vim.g.rustaceanvim = {
         -- Plugin configuration
         tools = {
