@@ -876,6 +876,12 @@ table.insert(M, {
         "norcalli/nvim-colorizer.lua",
         lazy = false,
         config = function() require("colorizer").setup() end,
+    },
+    {
+        'stevearc/oil.nvim',
+        opts = {},
+        lazy = false,
+        dependencies = { "nvim-tree/nvim-web-devicons" },
     }
 })
 
