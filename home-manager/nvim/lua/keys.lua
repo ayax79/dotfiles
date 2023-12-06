@@ -104,6 +104,8 @@ vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, { desc = "Set Loclist
 
 vim.keymap.set("n", "[h", require("harpoon.ui").nav_prev, { desc = "Prev Harpoon mark" })
 vim.keymap.set("n", "]h", require("harpoon.ui").nav_next, { desc = "Next Hapoon mark" })
+
+vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 --
 local util = require("util")
 
