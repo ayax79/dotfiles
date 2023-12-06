@@ -145,27 +145,27 @@ table.insert(M, {
     --     end,
     -- },
     --   Better Buffer (tabs) support
-    -- {
-    --     "akinsho/bufferline.nvim",
-    --     version = "*",
-    --     dependencies = { "nvim-tree/nvim-web-devicons" },
-    --     config = function()
-    --         local cfg = {
-    --             options = {
-    --                 separator_style = "thin",
-    --             },
-    --         }
-    --
-    --         if vim.g.theme_name == "nord" then
-    --             cfg.highlights = require("nord").bufferline.highlights({
-    --                 italic = true,
-    --                 bold = true,
-    --             })
-    --         end
-    --
-    --         require("bufferline").setup(cfg)
-    --     end,
-    -- },
+    {
+        "akinsho/bufferline.nvim",
+        version = "*",
+        dependencies = { "nvim-tree/nvim-web-devicons" },
+        config = function()
+            local cfg = {
+                options = {
+                    separator_style = "thin",
+                },
+            }
+
+            if vim.g.theme_name == "nord" then
+                cfg.highlights = require("nord").bufferline.highlights({
+                    italic = true,
+                    bold = true,
+                })
+            end
+
+            require("bufferline").setup(cfg)
+        end,
+    },
     -- Status line support
     {
         "nvim-lualine/lualine.nvim",
