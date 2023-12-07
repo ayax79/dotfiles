@@ -70,7 +70,6 @@
     fzf
     slack
 
-    unnethack
     nethack
   ];
 
