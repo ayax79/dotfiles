@@ -69,6 +69,9 @@
     bottom # another activity app written in rust
     fzf
     slack
+
+    unnethack
+    nethack
   ];
 
   # Enable home-manager and git
