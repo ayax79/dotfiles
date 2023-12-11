@@ -1,4 +1,8 @@
-{config, ...}: {
+{config, pkgs, ...}: {
+  home.packages = with pkgs; [
+    llvm
+  ];
+
   launchd = {
     enable = true;
     agents = {
