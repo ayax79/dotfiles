@@ -14,6 +14,7 @@
       url = "github:lnl7/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs-darwin";
     };
+    mac-app-util.url = "github:hraban/mac-app-util";
 
     # Shameless plug: looking for a way to nixify your themes and make
     # everything match nicely? Try nix-colors!
@@ -25,6 +26,7 @@
     nixpkgs,
     darwin,
     home-manager,
+    mac-app-util,
     ...
   } @ inputs: let
     inherit (self) outputs;
