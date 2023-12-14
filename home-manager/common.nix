@@ -71,6 +71,8 @@
     slack
 
     nethack
+
+    gh  # github cli
   ];
 
   # Enable home-manager and git
