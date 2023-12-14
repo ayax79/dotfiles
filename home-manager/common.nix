@@ -18,7 +18,7 @@
   # home.sessionVariables = {
   #   DIDTHISWORK = "yes";
   # };
-  
+
   nixpkgs = {
     overlays = [
     ];
@@ -72,7 +72,8 @@
 
     nethack
 
-    gh  # github cli
+    gh # github cli
+    glab # gitlab cli
   ];
 
   # Enable home-manager and git
