@@ -1,4 +1,3 @@
-# This is all from https://github.com/Misterio77/nix-starter-configs
 {
   description = "Jack's Nix config";
 
@@ -15,10 +14,6 @@
       inputs.nixpkgs.follows = "nixpkgs-darwin";
     };
     mac-app-util.url = "github:hraban/mac-app-util";
-
-    # Shameless plug: looking for a way to nixify your themes and make
-    # everything match nicely? Try nix-colors!
-    # nix-colors.url = "github:misterio77/nix-colors";
   };
 
   outputs = {
