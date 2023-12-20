@@ -879,7 +879,14 @@ table.insert(M, {
     },
     {
         'stevearc/oil.nvim',
-        opts = {},
+        opts = {
+            keymaps = {
+                -- The following two keymaps conflict with vim tmux navigation
+                -- so I disabled them
+                ["<C-h>"] = false,
+                ["<C-l>"] = false,
+            }
+        },
         lazy = false,
         dependencies = { "nvim-tree/nvim-web-devicons" },
     }
