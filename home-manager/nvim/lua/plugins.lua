@@ -88,11 +88,6 @@ table.insert(M, {
             vim.o.timeout = true
             vim.o.timeoutlen = 300
         end,
-        opts = {
-            -- your configuration comes here
-            -- or leave it empty to use the default settings
-            -- refer to the configuration section below
-        },
     },
     -- Configurations and extraction layer for the treesitter parsing tool
     {
@@ -118,32 +113,6 @@ table.insert(M, {
             })
         end,
     },
-    -- Global and local project settings management
-    -- { "folke/neoconf.nvim", cmd = "Neoconf"},
-    -- File Explorer
-    -- {
-    --     "nvim-tree/nvim-tree.lua",
-    --     config = function()
-    --         require("nvim-tree").setup({
-    --             sync_root_with_cwd = true,
-    --             respect_buf_cwd = true,
-    --             view = {
-    --                 width = 50,
-    --             },
-    --             update_focused_file = {
-    --                 enable = true,
-    --                 update_root = true,
-    --             },
-    --             renderer = {
-    --                 -- particularly useful for java
-    --                 group_empty = true,
-    --             },
-    --             filters = {
-    --                 custom = { "^.git$" }
-    --             },
-    --         })
-    --     end,
-    -- },
     --   Better Buffer (tabs) support
     {
         "akinsho/bufferline.nvim",
@@ -425,16 +394,6 @@ table.insert(M, {
     {
         "zbirenbaum/copilot-cmp",
     },
-
-    -- official tabnine plugin
-    -- { "codota/tabnine-nvim",                build = "./dl_binaries.sh" },
-
-    -- integrates tab-nine with cmp
-    -- {
-    --     "tzachar/cmp-tabnine",
-    --     build = "./install.sh",
-    --     dependencies = "hrsh7th/nvim-cmp",
-    -- },
     -- -- vscode like completion icons
     "onsails/lspkind.nvim",
     {
@@ -818,15 +777,6 @@ table.insert(M, {
         lazy = false,
         config = function()
             require("noice").setup({
-                views = {
-                    mini = {
-                        win_options = {
-                            -- transparency for lsp status
-                            -- winblend = 0
-
-                        },
-                    },
-                },
                 lsp = {
                     -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
                     override = {
@@ -844,10 +794,6 @@ table.insert(M, {
                     lsp_doc_border = false,       -- add a border to hover docs and signature help
                 },
             })
-            -- when using transparency
-            --     require("notify").setup({
-            --         background_colour = "#4c566a",
-            --     })
         end
     },
     {
