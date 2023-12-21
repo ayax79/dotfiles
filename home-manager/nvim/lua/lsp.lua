@@ -297,5 +297,11 @@ M.setup = function()
             },
         },
     }
+
+    --------------------------------------------------------
+    --- NUSHELL CONFIGURATION 
+    --------------------------------------------------------
+    require'lspconfig'.nushell.setup {}
+
 end
 return M
