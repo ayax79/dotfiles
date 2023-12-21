@@ -1,16 +1,3 @@
-## brew deps
-
-```
-# prettier
-brew install prettierd
-# docker linting 
-brew install hadolint
-
-# toml,markdown,dockerfile formtting
-brew install dprint
-
-```
-
 # Set up formatting for toml, markdown, dockerfile
 per project (in project root):
 ``` dprint init --config .dprint.jsonc```
