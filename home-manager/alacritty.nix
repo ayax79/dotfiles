@@ -58,10 +58,6 @@ in {
             foreground = "CellBackground";
             background = "#88c0d0";
           };
-          footer_bar = {
-            background = "#434c5e";
-            foreground = "#d8dee9";
-          };
         };
 
         normal = {
