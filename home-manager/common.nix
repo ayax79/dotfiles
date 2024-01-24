@@ -64,6 +64,7 @@
     aws-sam-cli
     gimme-aws-creds
     rustup
+    grcov # code coverage tool for rust
     pueue # background tasks
     vivid #LS_COLORS theming
     htop # activity
