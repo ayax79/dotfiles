@@ -32,6 +32,7 @@
   # manage.
   home.username = config.mySystem.username;
   home.homeDirectory = config.mySystem.homeDirectory;
+  home.sessionPath = ["${config.mySystem.homeDirectory}/.local/bin"];
 
   home.packages = with pkgs; [
     ncurses
