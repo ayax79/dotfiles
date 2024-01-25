@@ -71,6 +71,7 @@
     bottom # another activity app written in rust
     fzf
     slack
+    dua # disk usage analyzer
 
     nethack
 
