@@ -1,4 +1,4 @@
-{pkgs, ...}: let
+{pkgs, lib, ...}: let
   tmux = "${pkgs.tmux}/bin/tmux";
   zsh = "${pkgs.zsh}/bin/zsh";
 in {
@@ -24,9 +24,7 @@ in {
         size = 12.0;
       };
 
-      # mac option behavior
       window = {
-        option_as_alt = "Both";
         opacity = 0.95;
       };
 
@@ -95,4 +93,7 @@ in {
       };
     };
   };
+
+  # mac option behavior. defining this on other operating systems causes warnings
+  programs.alacritty.settings.window.option_as_alt = lib.mkIf (pkgs.system == "x86_64-darwin") "Both";
 }

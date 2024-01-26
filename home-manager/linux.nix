@@ -19,6 +19,7 @@
     firefox
     winetricks
     wineWowPackages.waylandFull
+    gcc
   ];
 
   home.file.backgrounds = {
