@@ -20,6 +20,8 @@
     winetricks
     wineWowPackages.waylandFull
     gcc
+    openssl.dev
+    pkg-config
   ];
 
   home.file.backgrounds = {
