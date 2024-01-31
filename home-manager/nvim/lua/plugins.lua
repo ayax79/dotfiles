@@ -826,6 +826,9 @@ table.insert(M, {
     {
         'stevearc/oil.nvim',
         opts = {
+            view_options = {
+                show_hidden = true,
+            },
             keymaps = {
                 -- The following two keymaps conflict with vim tmux navigation
                 -- so I disabled them
