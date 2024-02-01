@@ -1,4 +1,6 @@
-{pkgs, ...}: {
+{pkgs, ...}: let 
+  nu = "${pkgs.nushell}/bin/nu";
+in {
   programs.tmux = {
     enable = true;
     plugins = with pkgs; [
@@ -8,6 +10,7 @@
     ];
 
     extraConfig = ''
+      set-option -g default-command ${nu}
       set-option -g status-position top
       set-option default-terminal "tmux-256color"
       set -ga terminal-overrides ",*256col*:Tc"
