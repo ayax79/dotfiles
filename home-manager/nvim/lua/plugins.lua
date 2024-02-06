@@ -190,7 +190,6 @@ table.insert(M, {
                             require("noice").api.status.search.get,
                             cond = require("noice").api.status.search.has,
                             color = { fg = "#D08770" },
-                            -- }, "encoding", "fileformat", "filetype", "tabnine",
                         }, "encoding", "fileformat", "filetype",
                     },
                     lualine_y = { "progress" },

@@ -15,7 +15,6 @@ local source_mapping = {
     buffer = "[Buffer]",
     nvim_lsp = "[LSP]",
     nvim_lua = "[Lua]",
-    -- cmp_tabnine = "[TN]",
     copilot = "[CP]",
     path = "[Path]",
 }
@@ -49,7 +48,6 @@ cmp.setup({
         { name = "nvim_lsp",               keyword_length = 3 }, -- from language server
         { name = "nvim_lsp_signature_help" },                    -- display function signatures with current parameter emphasized
         { name = "copilot" },-- github copilot support
-        -- { name = "cmp_tabnine" },
         { name = "nvim_lua",               keyword_length = 2 }, -- complete neovim's Lua runtime API such vim.lsp.*
         { name = "buffer",                 keyword_length = 2 }, -- source current buffer
         { name = "vsnip",                  keyword_length = 2 }, -- nvim-cmp source for vim-vsnip
@@ -66,7 +64,6 @@ cmp.setup({
             -- in the following line:
             vim_item.kind = lspkind.symbolic(vim_item.kind, { mode = "symbol" })
             vim_item.menu = source_mapping[entry.source.name]
-            -- if entry.source.name == "cmp_tabnine" then
             if entry.source.name == "copilot" then
                 local detail = (entry.completion_item.labelDetails or {}).detail
                 vim_item.kind = ""
