@@ -1,27 +1,29 @@
 {pkgs, ...}: {
-  home.packages = [
-    pkgs.hadolint
-    pkgs.dprint
-    pkgs.yq
-    pkgs.tree-sitter
-    pkgs.nil # nix language server
-    pkgs.jdt-language-server # java language server
-    pkgs.nodePackages.vscode-langservers-extracted
-    pkgs.yaml-language-server # YAML language server
-    pkgs.efm-langserver # EFM language server
-    pkgs.terraform-lsp # terrform language server
-    pkgs.nodePackages.pyright # Pyright language server
-    pkgs.alejandra # Alejandra nix formatting
-    pkgs.lua-language-server # Lua language server
-    pkgs.vscode-extensions.vscjava.vscode-java-test
+  home.packages = with pkgs; [
+    hadolint
+    dprint
+    yq
+    tree-sitter
+    nil # nix language server
+    jdt-language-server # java language server
+    nodePackages.vscode-langservers-extracted
+    yaml-language-server # YAML language server
+    efm-langserver # EFM language server
+    terraform-lsp # terrform language server
+    nodePackages.pyright # Pyright language server
+    alejandra # Alejandra nix formatting
+    lua-language-server # Lua language server
+    vscode-extensions.vscjava.vscode-java-test
+    # Currently broken on the mac
+    # vscode-extensions.vadimcn.vscode-lldb.adapter
   ];
 
   programs.neovim = {
     enable = true;
     defaultEditor = true;
     extraConfig = ":luafile ~/.config/nvim/init.lua";
-    plugins = [
-      pkgs.vimPlugins.lazy-nvim
+    plugins = with pkgs; [
+      vimPlugins.lazy-nvim
     ];
   };
 
