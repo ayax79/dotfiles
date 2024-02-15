@@ -4,6 +4,7 @@
   ...
 }: {
   imports = [
+    ./nushell.nix
     ./git.nix
     ./tmux.nix
     ./starship.nix
@@ -11,7 +12,6 @@
     ./zsh.nix
     ./bash.nix
     ./helix.nix
-    ./nushell.nix
     ./neovim.nix
   ];
 
