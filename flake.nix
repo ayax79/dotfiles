@@ -30,7 +30,7 @@
     # Available through 'home-manager --flake .#your-username@your-hostname'
     homeConfigurations = {
       # FIXME replace with your username@hostname
-      "work-mbp" = home-manager.lib.homeManagerConfiguration {
+      "MBP-KW3MH6" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.aarch64-darwin;
         extraSpecialArgs = {inherit inputs outputs;};
         # > Our main home-manager configuration file <

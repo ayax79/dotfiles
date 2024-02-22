@@ -93,5 +93,10 @@
     flags = [
       "--disable-up-arrow"
     ];
+    # attempting to keep atuin from blocking in nushell
+    settings = {
+      auto_sync = false;
+      update_check = false;
+    };
   };
 }
