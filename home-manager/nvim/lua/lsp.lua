@@ -272,13 +272,12 @@ M.setup = function()
 
     null_ls.setup({
         sources = {
-            null_ls.builtins.formatting.dprint,
-            null_ls.builtins.diagnostics.eslint,
+            -- null_ls.builtins.diagnostics.eslint,
             null_ls.builtins.completion.spell,
             null_ls.builtins.formatting.alejandra,
-            null_ls.builtins.formatting.yq.with({
-                extra_args = { '-y' },
-            }),
+            -- null_ls.builtins.formatting.yq.with({
+            --     extra_args = { '-y' },
+            -- }),
         },
     })
 

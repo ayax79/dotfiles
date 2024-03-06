@@ -62,6 +62,7 @@
     # '')
 
     aws-sam-cli
+
     gimme-aws-creds
     rustup
     grcov # code coverage tool for rust
