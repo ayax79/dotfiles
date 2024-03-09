@@ -12,7 +12,6 @@ in {
         args = [
           "-l"
           "-c"
-          # "(${tmux} attach || ${tmux})"
           "${tmux}"
         ];
       };
