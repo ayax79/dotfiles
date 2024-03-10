@@ -33,6 +33,16 @@
       merge = {
         conflictstyle = "diff3";
         stat = true;
+        tool = "nvim";
+      };
+
+      mergetool = {
+        prompt = false;
+        keepBackup  = false;
+      };
+
+      "mergetool \"nvim\"" = {
+        cmd = ''nvim -d -c "wincmd l" -c "norm ]c" "$LOCAL" "$MERGED" "$REMOTE"'';
       };
 
       diff = {
