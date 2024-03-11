@@ -1,5 +1,9 @@
 M = {}
 
+require("neoconf").setup({
+  -- override any of the default settings here
+})
+
 -- local home = os.getenv "HOME"
 -- local nix_profile_bin = home .. "/.nix-profile/bin"
 local navic = require("nvim-navic")
@@ -301,6 +305,12 @@ M.setup = function()
     --- NUSHELL CONFIGURATION 
     --------------------------------------------------------
     require'lspconfig'.nushell.setup {}
+
+    --------------------------------------------------------
+    --- NUSHELL CONFIGURATION 
+    --------------------------------------------------------
+    require('java').setup()
+    require('lspconfig').jdtls.setup({})
 
 end
 return M

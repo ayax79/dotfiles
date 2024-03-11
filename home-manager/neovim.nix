@@ -16,6 +16,7 @@
     vscode-extensions.vscjava.vscode-java-test
     # Currently broken on the mac
     # vscode-extensions.vadimcn.vscode-lldb.adapter
+    coursier
   ];
 
   programs.neovim = {
