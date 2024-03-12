@@ -12,6 +12,7 @@ wk.register({
         b = { telescope_builtin.buffers, "Find Buffer" },
         k = { telescope_builtin.keymaps, "Find Keymap" },
         q = { telescope_builtin.quickfix, "Find Quickfix" },
+        Q = { telescope_builtin.quickfix, "Find Quickfix History" },
         r = { telescope_builtin.registers, "Find Register" },
         G = { telescope_builtin.git_files, "Find Git Files" },
         s = { telescope_builtin.git_status, "Modified Git files" },
@@ -39,7 +40,6 @@ wk.register({
         f = { "<Cmd>Telescope vim_bookmarks current_file<CR>", "Find bookmark (current file)" },
         F = { "<Cmd>Telescope vim_bookmarks all<CR>", "Find bookmark (all files)" },
     },
-    e = { "<cmd>NvimTreeToggle<cr>", "Toggle Nvim Tree" },
     x = {
         name = "Trouble plugin options",
         x = { "<cmd>TroubleToggle<cr>", "Toggle Trouble" },
@@ -69,13 +69,6 @@ wk.register({
         },
         t = { "<cmd>TroubleToggle lsp_type_definitions<cr>", "Type Definitions (trouble)" },
         d = { "<cmd>TroubleToggle lsp_definitions<cr>", "Definitions (trouble)" },
-    },
-    t = {
-        name = "Terminal",
-        h = { "<cmd>ToggleTerm size=40 direction=horizontal<cr>", "Toggle terminal (horizontal)" },
-        v = { "<cmd>ToggleTerm size=120 direction=vertical<cr>", "Toggle terminal (vertical)" },
-        f = { "<cmd>ToggleTerm direction=float<cr>", "Toggle terminal (floating)" },
-        a = { "<cmd>ToggleTermToggleAll<cr>", "Toggle all terminals" },
     },
     h = {
         name = "Harpoon",
