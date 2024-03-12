@@ -1,9 +1,5 @@
 M = {}
 
-require("neoconf").setup({
-  -- override any of the default settings here
-})
-
 -- local home = os.getenv "HOME"
 -- local nix_profile_bin = home .. "/.nix-profile/bin"
 local navic = require("nvim-navic")
@@ -35,6 +31,10 @@ function M.get_capabilities()
 end
 
 M.setup = function()
+    require("neoconf").setup({
+        -- override any of the default settings here
+    })
+
     -- LSP Diagnostics Options Setup
     local sign = function(opts)
         vim.fn.sign_define(opts.name, {
@@ -296,21 +296,20 @@ M.setup = function()
     require 'lspconfig'.nil_ls.setup {
         settings = {
             ['nil'] = {
-                autoArchive = true;
+                autoArchive = true,
             },
         },
     }
 
     --------------------------------------------------------
-    --- NUSHELL CONFIGURATION 
+    --- NUSHELL CONFIGURATION
     --------------------------------------------------------
-    require'lspconfig'.nushell.setup {}
+    require 'lspconfig'.nushell.setup {}
 
     --------------------------------------------------------
-    --- NUSHELL CONFIGURATION 
+    --- NUSHELL CONFIGURATION
     --------------------------------------------------------
     require('java').setup()
     require('lspconfig').jdtls.setup({})
-
 end
 return M
