@@ -160,21 +160,6 @@ M.setup = function()
 
                 },
             },
-            -- ['rust-analyzer'] = vim.tbl_deep_extend(
-            --     "force",
-            --     {
-            --         cargo = {
-            --             autoReload = true,
-            --         },
-            --     },
-            --     get_project_rustanalyzer_settings(),
-            --     {
-            --
-            --         procMacro = { enable = true },
-            --         diagnostics = { disabled = { "inactive-code" } },
-            --     }
-            -- )
-            -- ,
         },
         -- DAP configuration
         dap = {
