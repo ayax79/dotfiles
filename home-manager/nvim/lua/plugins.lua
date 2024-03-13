@@ -546,8 +546,7 @@ table.insert(M, {
     "nvimtools/none-ls.nvim",
     {
         "saecki/crates.nvim",
-        lazy = false,
-        -- event = { "BufRead Cargo.toml" },
+        event = { "BufRead Cargo.toml" },
         dependencies = { "nvim-lua/plenary.nvim" },
         opts = {
             cmp = {
@@ -616,7 +615,7 @@ table.insert(M, {
             "nvim-lua/plenary.nvim",
             {
                 "mfussenegger/nvim-dap",
-                config = function(self, opts)
+                config = function()
                     -- Debug settings if you're using nvim-dap
                     local dap = require("dap")
 
@@ -662,7 +661,7 @@ table.insert(M, {
             -- Example if you are using cmp how to make sure the correct capabilities for snippets are set
             metals_config.capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-            metals_config.on_attach = function(client, bufnr)
+            metals_config.on_attach = function()
                 require("metals").setup_dap()
             end
 
