@@ -546,12 +546,37 @@ table.insert(M, {
     "nvimtools/none-ls.nvim",
     {
         "saecki/crates.nvim",
-        event = { "BufRead Cargo.toml" },
+        lazy = false,
+        -- event = { "BufRead Cargo.toml" },
         dependencies = { "nvim-lua/plenary.nvim" },
-        config = function()
-            require("crates").setup()
+        opts = {
+            cmp = {
+                enabled = true,
+            }
+        },
+        keys = function()
+            return {
+                { "<leader>ct", require("crates").toggle,                             desc = "Crates Toggle" },
+                { "<leader>cr", require("crates").reload,                             desc = "Crates Reload" },
+                { "<leader>cv", require("crates").show_versions_popup,                desc = "Show Versions Popup" },
+                { "<leader>cf", require("crates").show_features_popup,                desc = "Show Features Popup" },
+
+                { "<leader>cu", require("crates").update_crate,                       desc = "Update Crate" },
+                { "<leader>cu", require("crates").update_crates,                      desc = "Update Crates" },
+                { "<leader>ca", require("crates").update_all_crates,                  desc = "Update All Crates" },
+                { "<leader>cU", require("crates").upgrade_crate,                      desc = "Upgrade Crate" },
+                { "<leader>cU", require("crates").upgrade_crates,                     desc = "Upgrade Crates" },
+                { "<leader>cA", require("crates").upgrade_all_crates,                 desc = "Upgrade All Crates" },
+
+                { "<leader>cx", require("crates").expand_plain_crate_to_inline_table, desc = "Expand crate to inline table" },
+                { "<leader>cX", require("crates").extract_crate_into_table,           desc = "Extract crate into table" },
+
+                { "<leader>cH", require("crates").open_homepage,                      desc = "Open Homepage" },
+                { "<leader>cR", require("crates").open_repository,                    desc = "Open Repository" },
+                { "<leader>cD", require("crates").open_documentation,                 desc = "Open Documentation" },
+                { "<leader>cC", require("crates").open_crates_io,                     desc = "Open Crates IO" },
+            }
         end,
-        ft = "toml",
     },
     -- LSP support neovim development
     { "folke/neodev.nvim" },
