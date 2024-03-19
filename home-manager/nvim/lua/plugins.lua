@@ -227,8 +227,6 @@ table.insert(M, {
             "nvim-lua/plenary.nvim",
             "folke/trouble.nvim",
             "nvim-telescope/telescope-ui-select.nvim",
-            "ThePrimeagen/harpoon",
-
         },
         config = function()
             local trouble = require("trouble.providers.telescope")
@@ -251,7 +249,6 @@ table.insert(M, {
             })
 
             telescope.load_extension("ui-select")
-            telescope.load_extension("harpoon")
             telescope.load_extension("noice")
         end,
     },
@@ -534,7 +531,10 @@ table.insert(M, {
     -- debugger ui
     {
         "rcarriga/nvim-dap-ui",
-        dependencies = { "mfussenegger/nvim-dap" },
+        dependencies = {
+            "mfussenegger/nvim-dap",
+            "nvim-neotest/nvim-nio"
+        },
     },
     -- configures lsp and debugger for rust
     {
@@ -726,9 +726,38 @@ table.insert(M, {
     {
         "ThePrimeagen/harpoon",
         dependencies = { "nvim-lua/plenary.nvim" },
-        config = function()
-            require("harpoon").setup({})
-        end
+        branch = "harpoon2",
+        config = true,
+        keys = function()
+            local harpoon = require('harpoon')
+
+            -- basic telescope configuration
+            local conf = require("telescope.config").values
+            local function toggle_telescope(harpoon_files)
+                local file_paths = {}
+                for _, item in ipairs(harpoon_files.items) do
+                    table.insert(file_paths, item.value)
+                end
+
+                require("telescope.pickers").new({}, {
+                    prompt_title = "Harpoon",
+                    finder = require("telescope.finders").new_table({
+                        results = file_paths,
+                    }),
+                    previewer = conf.file_previewer({}),
+                    sorter = conf.generic_sorter({}),
+                }):find()
+            end
+
+            return {
+                { "<leader>hf", function() toggle_telescope(harpoon:list()) end,             desc = "Telescope" },
+                { "<leader>ha", function() harpoon:list():append() end,                      desc = "Add File" },
+                { "<leader>hq", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, desc = "Quicklist" },
+                { "<leader>hr", function() harpoon.list():remove() end,                      desc = "Remove Current File" },
+                { "[h",         function() harpoon:list():prev() end,                        desc = "Harpoon Prev" },
+                { "]h",         function() harpoon:list():next() end,                        desc = "Harpoon Next" },
+            }
+        end,
     },
     -- lazy.nvim
     {
