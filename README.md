@@ -1,6 +1,6 @@
 # Jack's dotfiles
 
-I am new to this.. forgive me if it is weird.
+
 
 ## Prerequisites
 
@@ -15,14 +15,8 @@ nix shell nixpkgs#home-manager
 ```
 
 ## Install packages
-
 ```
-home-manager switch --flake .#<system-name>
-```
-
-For example
-```
-home-manager switch --flake .#work-mbp
+./switch.nu
 ```
 
 ## Updating installed packages
