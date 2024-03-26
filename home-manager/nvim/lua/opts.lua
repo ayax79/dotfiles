@@ -38,3 +38,5 @@ vim.filetype.add({
 })
 
 vim.o.cursorline = true
+
+vim.o.conceallevel = 2
