@@ -377,6 +377,7 @@ table.insert(M, {
     -- snippet support and completions
     { "hrsh7th/cmp-vsnip" },
     { "hrsh7th/vim-vsnip" },
+    { "hrsh7th/vim-vsnip-integ" },
     -- completions for signatures
     { "hrsh7th/cmp-nvim-lsp-signature-help" },
     { "hrsh7th/cmp-nvim-lua" },

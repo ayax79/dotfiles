@@ -52,7 +52,7 @@
     discord
     wget
 
-    (nerdfonts.override {fonts = ["SpaceMono"];})
+    (nerdfonts.override {fonts = ["SpaceMono" "OpenDyslexic"];})
 
     # # You can also create simple shell scripts directly inside your
     # # configuration. For example, this adds a command 'my-hello' to your
