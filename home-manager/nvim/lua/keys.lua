@@ -131,7 +131,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
             if vim.bo.filetype == 'rust' then
                 vim.cmd.RustLsp('codeAction')
             else
-                vim.print("calling lsp code action")
                 vim.lsp.buf.code_action()
             end
         end
