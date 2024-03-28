@@ -100,7 +100,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
         -- Buffer local mappings.
         -- See `:help vim.lsp.*` for documentation on any of the below functions
-        local opts = { buffer = ev.buf }
+        local opts = { buffer = ev.buf, silent = true }
         vim.keymap.set("n", "gD", vim.lsp.buf.declaration, util.with_description(opts, "Go to Declaration"))
         vim.keymap.set("n", "gd", vim.lsp.buf.definition, util.with_description(opts, "Go to definition"))
         vim.keymap.set("n", "K", vim.lsp.buf.hover, util.with_description(opts, "LSP hover"))
@@ -126,7 +126,17 @@ vim.api.nvim_create_autocmd("LspAttach", {
         end, util.with_description(opts, "List workspace folders"))
         vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition, util.with_description(opts, "Type definition"))
         vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, opts)
-        vim.keymap.set({ "n", "v" }, "<space>la", vim.lsp.buf.code_action, util.with_description(opts, "Code Action"))
+
+        local exec_code_action = function()
+            if vim.bo.filetype == 'rust' then
+                vim.cmd.RustLsp('codeAction')
+            else
+                vim.print("calling lsp code action")
+                vim.lsp.buf.code_action()
+            end
+        end
+
+        vim.keymap.set({ "n", "v" }, "<space>la", exec_code_action, util.with_description(opts, "Code Action"))
         vim.keymap.set("n", "gr", vim.lsp.buf.references, util.with_description(opts, "Go to references"))
         vim.keymap.set("n", "<space>lf", function()
             vim.lsp.buf.format({ async = true })
