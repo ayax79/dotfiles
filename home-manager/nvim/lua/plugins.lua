@@ -536,7 +536,7 @@ table.insert(M, {
     -- configures lsp and debugger for rust
     {
         'mrcjkb/rustaceanvim',
-        version = '^3', -- Recommended
+        version = '^4', -- Recommended
         ft = { 'rust' },
     },
     -- fork of null-ls
