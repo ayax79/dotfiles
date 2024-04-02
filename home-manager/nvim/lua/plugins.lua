@@ -830,7 +830,11 @@ table.insert(M, {
         },
         lazy = false,
         dependencies = { "nvim-tree/nvim-web-devicons" },
-    }
+    },
+    {
+        "tpope/vim-abolish",
+        lazy = false,
+    },
 })
 
 return M
