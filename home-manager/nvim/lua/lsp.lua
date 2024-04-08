@@ -106,65 +106,98 @@ M.setup = function()
     --- RUST CONFIGURATION
     --------------------------------------------------------
 
-    vim.g.rustaceanvim = {
-        -- Plugin configuration
-        tools = {
-            runnables = {
-                use_telescope = true,
-            },
-        },
-        -- LSP configuration
-        server = {
-            on_attach = function(client, bufnr)
-                M.on_attach_common(client, bufnr)
-                -- Hover actions
-                vim.keymap.set(
-                    "n",
-                    "<C-space>",
-                    function() vim.cmd.RustLsp { 'hover', 'actions' } end,
-                    { buffer = bufnr, desc = "Show hover actions" }
-                )
-                -- Code action groups
-                vim.keymap.set(
-                    "n",
-                    "<Leader>la",
-                    function() vim.cmd.RustLsp('codeAction') end,
-                    { buffer = bufnr, desc = "Code Action Group" }
-                )
-                -- Runnables
+    vim.g.rustaceanvim = function()
+        -- Update this path
+        local extension_path = vim.env.HOME .. '/.vscode/extensions/vadimcn.vscode-lldb-1.10.0/'
+        local codelldb_path = extension_path .. 'adapter/codelldb'
+        local liblldb_path = extension_path .. 'lldb/lib/liblldb'
+        local this_os = vim.uv.os_uname().sysname;
 
-                vim.keymap.set("n", "<Leader>lr", function() vim.cmd.RustLsp { 'runnables' } end,
-                    { buffer = bufnr, desc = "Runnables" })
-                vim.keymap.set("n", "<Leader>lR", function() vim.cmd.RustLsp { 'runnables', 'last' } end,
-                    { buffer = bufnr, desc = "Run Last" })
-
-                vim.keymap.set("n", "<Leader>ldr", function() vim.cmd.RustLsp { 'debuggables' } end,
-                    { buffer = bufnr, desc = "Debuggables" })
-                vim.keymap.set("n", "<Leader>ldR", function() vim.cmd.RustLsp { 'debuggables', 'last' } end,
-                    { buffer = bufnr, desc = "Debug Last" })
-
-                M.setup_codelens_refresh(client, bufnr)
-            end,
-            -- rust-analyzer language server configuration
-            settings = {
-                ['rust-analyzer'] = {
-                    check = {
-                        features = "all",
-                    },
-                    cargo = {
-                        autoReload = true,
-                        features = "all",
-                    },
-                    procMacro = { enable = true },
-                    diagnostics = { disabled = { "inactive-code" } },
-
+        -- The path is different on Windows
+        if this_os:find "Windows" then
+            codelldb_path = extension_path .. "adapter\\codelldb.exe"
+            liblldb_path = extension_path .. "lldb\\bin\\liblldb.dll"
+        else
+            -- The liblldb extension is .so for Linux and .dylib for MacOS
+            liblldb_path = liblldb_path .. (this_os == "Linux" and ".so" or ".dylib")
+        end
+        local cfg = require('rustaceanvim.config')
+        return {
+            -- Plugin configuration
+            tools = {
+                runnables = {
+                    use_telescope = true,
                 },
             },
-        },
-        -- DAP configuration
-        dap = {
-        },
-    }
+            -- LSP configuration
+            server = {
+                on_attach = function(client, bufnr)
+                    M.on_attach_common(client, bufnr)
+                    -- Hover actions
+                    vim.keymap.set(
+                        "n",
+                        "<C-space>",
+                        function() vim.cmd.RustLsp { 'hover', 'actions' } end,
+                        { buffer = bufnr, desc = "Show hover actions" }
+                    )
+                    -- Code action groups
+                    vim.keymap.set(
+                        "n",
+                        "<Leader>la",
+                        function() vim.cmd.RustLsp('codeAction') end,
+                        { buffer = bufnr, desc = "Code Action Group" }
+                    )
+                    -- Runnables
+
+                    vim.keymap.set("n", "<Leader>lr", function() vim.cmd.RustLsp { 'runnables' } end,
+                        { buffer = bufnr, desc = "Runnables" })
+                    vim.keymap.set("n", "<Leader>lR", function() vim.cmd.RustLsp { 'runnables', 'last' } end,
+                        { buffer = bufnr, desc = "Run Last" })
+
+                    vim.keymap.set("n", "<Leader>ldr", function() vim.cmd.RustLsp { 'debuggables' } end,
+                        { buffer = bufnr, desc = "Debuggables" })
+                    vim.keymap.set("n", "<Leader>ldR", function() vim.cmd.RustLsp { 'debuggables', 'last' } end,
+                        { buffer = bufnr, desc = "Debug Last" })
+
+                    M.setup_codelens_refresh(client, bufnr)
+                end,
+                -- rust-analyzer language server configuration
+                settings = {
+                    ['rust-analyzer'] = {
+                        check = {
+                            features = "all",
+                        },
+                        cargo = {
+                            autoReload = true,
+                            features = "all",
+                        },
+                        procMacro = { enable = true },
+                        diagnostics = { disabled = { "inactive-code" } },
+
+                    },
+                },
+                -- ['rust-analyzer'] = vim.tbl_deep_extend(
+                --     "force",
+                --     {
+                --         cargo = {
+                --             autoReload = true,
+                --         },
+                --     },
+                --     get_project_rustanalyzer_settings(),
+                --     {
+                --
+                --         procMacro = { enable = true },
+                --         diagnostics = { disabled = { "inactive-code" } },
+                --     }
+                -- )
+                -- ,
+            },
+            -- DAP configuration
+            dap = {
+                adapter = cfg.get_codelldb_adapter(codelldb_path, liblldb_path),
+            },
+        }
+    end
 
 
     --------------------------------------------------------

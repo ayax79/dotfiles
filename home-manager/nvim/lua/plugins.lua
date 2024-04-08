@@ -835,6 +835,13 @@ table.insert(M, {
         "tpope/vim-abolish",
         lazy = false,
     },
+    -- using mason for installing packages that are broken in nix.
+    -- Looking at you vscode-lldb.
+    {
+        "williamboman/mason.nvim",
+        lazy = true,
+        config = true,
+    }
 })
 
 return M
