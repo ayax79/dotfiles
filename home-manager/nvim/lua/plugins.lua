@@ -168,14 +168,15 @@ table.insert(M, {
                         {
                             "filename",
                             file_status = true,
-                            path = 1,
+                            path = 3,
+                            shorting_target = 40,
                         },
                     },
                     lualine_x = {
-                        {
-                            require("noice").api.status.message.get_hl,
-                            cond = require("noice").api.status.message.has,
-                        },
+                        -- {
+                        --     require("noice").api.status.message.get_hl,
+                        --     cond = require("noice").api.status.message.has,
+                        -- },
                         {
                             require("noice").api.status.command.get,
                             cond = require("noice").api.status.command.has,
@@ -199,7 +200,8 @@ table.insert(M, {
                     lualine_a = {},
                     lualine_b = {},
                     lualine_c = { "filename" },
-                    lualine_x = { "location" },
+                    -- lualine_x = { "location" },
+                    lualine_x = {},
                     lualine_y = {},
                     lualine_z = {},
                 },
@@ -757,11 +759,11 @@ table.insert(M, {
                 { "<leader>hf", function() toggle_telescope(harpoon:list()) end,             desc = "Telescope" },
                 { "<leader>ha", function() harpoon:list():add() end,                         desc = "Add File" },
                 { "<leader>hq", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, desc = "Quicklist" },
-                { "<leader>hr", function() harpoon.list():remove() end,                      desc = "Remove Current File" },
-                { "<leader>h1", function() harpoon.list():select(1) end,                     desc = "Select Item 1" },
-                { "<leader>h2", function() harpoon.list():select(2) end,                     desc = "Select Item 2" },
-                { "<leader>h3", function() harpoon.list():select(3) end,                     desc = "Select Item 3" },
-                { "<leader>h4", function() harpoon.list():select(4) end,                     desc = "Select Item 4" },
+                { "<leader>hr", function() harpoon:list():remove() end,                      desc = "Remove Current File" },
+                { "<leader>h1", function() harpoon:list():select(1) end,                     desc = "Select Item 1" },
+                { "<leader>h2", function() harpoon:list():select(2) end,                     desc = "Select Item 2" },
+                { "<leader>h3", function() harpoon:list():select(3) end,                     desc = "Select Item 3" },
+                { "<leader>h4", function() harpoon:list():select(4) end,                     desc = "Select Item 4" },
                 { "[h",         function() harpoon:list():prev() end,                        desc = "Harpoon Prev" },
                 { "]h",         function() harpoon:list():next() end,                        desc = "Harpoon Next" },
             }
