@@ -141,6 +141,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
             vim.lsp.buf.format({ async = true })
         end, util.with_description(opts, "Format"))
         vim.keymap.set('n', '<space>lR', telescope_builtin.lsp_references, util.with_description(opts, "LSP references"))
+
+        vim.keymap.set('v', 'M-K', require('dapui').eval, util.with_description(opts, "DAP Eval Expression"))
+
     end,
 })
 
