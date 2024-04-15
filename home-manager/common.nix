@@ -51,6 +51,7 @@
     spotify
     discord
     wget
+    zed-editor
 
     (nerdfonts.override {fonts = ["SpaceMono" "OpenDyslexic"];})
 
