@@ -79,6 +79,9 @@
 
     gh # github cli
     glab # gitlab cli
+
+    carapace # shell completion
+    fish
   ];
 
   # Enable home-manager and git
@@ -101,5 +104,9 @@
       auto_sync = false;
       update_check = false;
     };
+  };
+
+  programs.zoxide = {
+    enable = true;
   };
 }
