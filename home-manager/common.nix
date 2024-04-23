@@ -13,6 +13,7 @@
     ./bash.nix
     ./helix.nix
     ./neovim.nix
+    ./go.nix
   ];
 
   # home.sessionVariables = {
