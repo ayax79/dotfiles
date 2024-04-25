@@ -311,7 +311,7 @@ M.setup = function()
     --------------------------------------------------------
     --- NIL LS CONFIGURATION (NIX)
     --------------------------------------------------------
-    require 'lspconfig'.nil_ls.setup {
+    lspconfig.nil_ls.setup {
         settings = {
             ['nil'] = {
                 autoArchive = true,
@@ -325,9 +325,17 @@ M.setup = function()
     -- require 'lspconfig'.nushell.setup {}
 
     --------------------------------------------------------
-    --- NUSHELL CONFIGURATION
+    --- JAVA CONFIGURATION
     --------------------------------------------------------
     require('java').setup()
     require('lspconfig').jdtls.setup({})
+
+    --------------------------------------------------------
+    --- GO LANG CONFIGURATION
+    --------------------------------------------------------
+    lspconfig.gopls.setup({
+        on_attach = M.on_attach_common,
+    })
+
 end
 return M
