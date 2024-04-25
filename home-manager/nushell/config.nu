@@ -795,3 +795,4 @@ $env.config = {
 }
 
 use ~/.config/nushell/ext/java-utils.nu *
+use ~/.config/nushell/ext/file-utils.nu *
