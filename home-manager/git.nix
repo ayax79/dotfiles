@@ -21,6 +21,9 @@
         ui = "auto";
         sh = "auto";
       };
+      init = {
+        defaultBranch = "main";
+      };
       push = {
         default = "tracking";
       };
@@ -38,7 +41,7 @@
 
       mergetool = {
         prompt = false;
-        keepBackup  = false;
+        keepBackup = false;
       };
 
       "mergetool \"nvim\"" = {
