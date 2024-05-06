@@ -22,6 +22,7 @@
     gcc
     openssl.dev
     pkg-config
+    _1password-gui
   ];
 
   home.file.backgrounds = {

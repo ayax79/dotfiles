@@ -38,7 +38,6 @@
   home.packages = with pkgs; [
     ncurses
     _1password # One password cli
-    _1password-gui
     ripgrep # grep but better and faster
     eza # supported version of exa the cd replacement
     bat # Cat but with syntax highlighting
