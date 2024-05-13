@@ -23,6 +23,7 @@
     openssl.dev
     pkg-config
     _1password-gui
+    spotify
   ];
 
   home.file.backgrounds = {

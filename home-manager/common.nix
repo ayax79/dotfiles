@@ -48,7 +48,6 @@
     jq # json utility
     taskwarrior
     openjdk21
-    spotify
     discord
     wget
     #zed-editor
