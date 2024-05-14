@@ -128,6 +128,18 @@ M.setup = function()
                 runnables = {
                     use_telescope = true,
                 },
+                float_win_config = {
+                    border = {
+                        { '╭', 'FloatBorder' },
+                        { '─', 'FloatBorder' },
+                        { '╮', 'FloatBorder' },
+                        { '│', 'FloatBorder' },
+                        { '╯', 'FloatBorder' },
+                        { '─', 'FloatBorder' },
+                        { '╰', 'FloatBorder' },
+                        { '│', 'FloatBorder' },
+                    }
+                },
             },
             -- LSP configuration
             server = {
@@ -336,6 +348,5 @@ M.setup = function()
     lspconfig.gopls.setup({
         on_attach = M.on_attach_common,
     })
-
 end
 return M
