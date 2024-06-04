@@ -40,15 +40,6 @@ wk.register({
         f = { "<Cmd>Telescope vim_bookmarks current_file<CR>", "Find bookmark (current file)" },
         F = { "<Cmd>Telescope vim_bookmarks all<CR>", "Find bookmark (all files)" },
     },
-    x = {
-        name = "Trouble plugin options",
-        x = { "<cmd>TroubleToggle<cr>", "Toggle Trouble" },
-        w = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "Toggle trouble workspace diagnostics" },
-        d = { "<cmd>TroubleToggle document_diagnostics<cr>", "Toggle trouble document diagnostics" },
-        l = { "<cmd>TroubleToggle loclist<cr>", "Toggle trouble loclist" },
-        q = { "<cmd>TroubleToggle quickfix<cr>", "Toggle trouble quickfix" },
-        R = { "<cmd>TroubleToggle lsp_references<cr>", "Toggle trouble lsp references" },
-    },
     b = {
         name = "Buffers",
         f = { telescope_builtin.buffers, "Find Buffer" },
