@@ -35,6 +35,7 @@
         extraSpecialArgs = {inherit inputs outputs;};
         # > Our main home-manager configuration file <
         modules = [
+          (import ./overlays)
           {
             imports = [
               ./systems/common.nix
@@ -56,6 +57,7 @@
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         extraSpecialArgs = {inherit inputs outputs;};
         modules = [
+          (import ./overlays)
           {
             imports = [
               ./systems/common.nix
