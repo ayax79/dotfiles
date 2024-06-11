@@ -1,3 +1,4 @@
+# no longer used, keeping around in case I need it again. 
 final: prev: {
   lua-language-server = prev.lua-language-server.overrideAttrs (finalAttrs: previousAttrs: {
     version = "3.9.1";
