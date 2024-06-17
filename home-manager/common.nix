@@ -61,7 +61,8 @@
     #   echo "Hello, ${config.home.username}!"
     # '')
 
-    aws-sam-cli
+    # seems to be broken right now 
+    #aws-sam-cli
 
     rustup
     grcov # code coverage tool for rust
