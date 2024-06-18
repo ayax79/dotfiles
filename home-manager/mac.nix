@@ -7,6 +7,7 @@
 }: {
   home.packages = with pkgs; [
     llvm
+    #zed-editor
   ];
 
   home.activation = {
