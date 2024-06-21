@@ -565,7 +565,7 @@ table.insert(M, {
     {
         'mrcjkb/rustaceanvim',
         version = '^4', -- Recommended
-        ft = { 'rust' },
+        lazy = false,
     },
     {
         "ray-x/go.nvim",
