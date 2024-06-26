@@ -58,8 +58,6 @@ wk.register({
             b = { "<cmd>DapToggleBreakpoint<cr>", "Toggle breakpoint" },
             u = { require("dapui").toggle, "Toggle Debugger UI" },
         },
-        t = { "<cmd>TroubleToggle lsp_type_definitions<cr>", "Type Definitions (trouble)" },
-        d = { "<cmd>TroubleToggle lsp_definitions<cr>", "Definitions (trouble)" },
     },
     n = {
         name = "Noice",
