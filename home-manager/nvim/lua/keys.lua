@@ -73,15 +73,14 @@ wk.add({
         { "<leader>ls", telescope_builtin.lsp_document_symbols,  desc = "Document symbols", },
         { "<leader>lS", telescope_builtin.lsp_workspace_symbols, desc = "Workspace symbols", },
         { "<leader>ll", vim.lsp.codelens.run,                    desc = "CodeLens Action", },
-
-    },
-    --Debugger Group
-    {
-        "<leader>Db",
-        name = "Debugger",
-        group = "Debugger",
-        { "<leader>Db", "<cmd>DapToggleBreakpoint<cr>", desc = "Toggle breakpoint", },
-        { "<leader>Du", require("dapui").toggle,        desc = "Toggle Debugger UI", },
+        --Debugger Group
+        {
+            "<leader>lDb",
+            name = "Debugger",
+            group = "Debugger",
+            { "<leader>lDb", "<cmd>DapToggleBreakpoint<cr>", desc = "Toggle breakpoint", },
+            { "<leader>lDu", require("dapui").toggle,        desc = "Toggle Debugger UI", },
+        },
     },
     -- Noice Group
     {
@@ -93,6 +92,42 @@ wk.add({
         { "<leader>nt", function() noice.cmd("telescope") end, desc = "Telescope", },
         { "<leader>nx", function() noice.cmd("dismiss") end,   desc = "Dismiss All Messages", },
     },
+    -- Trouble Group
+    {
+        "<leader>x",
+        name = "Trouble",
+        group = "Trouble",
+        {
+            "<leader>xx",
+            "<cmd>Trouble diagnostics toggle<cr>",
+            desc = "Diagnostics (Trouble)",
+        },
+        {
+            "<leader>xX",
+            "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+            desc = "Buffer Diagnostics (Trouble)",
+        },
+        {
+            "<leader>cs",
+            "<cmd>Trouble symbols toggle focus=false<cr>",
+            desc = "Symbols (Trouble)",
+        },
+        {
+            "<leader>cl",
+            "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
+            desc = "LSP Definitions / references / ... (Trouble)",
+        },
+        {
+            "<leader>xL",
+            "<cmd>Trouble loclist toggle<cr>",
+            desc = "Location List (Trouble)",
+        },
+        {
+            "<leader>xQ",
+            "<cmd>Trouble qflist toggle<cr>",
+            desc = "Quickfix List (Trouble)",
+        },
+    }
 })
 
 -- Global mappings.
