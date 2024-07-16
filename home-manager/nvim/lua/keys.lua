@@ -3,6 +3,28 @@ local wk = require("which-key")
 local telescope_builtin = require("telescope.builtin")
 local neogit = require("neogit")
 local noice = require("noice")
+local crates = require("crates");
+
+-- BEGIN HARPOON
+local harpoon = require('harpoon')
+-- basic telescope configuration
+local conf = require("telescope.config").values
+local function toggle_telescope(harpoon_files)
+    local file_paths = {}
+    for _, item in ipairs(harpoon_files.items) do
+        table.insert(file_paths, item.value)
+    end
+
+    require("telescope.pickers").new({}, {
+        prompt_title = "Harpoon",
+        finder = require("telescope.finders").new_table({
+            results = file_paths,
+        }),
+        previewer = conf.file_previewer({}),
+        sorter = conf.generic_sorter({}),
+    }):find()
+end
+-- END HARPOON
 
 wk.add({
     -- Global Mappings
@@ -127,7 +149,48 @@ wk.add({
             "<cmd>Trouble qflist toggle<cr>",
             desc = "Quickfix List (Trouble)",
         },
-    }
+    },
+    -- Crates Group
+    {
+        "<leader>c",
+        name = "Crates",
+        group = "Crates",
+        { "<leader>ct", crates.toggle,                             desc = "Crates Toggle" },
+        { "<leader>cr", crates.reload,                             desc = "Crates Reload" },
+        { "<leader>cv", crates.show_versions_popup,                desc = "Show Versions Popup" },
+        { "<leader>cf", crates.show_features_popup,                desc = "Show Features Popup" },
+
+        { "<leader>cu", crates.update_crate,                       desc = "Update Crate" },
+        { "<leader>cu", crates.update_crates,                      desc = "Update Crates" },
+        { "<leader>ca", crates.update_all_crates,                  desc = "Update All Crates" },
+        { "<leader>cU", crates.upgrade_crate,                      desc = "Upgrade Crate" },
+        { "<leader>cU", crates.upgrade_crates,                     desc = "Upgrade Crates" },
+        { "<leader>cA", crates.upgrade_all_crates,                 desc = "Upgrade All Crates" },
+
+        { "<leader>cx", crates.expand_plain_crate_to_inline_table, desc = "Expand crate to inline table" },
+        { "<leader>cX", crates.extract_crate_into_table,           desc = "Extract crate into table" },
+
+        { "<leader>cH", crates.open_homepage,                      desc = "Open Homepage" },
+        { "<leader>cR", crates.open_repository,                    desc = "Open Repository" },
+        { "<leader>cD", crates.open_documentation,                 desc = "Open Documentation" },
+        { "<leader>cC", crates.open_crates_io,                     desc = "Open Crates IO" },
+    },
+    -- Harpoon Group
+    {
+        "<leader>h",
+        name = "Harpooon",
+        group = "Harpooon",
+        { "<leader>hf", function() toggle_telescope(harpoon:list()) end,             desc = "Telescope" },
+        { "<leader>ha", function() harpoon:list():add() end,                         desc = "Add File" },
+        { "<leader>hq", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, desc = "Quicklist" },
+        { "<leader>hr", function() harpoon:list():remove() end,                      desc = "Remove Current File" },
+        { "<leader>h1", function() harpoon:list():select(1) end,                     desc = "Select Item 1" },
+        { "<leader>h2", function() harpoon:list():select(2) end,                     desc = "Select Item 2" },
+        { "<leader>h3", function() harpoon:list():select(3) end,                     desc = "Select Item 3" },
+        { "<leader>h4", function() harpoon:list():select(4) end,                     desc = "Select Item 4" },
+        { "[h",         function() harpoon:list():prev() end,                        desc = "Harpoon Prev" },
+        { "]h",         function() harpoon:list():next() end,                        desc = "Harpoon Next" },
+    },
 })
 
 -- Global mappings.
