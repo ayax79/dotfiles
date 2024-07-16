@@ -89,7 +89,7 @@ wk.add({
     },
     -- LSP Group
     {
-        "<leader>ls",
+        "<leader>l",
         name = "LSP",
         group = "LSP",
         { "<leader>ls", telescope_builtin.lsp_document_symbols,  desc = "Document symbols", },
@@ -97,7 +97,7 @@ wk.add({
         { "<leader>ll", vim.lsp.codelens.run,                    desc = "CodeLens Action", },
         --Debugger Group
         {
-            "<leader>lDb",
+            "<leader>lD",
             name = "Debugger",
             group = "Debugger",
             { "<leader>lDb", "<cmd>DapToggleBreakpoint<cr>", desc = "Toggle breakpoint", },
@@ -130,12 +130,12 @@ wk.add({
             desc = "Buffer Diagnostics (Trouble)",
         },
         {
-            "<leader>cs",
+            "<leader>xs",
             "<cmd>Trouble symbols toggle focus=false<cr>",
             desc = "Symbols (Trouble)",
         },
         {
-            "<leader>cl",
+            "<leader>xl",
             "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
             desc = "LSP Definitions / references / ... (Trouble)",
         },
@@ -161,10 +161,10 @@ wk.add({
         { "<leader>cf", crates.show_features_popup,                desc = "Show Features Popup" },
 
         { "<leader>cu", crates.update_crate,                       desc = "Update Crate" },
-        { "<leader>cu", crates.update_crates,                      desc = "Update Crates" },
+        { "<leader>cs", crates.update_crates,                      desc = "Update Crates" },
         { "<leader>ca", crates.update_all_crates,                  desc = "Update All Crates" },
         { "<leader>cU", crates.upgrade_crate,                      desc = "Upgrade Crate" },
-        { "<leader>cU", crates.upgrade_crates,                     desc = "Upgrade Crates" },
+        { "<leader>cS", crates.upgrade_crates,                     desc = "Upgrade Crates" },
         { "<leader>cA", crates.upgrade_all_crates,                 desc = "Upgrade All Crates" },
 
         { "<leader>cx", crates.expand_plain_crate_to_inline_table, desc = "Expand crate to inline table" },
