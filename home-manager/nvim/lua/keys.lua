@@ -4,78 +4,99 @@ local telescope_builtin = require("telescope.builtin")
 local neogit = require("neogit")
 local noice = require("noice")
 
-wk.register({
-    f = {
-        name = "Find",                                     -- optional group name
-        f = { telescope_builtin.find_files, "Find File" }, -- create a binding with label
-        g = { telescope_builtin.live_grep, "Live Grep" },
-        b = { telescope_builtin.buffers, "Find Buffer" },
-        k = { telescope_builtin.keymaps, "Find Keymap" },
-        q = { telescope_builtin.quickfix, "Find Quickfix" },
-        Q = { telescope_builtin.quickfix, "Find Quickfix History" },
-        r = { telescope_builtin.registers, "Find Register" },
-        G = { telescope_builtin.git_files, "Find Git Files" },
-        s = { telescope_builtin.git_status, "Modified Git files" },
-        j = { telescope_builtin.jumplist, "Jump List" },
+wk.add({
+    -- Global Mappings
+    { "[d",       vim.diagnostic.goto_prev,  desc = "Prev Diagnostic", },
+    { "]d",       vim.diagnostic.goto_next,  desc = "Next Diagnostic", },
+    { '<space>q', vim.diagnostic.setloclist, desc = "Set Loclist", },
+    { "-",        "<CMD>Oil<CR>",            desc = "Open parent directory", },
+    -- Find Group (Telescope)
+    {
+        "<leader>f",
+        name = "Find",
+        group = "Find",
+        { "<leader>ff", telescope_builtin.find_files, desc = "Find File", },
+        { "<leader>fg", telescope_builtin.live_grep,  desc = "Live Grep", },
+        { "<leader>fb", telescope_builtin.buffers,    desc = "Find Buffer", },
+        { "<leader>fk", telescope_builtin.keymaps,    desc = "Find Keymap", },
+        { "<leader>fq", telescope_builtin.quickfix,   desc = "Find Quickfix", },
+        { "<leader>fQ", telescope_builtin.quickfix,   desc = "Find Quickfix History", },
+        { "<leader>fr", telescope_builtin.registers,  desc = "Find Register", },
+        { "<leader>fG", telescope_builtin.git_files,  desc = "Find Git Files", },
+        { "<leader>fs", telescope_builtin.git_status, desc = "Modified Git files", },
+        { "<leader>fj", telescope_builtin.jumplist,   desc = "Jump List", },
     },
-    g = {
-        name = "git",
-        c = { function() neogit.open({ "commit" }) end, "Commit files" },
-        g = { "<cmd>Lazygit<cr>", "Lazy Git" },
-        f = { telescope_builtin.git_files, "Find Git Files" },
-        n = { neogit.open, "Open Neogit" },
-        z = { telescope_builtin.git_status, "Modified Git files (git_status)" },
-        l = { telescope_builtin.git_commits, "Git commits log" },
-        Z = { telescope_builtin.git_stash, "Git stash" },
+    -- Git Group
+    {
+        "<leader>g",
+        name = "Git",
+        group = "Git",
+        { "<leader>gc", function() neogit.open({ "commit" }) end, desc = "Commit files", },
+        { "<leader>gg", "<cmd>Lazygit<cr>",                       desc = "Lazy Git", },
+        { "<leader>gf", telescope_builtin.git_files,              desc = "Find Git Files", },
+        { "<leader>gn", neogit.open,                              desc = "Open Neogit", },
+        { "<leader>gz", telescope_builtin.git_status,             desc = "Modified Git files (git_status)", },
+        { "<leader>gl", telescope_builtin.git_commits,            desc = "Git commits log", },
+        { "<leader>gZ", telescope_builtin.git_stash,              desc = "Git stash", },
     },
-    m = {
+    -- Bookmarks Group
+    {
+        "<leader>m",
         name = "Bookmarks",
-        m = { "<Cmd>BookmarkToggle<CR>", "Toggle bookmark" },
-        i = { "<Cmd>BookmarkAnnotate<CR>", "Annotate bookmark" },
-        n = { "<Cmd>BookmarkNext<CR>", "Jump to next bookmark in buffer" },
-        p = { "<Cmd>BookmarkPrev<CR>", "Jump to previous bookmark in buffer" },
-        a = { "<Cmd>BookmarkShowAll<CR>", "Show all bookmarks (toggle)" },
-        c = { "<Cmd>BookmarkClear<CR>", "Clear bookmarks in current buffer" },
-        x = { "<Cmd>BookmarkClearAll<CR>", "Clear bookmarks in all buffers" },
-        f = { "<Cmd>Telescope vim_bookmarks current_file<CR>", "Find bookmark (current file)" },
-        F = { "<Cmd>Telescope vim_bookmarks all<CR>", "Find bookmark (all files)" },
+        group = "Bookmarks",
+        { "<leader>mm", "<Cmd>BookmarkToggle<CR>",                       desc = "Toggle bookmark", },
+        { "<leader>mi", "<Cmd>BookmarkAnnotate<CR>",                     desc = "Annotate bookmark", },
+        { "<leader>mn", "<Cmd>BookmarkNext<CR>",                         desc = "Jump to next bookmark in buffer", },
+        { "<leader>mp", "<Cmd>BookmarkPrev<CR>",                         desc = "Jump to previous bookmark in buffer", },
+        { "<leader>ma", "<Cmd>BookmarkShowAll<CR>",                      desc = "Show all bookmarks (toggle)", },
+        { "<leader>mc", "<Cmd>BookmarkClear<CR>",                        desc = "Clear bookmarks in current buffer", },
+        { "<leader>mx", "<Cmd>BookmarkClearAll<CR>",                     desc = "Clear bookmarks in all buffers", },
+        { "<leader>mf", "<Cmd>Telescope vim_bookmarks current_file<CR>", desc = "Find bookmark (current file)", },
+        { "<leader>mF", "<Cmd>Telescope vim_bookmarks all<CR>",          desc = "Find bookmark (all files)", },
     },
-    b = {
+    -- Buffers Group
+    {
+        "<leader>b",
         name = "Buffers",
-        f = { telescope_builtin.buffers, "Find Buffer" },
-        b = { "<Cmd>BufferOrderByBufferNumber<CR>", "Order buffers by number" },
-        d = { "<Cmd>BufferOrderByDirectory<CR>", "Order buffers by directory" },
-        l = { "<Cmd>BufferOrderByLanguage<CR>", "Order buffers by Language" },
-        w = { "<Cmd>BufferOrderByWindowNumber<CR>", "Order buffers by window number" },
+        group = "Buffers",
+        { "<leader>bf", telescope_builtin.buffers,            desc = "Find Buffer", },
+        { "<leader>bb", "<Cmd>BufferOrderByBufferNumber<CR>", desc = "Order buffers by number", },
+        { "<leader>bd", "<Cmd>BufferOrderByDirectory<CR>",    desc = "Order buffers by directory", },
+        { "<leader>bl", "<Cmd>BufferOrderByLanguage<CR>",     desc = "Order buffers by Language", },
+        { "<leader>bw", "<Cmd>BufferOrderByWindowNumber<CR>", desc = "Order buffers by window number", },
     },
-    l = {
+    -- LSP Group
+    {
+        "<leader>ls",
         name = "LSP",
-        s = { telescope_builtin.lsp_document_symbols, "Document symbols" },
-        S = { telescope_builtin.lsp_workspace_symbols, "Workspace symbols" },
-        l = { vim.lsp.codelens.run, "CodeLens Action" },
-        D = {
-            name = "Debugger",
-            b = { "<cmd>DapToggleBreakpoint<cr>", "Toggle breakpoint" },
-            u = { require("dapui").toggle, "Toggle Debugger UI" },
-        },
-    },
-    n = {
-        name = "Noice",
-        l = { function() noice.cmd("last") end, "Last Message" },
-        h = { function() noice.cmd("history") end, "Message History" },
-        t = { function() noice.cmd("telescope") end, "Telescope" },
-        x = { function() noice.cmd("dismiss") end, "Dismiss All Messages" },
+        group = "LSP",
+        { "<leader>ls", telescope_builtin.lsp_document_symbols,  desc = "Document symbols", },
+        { "<leader>lS", telescope_builtin.lsp_workspace_symbols, desc = "Workspace symbols", },
+        { "<leader>ll", vim.lsp.codelens.run,                    desc = "CodeLens Action", },
 
-    }
-}, { prefix = "<leader>" })
+    },
+    --Debugger Group
+    {
+        "<leader>Db",
+        name = "Debugger",
+        group = "Debugger",
+        { "<leader>Db", "<cmd>DapToggleBreakpoint<cr>", desc = "Toggle breakpoint", },
+        { "<leader>Du", require("dapui").toggle,        desc = "Toggle Debugger UI", },
+    },
+    -- Noice Group
+    {
+        "<leader>nl",
+        name = "Noice",
+        group = "Noice",
+        { "<leader>nl", function() noice.cmd("last") end,      desc = "Last Message", },
+        { "<leader>nh", function() noice.cmd("history") end,   desc = "Message History", },
+        { "<leader>nt", function() noice.cmd("telescope") end, desc = "Telescope", },
+        { "<leader>nx", function() noice.cmd("dismiss") end,   desc = "Dismiss All Messages", },
+    },
+})
 
 -- Global mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Prev Diagnostic" })
-vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Next Diagnostic" })
-vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, { desc = "Set Loclist" })
-
-vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 --
 local util = require("util")
 
@@ -95,7 +116,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
         vim.keymap.set("n", "K", vim.lsp.buf.hover, util.with_description(opts, "LSP hover"))
         vim.keymap.set("n", "gI", vim.lsp.buf.implementation, util.with_description(opts, "Go to implementation"))
         vim.keymap.set("n", "<M-k>", vim.lsp.buf.signature_help, util.with_description(opts, "Signature Help"))
-        vim.keymap.set("n", "gR", function() require("trouble").toggle("lsp_references") end, util.with_description(opts, "Lsp References"))
+        vim.keymap.set("n", "gR", function() require("trouble").toggle("lsp_references") end,
+            util.with_description(opts, "Lsp References"))
         vim.keymap.set("n", "gx", vim.lsp.buf.incoming_calls, util.with_description(opts, "Go to incoming calls"))
         vim.keymap.set("n", "gX", vim.lsp.buf.outgoing_calls, util.with_description(opts, "Go to outgoing calls"))
         vim.keymap.set(
@@ -132,7 +154,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
         vim.keymap.set('n', '<space>lR', telescope_builtin.lsp_references, util.with_description(opts, "LSP references"))
 
         vim.keymap.set('v', 'M-K', require('dapui').eval, util.with_description(opts, "DAP Eval Expression"))
-
     end,
 })
 
