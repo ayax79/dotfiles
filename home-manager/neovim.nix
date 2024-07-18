@@ -18,6 +18,7 @@
     # Currently broken on the mac
     # vscode-extensions.vadimcn.vscode-lldb.adapter
     coursier
+    black # python formatter
   ];
 
   programs.neovim = {
