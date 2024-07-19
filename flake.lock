@@ -90,6 +90,22 @@
         "type": "github"
       }
     },
+    "lldb-nix-fix": {
+      "locked": {
+        "lastModified": 1712740125,
+        "narHash": "sha256-YXvbuxzaLmHgzWyQK4Cxduz8oMMaq6FgiVnqJhWCAjE=",
+        "owner": "mstone",
+        "repo": "nixpkgs",
+        "rev": "d0415e5734f5ed2c58d7ba96b5153e3028f6ca20",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mstone",
+        "ref": "darwin-fix-vscode-lldb",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "mac-app-util": {
       "inputs": {
         "cl-nix-lite": "cl-nix-lite",
@@ -163,6 +179,7 @@
       "inputs": {
         "darwin": "darwin",
         "home-manager": "home-manager",
+        "lldb-nix-fix": "lldb-nix-fix",
         "mac-app-util": "mac-app-util",
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-darwin": "nixpkgs-darwin"

@@ -14,6 +14,10 @@
       inputs.nixpkgs.follows = "nixpkgs-darwin";
     };
     mac-app-util.url = "github:hraban/mac-app-util";
+
+    lldb-nix-fix = {
+      url = "github:mstone/nixpkgs/darwin-fix-vscode-lldb";
+    };
   };
 
   outputs = {

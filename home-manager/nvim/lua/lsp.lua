@@ -107,7 +107,7 @@ M.setup = function()
     dapui.setup()
     dap.adapters.lldb = {
         type = "executable",
-        command = "/opt/homebrew/llvm/bin/lldb-vscode",
+        command = vim.fn.expand("~") .. "/.nix-profile/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb",
         name = "lldb",
     }
 

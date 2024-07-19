@@ -19,6 +19,9 @@
     # vscode-extensions.vadimcn.vscode-lldb.adapter
     coursier
     black # python formatter
+    code-lldb
+    luarocks
+    lua5_1
   ];
 
   programs.neovim = {
