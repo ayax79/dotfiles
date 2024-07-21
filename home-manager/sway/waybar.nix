@@ -44,9 +44,9 @@
             "critical" = 15;
           };
           "format" = "{icon}  {capacity}%";
-          "format-charging" = "  {capacity}%";
+          "format-charging" = "{capacity}%";
           "format-plugged" = "  {capacity}%";
-          "format-alt" = "{time} {icon}";
+          # "format-alt" = "{time} {icon}";
           # "format-good" = "", // An empty format will hide the module
           # "format-full" = "";
           "format-icons" = ["" "" "" "" ""];
@@ -61,7 +61,7 @@
         };
         "pulseaudio" = {
           # "scroll-step" = 1; // %, can be a float
-          "format" = "{icon}  {volume}%      {format_source}";
+          "format" = "{icon}  {volume}% {format_source}";
           "format-bluetooth" = "{volume}% {icon} {format_source}";
           "format-bluetooth-muted" = "  {icon}  {format_source}";
           # "format-muted" = "   {format_source}";
@@ -125,7 +125,7 @@
       }
 
       * {
-          font-family: SpaceMono;
+          font-family: SpaceMono Nerd Font;
           font-size: 14px;
           font-weight: 600;
           margin-top: 2px;
@@ -178,7 +178,7 @@
       #clock,
       #tray {
           background-color: @nord2;
-          padding: 0px 8px;
+          padding: 0px 12px;
           color: @nord6;
       }
 
