@@ -83,6 +83,7 @@
     carapace # shell completion
     fish
     virtualenv
+    unzip
   ];
 
   # Enable home-manager and git

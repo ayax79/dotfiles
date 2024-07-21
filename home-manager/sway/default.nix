@@ -17,6 +17,7 @@
 
   wayland.windowManager.sway = {
     enable = true;
+    checkConfig = false;
     config = rec {
       modifier = "Mod4";
       terminal = "alacritty";
@@ -38,7 +39,7 @@
           mode = "1600x900@60Hz";
         };
         "*" = {
-          bg = "~/backgrounds/utterly-nord.png fill";
+          bg = "${config.mySystem.homeDirectory}/backgrounds/utterly-nord.png fill";
         };
       };
       bars = [

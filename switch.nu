@@ -8,5 +8,5 @@ def main [command: string = "switch"] {
         $hostname
     } 
     echo $"Using hostname: ($hostname)"
-    home-manager $command --flake $".#($hostname)" --show-trace
+    home-manager $command  --flake $".#($hostname)" --show-trace
 }

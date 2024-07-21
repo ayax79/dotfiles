@@ -22,7 +22,7 @@ in {
 
         font = {
           normal = {
-            family = "OpenDyslexicM Nerd Font Mono";
+            family = "SpaceMono Nerd Font Mono";
           };
           size = 12.0;
         };

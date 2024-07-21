@@ -3,6 +3,12 @@
   pkgs,
   ...
 }: {
+
+  home.file.backgrounds = {
+    source = ./backgrounds;
+    recursive = true;
+  };
+
   imports = [
     ./sway
   ];
@@ -26,10 +32,6 @@
     spotify
   ];
 
-  home.file.backgrounds = {
-    source = ./backgrounds;
-    recursive = true;
-  };
 
   gtk = {
     enable = true;
@@ -70,7 +72,7 @@
 
   qt = {
     enable = true;
-    platformTheme = "gtk";
+    platformTheme.name = "gtk";
   
     style = {
       name = "Nordic";
