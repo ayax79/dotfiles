@@ -203,6 +203,7 @@
   "spotify" = ""
   "thunderbird" = ""
   "signal" = "󰈎"
+  "discord" = ""
 
   [other]
   fallback_icon = ""
