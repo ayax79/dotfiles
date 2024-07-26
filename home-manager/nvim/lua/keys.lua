@@ -28,10 +28,12 @@ end
 
 wk.add({
     -- Global Mappings
-    { "[d",       vim.diagnostic.goto_prev,  desc = "Prev Diagnostic", },
-    { "]d",       vim.diagnostic.goto_next,  desc = "Next Diagnostic", },
-    { '<space>q', vim.diagnostic.setloclist, desc = "Set Loclist", },
-    { "-",        "<CMD>Oil<CR>",            desc = "Open parent directory", },
+    -- { "[d",       vim.diagnostic.goto_prev,  desc = "Prev Diagnostic", },
+    { "[d",       "<cmd>Lspsaga diagnostic_jump_prev<cr>", desc = "Prev Diagnostic", },
+    -- { "]d",       vim.diagnostic.goto_next,  desc = "Next Diagnostic", },
+    { "]d",       "<cmd>Lspsaga diagnostic_jump_next<cr>", desc = "Next Diagnostic", },
+    { '<space>q', vim.diagnostic.setloclist,               desc = "Set Loclist", },
+    { "-",        "<CMD>Oil<CR>",                          desc = "Open parent directory", },
     -- Find Group (Telescope)
     {
         "<leader>f",
@@ -95,6 +97,8 @@ wk.add({
         { "<leader>ls", telescope_builtin.lsp_document_symbols,  desc = "Document symbols", },
         { "<leader>lS", telescope_builtin.lsp_workspace_symbols, desc = "Workspace symbols", },
         { "<leader>ll", vim.lsp.codelens.run,                    desc = "CodeLens Action", },
+        { "<leader>lp", "<cmd>Lspsaga peek_definition<cr>",      desc = "Peek Definition", },
+        { "<leader>lo", "<cmd>Lspsaga outline<cr>",              desc = "Outline", },
         --Debugger Group
         {
             "<leader>lD",
@@ -104,6 +108,7 @@ wk.add({
             { "<leader>lDu", require("dapui").toggle,        desc = "Toggle Debugger UI", },
         },
     },
+    { "<leader>T", "<cmd>Lspsaga  term_toggle<cr>", group = "Term", desc = "Togggle Term", },
     -- Noice Group
     {
         "<leader>nl",
@@ -210,14 +215,18 @@ vim.api.nvim_create_autocmd("LspAttach", {
         -- See `:help vim.lsp.*` for documentation on any of the below functions
         local opts = { buffer = ev.buf, silent = true }
         vim.keymap.set("n", "gD", vim.lsp.buf.declaration, util.with_description(opts, "Go to Declaration"))
-        vim.keymap.set("n", "gd", vim.lsp.buf.definition, util.with_description(opts, "Go to definition"))
-        vim.keymap.set("n", "K", vim.lsp.buf.hover, util.with_description(opts, "LSP hover"))
+        -- vim.keymap.set("n", "gd", vim.lsp.buf.definition, util.with_description(opts, "Go to definition"))
+        vim.keymap.set("n", "gd", "<cmd>Lspsaga goto_definition<cr>", util.with_description(opts, "Go to definition"))
+        -- vim.keymap.set("n", "K", vim.lsp.buf.hover, util.with_description(opts, "LSP hover"))
+        vim.keymap.set("n", "K", "<cmd>Lspsaga hover_doc<cr>", util.with_description(opts, "DOC"))
         vim.keymap.set("n", "gI", vim.lsp.buf.implementation, util.with_description(opts, "Go to implementation"))
         vim.keymap.set("n", "<M-k>", vim.lsp.buf.signature_help, util.with_description(opts, "Signature Help"))
         vim.keymap.set("n", "gR", function() require("trouble").toggle("lsp_references") end,
             util.with_description(opts, "Lsp References"))
-        vim.keymap.set("n", "gx", vim.lsp.buf.incoming_calls, util.with_description(opts, "Go to incoming calls"))
-        vim.keymap.set("n", "gX", vim.lsp.buf.outgoing_calls, util.with_description(opts, "Go to outgoing calls"))
+        -- vim.keymap.set("n", "gx", vim.lsp.buf.incoming_calls, util.with_description(opts, "Go to incoming calls"))
+        vim.keymap.set("n", "gx", "<cmd>Lspsaga incoming_calls<cr>", util.with_description(opts, "Go to incoming calls"))
+        -- vim.keymap.set("n", "gX", vim.lsp.buf.outgoing_calls, util.with_description(opts, "Go to outgoing calls"))
+        vim.keymap.set("n", "gX", "<cmd>Lspsaga outgoing_calls<cr>", util.with_description(opts, "Go to outgoing calls"))
         vim.keymap.set(
             "n",
             "<space>wa",
@@ -236,15 +245,17 @@ vim.api.nvim_create_autocmd("LspAttach", {
         vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition, util.with_description(opts, "Type definition"))
         vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, opts)
 
-        local exec_code_action = function()
-            if vim.bo.filetype == 'rust' then
-                vim.cmd.RustLsp('codeAction')
-            else
-                vim.lsp.buf.code_action()
-            end
-        end
+        -- local exec_code_action = function()
+        --     if vim.bo.filetype == 'rust' then
+        --         vim.cmd.RustLsp('codeAction')
+        --     else
+        --         vim.lsp.buf.code_action()
+        --     end
+        -- end
 
-        vim.keymap.set({ "n", "v" }, "<space>la", exec_code_action, util.with_description(opts, "Code Action"))
+        --vim.keymap.set({ "n", "v" }, "<space>la", exec_code_action, util.with_description(opts, "Code Action"))
+        vim.keymap.set({ "n", "v" }, "<space>la", "<cmd>Lspsaga code_action<cr>",
+            util.with_description(opts, "Code Action"))
         vim.keymap.set("n", "gr", vim.lsp.buf.references, util.with_description(opts, "Go to references"))
         vim.keymap.set("n", "<space>lf", function()
             vim.lsp.buf.format({ async = true })

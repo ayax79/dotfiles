@@ -217,6 +217,17 @@ table.insert(M, {
             })
         end,
     },
+    {
+        'nvimdev/lspsaga.nvim',
+        event = "LspAttach",
+        config = function()
+            require('lspsaga').setup({})
+        end,
+        dependencies = {
+            'nvim-treesitter/nvim-treesitter', -- optional
+            'nvim-tree/nvim-web-devicons', -- optional
+        }
+    },
     -- Provides a betterquick fix and lsp diagnostics list
     "nvim-telescope/telescope-ui-select.nvim",
     -- Visual Search for files, quickfix, etc
@@ -667,13 +678,6 @@ table.insert(M, {
                 --  * a function, returning a list of strings and the return value is used as the source for completions
                 all_cmd_names = [[help commands | get name | str join "\n"]]
             }
-        end,
-    },
-    {
-        "lvimuser/lsp-inlayhints.nvim",
-        lazy = false,
-        config = function()
-            require("lsp-inlayhints").setup()
         end,
     },
     -- json/yaml schema stores

@@ -35,10 +35,9 @@ M.setup_codelens_refresh = function(client, bufnr)
 end
 
 M.on_attach_common = function(client, bufnr)
-    local inlayhints = require("lsp-inlayhints")
+    vim.lsp.inlay_hint.enable(true)
     M.setup_codelens_refresh(client, bufnr)
     navic.attach(client, bufnr)
-    inlayhints.on_attach(client, bufnr)
 end
 
 function M.get_capabilities()
@@ -68,17 +67,17 @@ M.setup = function()
     sign({ name = "DiagnosticSignInfo", text = "" })
 
     vim.diagnostic.config({
-        virtual_text = false,
+        virtual_text = true,
         signs = true,
         update_in_insert = true,
         underline = true,
-        severity_sort = false,
-        float = {
-            border = "rounded",
-            source = "always",
-            header = "",
-            prefix = "",
-        },
+        severity_sort = true,
+    --     float = {
+    --         border = "rounded",
+    --         source = "always",
+    --         header = "",
+    --         prefix = "",
+    --     },
     })
 
     --Set completeopt to have a better completion experience
@@ -92,14 +91,15 @@ M.setup = function()
     vim.opt.shortmess = vim.opt.shortmess + { c = true }
     vim.api.nvim_set_option_value("updatetime", 300, { scope = 'global' })
 
-    -- Fixed column for diagnostics to appear
-    -- Show autodiagnostic popup on cursor hover_range
-    -- Goto previous / next diagnostic warning / error
-    -- Show inlay_hints more frequently
-    vim.cmd([[
-    set signcolumn=yes
-    autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
-]])
+    -- -- Fixed column for diagnostics to appear
+    -- -- Show autodiagnostic popup on cursor hover_range
+    -- -- Goto previous / next diagnostic warning / error
+    -- -- Show inlay_hints more frequently
+    -- vim.cmd([[
+    -- set signcolumn=yes
+    -- autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
+    -- ]
+    --])
 
     require("lsp-colors").setup()
 
@@ -402,7 +402,5 @@ M.setup = function()
         end,
         group = nvim_metals_group,
     })
-
-
 end
 return M
