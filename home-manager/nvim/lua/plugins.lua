@@ -225,7 +225,7 @@ table.insert(M, {
         end,
         dependencies = {
             'nvim-treesitter/nvim-treesitter', -- optional
-            'nvim-tree/nvim-web-devicons', -- optional
+            'nvim-tree/nvim-web-devicons',     -- optional
         }
     },
     -- Provides a betterquick fix and lsp diagnostics list
@@ -798,7 +798,15 @@ table.insert(M, {
         "williamboman/mason.nvim",
         lazy = true,
         config = true,
-    }
+    },
+    {
+        "folke/twilight.nvim",
+        opts = {
+            -- your configuration comes here
+            -- or leave it empty to use the default settings
+            -- refer to the configuration section below
+        }
+    },
 })
 
 return M
