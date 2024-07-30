@@ -228,6 +228,11 @@ table.insert(M, {
             'nvim-tree/nvim-web-devicons',     -- optional
         }
     },
+    {
+        "folke/trouble.nvim",
+        opts = {}, -- for default options, refer to the configuration section for custom setup.
+        cmd = "Trouble",
+    },
     -- Provides a betterquick fix and lsp diagnostics list
     "nvim-telescope/telescope-ui-select.nvim",
     -- Visual Search for files, quickfix, etc
