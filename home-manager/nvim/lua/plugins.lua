@@ -221,7 +221,12 @@ table.insert(M, {
         'nvimdev/lspsaga.nvim',
         event = "LspAttach",
         config = function()
-            require('lspsaga').setup({})
+            require('lspsaga').setup({
+                lightbulb = {
+                    -- Don't show lightbulb in the status column... causes it to bounce
+                    sign = false,
+                }
+            })
         end,
         dependencies = {
             'nvim-treesitter/nvim-treesitter', -- optional
