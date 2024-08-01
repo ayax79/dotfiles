@@ -84,6 +84,7 @@
     fish
     virtualenv
     unzip
+    python3
   ];
 
   # Enable home-manager and git
