@@ -9,6 +9,8 @@
     ];
 
     extraConfig = ''
+      # turn on nushell IR 
+      set-environment -g USE_IR 1
       set-option -g default-command nu
       set-option -g status-position top
       set-option default-terminal "tmux-256color"
