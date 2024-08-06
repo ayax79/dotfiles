@@ -42,7 +42,7 @@
     eza # supported version of exa the cd replacement
     bat # Cat but with syntax highlighting
     fd
-    # broot # newer tree view
+    broot # newer tree view
     nodejs
     cargo-lambda # AWS rust lambda toolkit
     lazygit # lazygit git tool
