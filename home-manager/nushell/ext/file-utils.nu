@@ -7,6 +7,10 @@ export def "unzip list" [file: path] {
         update Date {into datetime})
 }
 
-export def cds [] {
-    cd (fd -t d . ~/src/ | fzf)
+export def generate-proj-list [] {
+    mkdir ~/.cache/file-utils
+    ls -a ~/src/**/.git | get name | par-each {|it| $it | path dirname } | save --force ~/.cache/file-utils/proj-list.txt
 }
+
+export alias cds = cd ((open ~/.cache/file-utils/proj-list.txt | fzf) | str trim)
+export alias es = enter ((open ~/.cache/file-utils/proj-list.txt | fzf) | str trim)
