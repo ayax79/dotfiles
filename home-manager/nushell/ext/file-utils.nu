@@ -6,3 +6,7 @@ export def "unzip list" [file: path] {
         update Length {into filesize} |
         update Date {into datetime})
 }
+
+export def cds [] {
+    cd (fd -t d . ~/src/ | fzf)
+}
