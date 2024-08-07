@@ -1,7 +1,3 @@
-# Nushell Config File
-#
-# version = "0.86.0"
-
 # For more information on defining custom themes, see
 # https://www.nushell.sh/book/coloring_and_theming.html
 # And here is the theme collection
@@ -826,3 +822,4 @@ use ~/.config/nushell/ext/file-utils.nu
 use ~/.config/nushell/ext/file-utils.nu cds
 use ~/.config/nushell/ext/file-utils.nu es
 use ~/.config/nushell/ext/tmux-utils.nu
+use ~/.config/nushell/ext/neovim.nu *
