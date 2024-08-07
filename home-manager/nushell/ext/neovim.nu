@@ -94,3 +94,7 @@ export def --env "nvim current" [
     let current_server = ($env.CURRENT_SERVER)
     nvim --server $current_server --remote $file
 }
+
+export def "nvim-close-all" [] {
+    ls /tmp/nvim-* | each {|it| nvim --server $it.name --remote-send "<C-\\><C-N>:xa<CR>"}
+}
