@@ -25,7 +25,10 @@
         defaultBranch = "main";
       };
       push = {
-        default = "tracking";
+        default = "current";
+      };
+      pull = {
+        rebase = "true";
       };
       "filter \"media\"" = {
         required = true;
