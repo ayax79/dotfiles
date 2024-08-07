@@ -2,3 +2,9 @@
 export def set-window-title [] {
      pwd | path split | last | tmux rename-window $in
 } 
+
+# Closes all neovim sessions and then kills the tmux session
+export def safe-close [] {
+   nvim-close-all 
+   tmux kill-session
+}
