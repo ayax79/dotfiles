@@ -821,5 +821,5 @@ use ~/.config/nushell/ext/java-utils.nu
 use ~/.config/nushell/ext/file-utils.nu
 use ~/.config/nushell/ext/file-utils.nu cds
 use ~/.config/nushell/ext/file-utils.nu es
-use ~/.config/nushell/ext/tmux-utils.nu
 use ~/.config/nushell/ext/neovim.nu *
+use ~/.config/nushell/ext/tmux-utils.nu
