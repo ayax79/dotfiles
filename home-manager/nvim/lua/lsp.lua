@@ -48,9 +48,13 @@ function M.get_capabilities()
 end
 
 M.setup = function()
-    require("neoconf").setup({
-        -- override any of the default settings here
+    require("mason").setup()
+    require("mason-lspconfig").setup({
+        ensure_installed = {
+            "rust_analyzer"
+        }
     })
+    require("neoconf").setup()
 
     -- LSP Diagnostics Options Setup
     local sign = function(opts)
@@ -72,12 +76,12 @@ M.setup = function()
         update_in_insert = true,
         underline = true,
         severity_sort = true,
-    --     float = {
-    --         border = "rounded",
-    --         source = "always",
-    --         header = "",
-    --         prefix = "",
-    --     },
+        --     float = {
+        --         border = "rounded",
+        --         source = "always",
+        --         header = "",
+        --         prefix = "",
+        --     },
     })
 
     --Set completeopt to have a better completion experience
