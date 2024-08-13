@@ -803,7 +803,12 @@ table.insert(M, {
         "williamboman/mason.nvim",
         "williamboman/mason-lspconfig.nvim",
         "neovim/nvim-lspconfig",
-    }
+    },
+    {
+        "klen/nvim-test",
+        config = true,
+    },
+
 })
 
 return M
