@@ -86,7 +86,6 @@
     unzip
     python3
 
-    libuuid # comes with uuidgen 
   ];
 
   # Enable home-manager and git
