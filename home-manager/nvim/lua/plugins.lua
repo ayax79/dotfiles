@@ -798,11 +798,9 @@ table.insert(M, {
     -- Looking at you vscode-lldb.
     {
         "williamboman/mason.nvim",
-    },
-    {
-        "williamboman/mason.nvim",
         "williamboman/mason-lspconfig.nvim",
         "neovim/nvim-lspconfig",
+        "WhoIsSethDaniel/mason-tool-installer.nvim",
     },
     {
         "klen/nvim-test",

@@ -49,9 +49,18 @@ end
 
 M.setup = function()
     require("mason").setup()
-    require("mason-lspconfig").setup({
+    require("mason-lspconfig").setup()
+    require('mason-tool-installer').setup({
         ensure_installed = {
-            "rust_analyzer"
+            "rust_analyzer",
+            "codelldb",
+            "java-debug-adapter",
+            "java-test",
+            "jdtls",
+            "lombok-nightly",
+            "openjdk-17",
+            "rust-analyzer",
+            "spring-boot-tools",
         }
     })
     require("neoconf").setup()
