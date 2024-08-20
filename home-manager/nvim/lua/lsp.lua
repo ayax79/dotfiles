@@ -341,6 +341,7 @@ M.setup = function()
             null_ls.builtins.completion.spell,
             null_ls.builtins.formatting.alejandra,
             null_ls.builtins.formatting.black,
+            null_ls.builtins.diagnostics.tidy,
             -- null_ls.builtins.formatting.yq.with({
             --     extra_args = { '-y' },
             -- }),
