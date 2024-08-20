@@ -1,7 +1,6 @@
 -- which key
 local wk = require("which-key")
 local telescope_builtin = require("telescope.builtin")
-local neogit = require("neogit")
 local noice = require("noice")
 local crates = require("crates");
 
@@ -55,10 +54,8 @@ wk.add({
         "<leader>g",
         name = "Git",
         group = "Git",
-        { "<leader>gc", function() neogit.open({ "commit" }) end, desc = "Commit files", },
         { "<leader>gg", "<cmd>Lazygit<cr>",                       desc = "Lazy Git", },
         { "<leader>gf", telescope_builtin.git_files,              desc = "Find Git Files", },
-        { "<leader>gn", neogit.open,                              desc = "Open Neogit", },
         { "<leader>gz", telescope_builtin.git_status,             desc = "Modified Git files (git_status)", },
         { "<leader>gl", telescope_builtin.git_commits,            desc = "Git commits log", },
         { "<leader>gZ", telescope_builtin.git_stash,              desc = "Git stash", },
