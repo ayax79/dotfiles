@@ -369,15 +369,6 @@ table.insert(M, {
     },
     -- Git wrapper
     { "tpope/vim-fugitive",   lazy = false },
-    {
-        "NeogitOrg/neogit",
-        dependencies = {
-            "nvim-lua/plenary.nvim",         -- required
-            "nvim-telescope/telescope.nvim", -- optional
-            "sindrets/diffview.nvim",        -- optional
-        },
-        config = true
-    },
     "f-person/git-blame.nvim",
     -- ---------------------------------------------------------
     --- COMPLETIONS SUPPORT
@@ -804,6 +795,11 @@ table.insert(M, {
     },
     {
         "klen/nvim-test",
+        opts = {
+            termOpts = {
+                direction = "horizontal",
+            },
+        },
         config = true,
     },
 
