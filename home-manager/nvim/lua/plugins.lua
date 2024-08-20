@@ -662,7 +662,7 @@ table.insert(M, {
                 end
             },
         },
-        ft = { "scala", "sbt", "java" },
+        ft = { "scala", "sbt" },
     },
     -- nushell support
     {
