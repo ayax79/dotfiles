@@ -22,6 +22,7 @@
     code-lldb
     luarocks
     lua5_1
+    html-tidy # html/xml formatter
   ];
 
   programs.neovim = {
