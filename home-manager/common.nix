@@ -16,10 +16,6 @@
     ./go.nix
   ];
 
-  # home.sessionVariables = {
-  #   DIDTHISWORK = "yes";
-  # };
-
   nixpkgs = {
     overlays = [
     ];
@@ -35,6 +31,12 @@
   home.homeDirectory = config.mySystem.homeDirectory;
   home.sessionPath = ["${config.mySystem.homeDirectory}/.local/bin"];
 
+  programs.java.enable = true;
+
+home.sessionVariables = {
+  DEFAULT_JAVA_HOME = "${pkgs.jdk.home}";
+};
+
   home.packages = with pkgs; [
     ncurses
     _1password # One password cli
@@ -48,7 +50,6 @@
     lazygit # lazygit git tool
     jq # json utility
     taskwarrior
-    openjdk21
     discord
     wget
 
@@ -62,7 +63,7 @@
     # '')
 
     # seems to be broken right now 
-    #aws-sam-cli
+    # aws-sam-cli
 
     rustup
     # 2024-08-19 - compilaion error on grcov
