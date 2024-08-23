@@ -45,31 +45,6 @@ end
 
 table.insert(M, {
 
-    -- -- Start Screen
-    {
-        "glepnir/dashboard-nvim",
-        event = "VimEnter",
-        config = function()
-            require("dashboard").setup({
-                theme = "hyper",
-                change_to_vscs_root = true,
-                config = {
-                    week_header = {
-                        enable = true,
-                    },
-                    project = {
-                        enable = true,
-                        limit = 8,
-                        label = "Projects",
-                        action = "Telescope find_files cwd=",
-                    },
-                    packages = { enable = true },
-                },
-            })
-        end,
-        dependencies = { "nvim-tree/nvim-web-devicons" },
-    },
-
     --------------------------------------------------------
     --- COMMON LIBRARIES & EDITOR FUNCTIONALITY
     --------------------------------------------------------
