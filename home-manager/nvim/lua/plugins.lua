@@ -586,9 +586,28 @@ table.insert(M, {
         "j-hui/fidget.nvim",
         lazy = false,
         version = "1",
-        options = {},
         config = true,
-    }
+    },
+    -- tab line
+    {
+        'akinsho/bufferline.nvim',
+        version = "*",
+        dependencies = 'nvim-tree/nvim-web-devicons',
+        opts = {
+            options = {
+                diagnostics = "nvim_lsp",
+                hover = {
+                    enabled = true,
+                    delay = 200,
+                    reveal = { 'close' },
+                },
+                indicator = {
+                    style = 'underline',
+                },
+            }
+        },
+    },
+
 })
 
 return M
