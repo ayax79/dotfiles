@@ -1,7 +1,6 @@
 -- which key
 local wk = require("which-key")
 local telescope_builtin = require("telescope.builtin")
-local noice = require("noice")
 local crates = require("crates");
 
 -- BEGIN HARPOON
@@ -106,16 +105,6 @@ wk.add({
         },
     },
     { "<leader>T", "<cmd>Lspsaga  term_toggle<cr>", group = "Term", desc = "Togggle Term", },
-    -- Noice Group
-    {
-        "<leader>nl",
-        name = "Noice",
-        group = "Noice",
-        { "<leader>nl", function() noice.cmd("last") end,      desc = "Last Message", },
-        { "<leader>nh", function() noice.cmd("history") end,   desc = "Message History", },
-        { "<leader>nt", function() noice.cmd("telescope") end, desc = "Telescope", },
-        { "<leader>nx", function() noice.cmd("dismiss") end,   desc = "Dismiss All Messages", },
-    },
     -- Trouble Group
     {
         "<leader>x",
@@ -259,20 +248,3 @@ vim.api.nvim_create_autocmd("LspAttach", {
         vim.keymap.set('v', 'M-K', require('dapui').eval, util.with_description(opts, "DAP Eval Expression"))
     end,
 })
-
--- More Noice related keybindings
-vim.keymap.set("c", "<S-Enter>", function()
-    require("noice").redirect(vim.fn.getcmdline())
-end, { desc = "Redirect Cmdline" })
-
-vim.keymap.set({ "n", "i", "s" }, "<c-f>", function()
-    if not require("noice.lsp").scroll(4) then
-        return "<c-f>"
-    end
-end, { silent = true, expr = true })
-
-vim.keymap.set({ "n", "i", "s" }, "<c-b>", function()
-    if not require("noice.lsp").scroll(-4) then
-        return "<c-b>"
-    end
-end, { silent = true, expr = true })
