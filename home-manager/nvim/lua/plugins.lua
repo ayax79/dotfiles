@@ -625,9 +625,6 @@ table.insert(M, {
                     delay = 200,
                     reveal = { 'close' },
                 },
-                indicator = {
-                    style = 'underline',
-                },
             }
         },
     },
