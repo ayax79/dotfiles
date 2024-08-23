@@ -546,6 +546,9 @@ table.insert(M, {
         opts = function()
             local detail = false;
             return {
+                win_options = {
+                    signcolumn = "yes:2",
+                },
                 view_options = {
                     show_hidden = true,
                 },
@@ -571,6 +574,13 @@ table.insert(M, {
         end,
         lazy = false,
         dependencies = { "nvim-tree/nvim-web-devicons" },
+    },
+    {
+        "refractalize/oil-git-status.nvim",
+        dependencies = {
+            "stevearc/oil.nvim",
+        },
+        config = true,
     },
     -- Extra power search and replace
     {
