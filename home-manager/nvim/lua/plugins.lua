@@ -540,6 +540,7 @@ table.insert(M, {
         lazy = false,
         config = function() require("colorizer").setup() end,
     },
+    -- file manager
     {
         'stevearc/oil.nvim',
         opts = {
@@ -557,6 +558,7 @@ table.insert(M, {
         lazy = false,
         dependencies = { "nvim-tree/nvim-web-devicons" },
     },
+    -- Extra power search and replace
     {
         "tpope/vim-abolish",
         lazy = false,
@@ -569,6 +571,7 @@ table.insert(M, {
         "neovim/nvim-lspconfig",
         "WhoIsSethDaniel/mason-tool-installer.nvim",
     },
+    -- General testing plugin
     {
         "klen/nvim-test",
         opts = {
@@ -578,6 +581,7 @@ table.insert(M, {
         },
         config = true,
     },
+    -- LSP status, etc
     {
         "j-hui/fidget.nvim",
         lazy = false,
