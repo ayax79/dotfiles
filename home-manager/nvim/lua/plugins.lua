@@ -383,10 +383,6 @@ table.insert(M, {
     -- cmp source for filesystem paths
     { "hrsh7th/cmp-path" },
     { "hrsh7th/cmp-cmdline" },
-    -- snippet support and completions
-    { "hrsh7th/cmp-vsnip" },
-    { "hrsh7th/vim-vsnip" },
-    { "hrsh7th/vim-vsnip-integ" },
     -- completions for signatures
     { "hrsh7th/cmp-nvim-lsp-signature-help" },
     { "hrsh7th/cmp-nvim-lua" },
