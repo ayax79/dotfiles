@@ -158,6 +158,7 @@ table.insert(M, {
                             shorting_target = 40,
                         },
                     },
+                    lualine_x = { 'encoding', 'fileformat', 'filetype' },
                     lualine_y = { "progress" },
                     lualine_z = { "location" },
                 },
@@ -165,12 +166,18 @@ table.insert(M, {
                     lualine_a = {},
                     lualine_b = {},
                     lualine_c = { "filename" },
-                    -- lualine_x = { "location" },
-                    lualine_x = {},
+                    lualine_x = { "location" },
                     lualine_y = {},
                     lualine_z = {},
                 },
-                tabline = {},
+                tabline = {
+                    lualine_a = { 'buffers' },
+                    lualine_b = { 'branch' },
+                    lualine_c = { 'filename' },
+                    lualine_x = {},
+                    lualine_y = {},
+                    lualine_z = { 'tabs' }
+                },
                 winbar = {},
                 inactive_winbar = {},
                 extensions = {},
@@ -657,22 +664,6 @@ table.insert(M, {
         end,
     },
     {
-        "nvim-neotest/neotest",
-        ft = "rust",
-        lazy = false,
-        dependencies = { "rouge8/neotest-rust" },
-        config = function()
-            require("neotest").setup({
-                adapters = {
-                    require("neotest-rust") {
-                        args = { "--no-capture" },
-                        dap_adapter = "lldb",
-                    }
-                }
-            })
-        end
-    },
-    {
         "ThePrimeagen/harpoon",
         dependencies = { "nvim-lua/plenary.nvim" },
         branch = "harpoon2",
@@ -743,7 +734,7 @@ table.insert(M, {
         lazy = false,
         version = "1",
         options = {},
-        config = true;
+        config = true,
     }
 })
 
