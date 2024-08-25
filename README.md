@@ -1,6 +1,4 @@
-# Jack's dotfiles
-
-
+# Jack's Home-Manager config
 
 ## Prerequisites
 
