@@ -628,7 +628,7 @@ table.insert(M, {
             }
         },
     },
-
+    "jake-stewart/multicursor.nvim",
 })
 
 return M

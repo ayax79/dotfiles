@@ -24,6 +24,19 @@ local function toggle_telescope(harpoon_files)
 end
 -- END HARPOON
 
+-- START MULTICURSOR
+local mc = require("multicursor-nvim")
+mc.setup()
+
+-- use MultiCursorCursor and MultiCursorVisual to customize
+-- additional cursors appearance
+vim.cmd.hi("link", "MultiCursorCursor", "Cursor")
+vim.cmd.hi("link", "MultiCursorVisual", "Visual")
+
+-- END MULTICURSOR
+
+-- add cursors above/below the main cursor
+
 wk.add({
     -- Global Mappings
     -- { "[d",       vim.diagnostic.goto_prev,  desc = "Prev Diagnostic", },
@@ -32,6 +45,24 @@ wk.add({
     { "]d",       "<cmd>Lspsaga diagnostic_jump_next<cr>", desc = "Next Diagnostic", },
     { '<space>q', vim.diagnostic.setloclist,               desc = "Set Loclist", },
     { "-",        "<CMD>Oil<CR>",                          desc = "Open parent directory", },
+
+    -- Multi-cursor support
+    { "<esc>", function()
+        if mc.hasCursors() then
+            mc.clearCursors()
+        else
+            -- default <esc> handler
+        end
+    end },
+    { "<up>",          function() mc.addCursor("k") end, },
+    { "<down>",        function() mc.addCursor("j") end, },
+    -- add a cursor and jump to the next word under cursor
+    { "<c-n>",         function() mc.addCursor("*") end, },
+    -- jump to the next word under cursor but do not add a cursor
+    { "<c-s>",         function() mc.skipCursor("*") end, },
+    -- add and remove cursors with control + left click
+    { "<c-leftmouse>", mc.handleMouse, },
+
     -- Find Group (Telescope)
     {
         "<leader>f",
@@ -53,11 +84,11 @@ wk.add({
         "<leader>g",
         name = "Git",
         group = "Git",
-        { "<leader>gg", "<cmd>Lazygit<cr>",                       desc = "Lazy Git", },
-        { "<leader>gf", telescope_builtin.git_files,              desc = "Find Git Files", },
-        { "<leader>gz", telescope_builtin.git_status,             desc = "Modified Git files (git_status)", },
-        { "<leader>gl", telescope_builtin.git_commits,            desc = "Git commits log", },
-        { "<leader>gZ", telescope_builtin.git_stash,              desc = "Git stash", },
+        { "<leader>gg", "<cmd>Lazygit<cr>",            desc = "Lazy Git", },
+        { "<leader>gf", telescope_builtin.git_files,   desc = "Find Git Files", },
+        { "<leader>gz", telescope_builtin.git_status,  desc = "Modified Git files (git_status)", },
+        { "<leader>gl", telescope_builtin.git_commits, desc = "Git commits log", },
+        { "<leader>gZ", telescope_builtin.git_stash,   desc = "Git stash", },
     },
     -- Bookmarks Group
     {
