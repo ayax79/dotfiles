@@ -4,7 +4,7 @@
     settings = {
       shell = {
         disabled = false;
-        nu_indicator = "󰎔";
+        nu_indicator = "[>](#3aa675)";
         zsh_indicator = "󱆃";
       };
     };
