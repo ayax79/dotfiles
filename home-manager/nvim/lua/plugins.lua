@@ -227,16 +227,31 @@ table.insert(M, {
                         override_file_sorter = true,    -- override the file sorter
                         case_mode = "smart_case",       -- or "ignore_case" or "respect_case"
                     },
+                    zoxide = {
+                        prompt_title = "[ Find directory ]", -- Any title you like
+                        mappings = {
+                            default = {
+                                -- telescope-zoxide will change directory.
+                                -- But I'm only using it to get selection.path from telescope UI.
+                                after_action = function(selection)
+                                    vim.cmd("Oil " .. selection.path)
+                                    vim.api.nvim_feedkeys("_", "", false)
+                                end,
+                            },
+                        },
+                    },
                 },
             })
 
             telescope.load_extension("ui-select")
+            telescope.load_extension("zoxide")
         end,
     },
     -- bookmark support
     { "MattesGroeger/vim-bookmarks" },
     -- search bookmarks in telescope
     { "tom-anders/telescope-vim-bookmarks.nvim" },
+    { "jvgrootveld/telescope-zoxide" },
     -- native fzf support
     { 'nvim-telescope/telescope-fzf-native.nvim', build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release' },
     -- project support
