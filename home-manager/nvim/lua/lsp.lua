@@ -367,7 +367,7 @@ M.setup = function()
     --------------------------------------------------------
     --- NUSHELL CONFIGURATION
     --------------------------------------------------------
-    -- require 'lspconfig'.nushell.setup {}
+    require 'lspconfig'.nushell.setup {}
 
     --------------------------------------------------------
     --- JAVA CONFIGURATION
