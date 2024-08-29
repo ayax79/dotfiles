@@ -54,12 +54,21 @@ wk.add({
             -- default <esc> handler
         end
     end },
-    { "<up>",          function() mc.addCursor("k") end, },
-    { "<down>",        function() mc.addCursor("j") end, },
+
+    { "<up>",          function() mc.addCursor("k") end,  mode = { "n", "v" } },
+    { "<down>",        function() mc.addCursor("j") end,  mode = { "n", "v" } },
     -- add a cursor and jump to the next word under cursor
-    { "<c-n>",         function() mc.addCursor("*") end, },
+    { "<c-n>",         function() mc.addCursor("*") end,  mode = { "n", "v" } },
     -- jump to the next word under cursor but do not add a cursor
-    { "<c-s>",         function() mc.skipCursor("*") end, },
+    { "<c-s>",         function() mc.skipCursor("*") end, mode = { "n", "v" } },
+
+    -- rotate the main cursor
+    { "<left>",        function() mc.nextCursor() end,    mode = { "n", "v" } },
+    { "<right>",       function() mc.prevCursor() end,    mode = { "n", "v" } },
+
+    -- delete the main cursor
+    { "<leader>e",     function() mc.deleteCursor() end,  mode = { "n", "v" } },
+
     -- add and remove cursors with control + left click
     { "<c-leftmouse>", mc.handleMouse, },
 
