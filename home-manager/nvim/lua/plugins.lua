@@ -362,15 +362,7 @@ table.insert(M, {
     { "hrsh7th/cmp-nvim-lsp-signature-help" },
     { "hrsh7th/cmp-nvim-lua" },
     -- github copilot
-    {
-        "zbirenbaum/copilot.lua",
-        cmd = "Copilot",
-        event = "InsertEnter",
-    },
-    -- cmp source for copilot
-    {
-        "zbirenbaum/copilot-cmp",
-    },
+    "github/copilot.vim",
     "onsails/lspkind.nvim",
     --------------------------------------------------------
     --- LSP SUPPORT
