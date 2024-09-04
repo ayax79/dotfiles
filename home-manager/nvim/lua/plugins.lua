@@ -350,7 +350,13 @@ table.insert(M, {
     --------------------------------------------------------
 
     -- Completion engine
-    { "hrsh7th/nvim-cmp" },
+    -- { "hrsh7th/nvim-cmp" },
+    -- Using this fork for nvim-cmp for the ability to put
+    -- the completions above the line to avoid conflicting with copilot
+    {
+        "llllvvuu/nvim-cmp",
+        branch = "feat/above"
+    },
     -- cmp source for nvim api
     { "hrsh7th/cmp-nvim-lsp" },
     -- cmp source for buffer words
