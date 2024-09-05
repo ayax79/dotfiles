@@ -72,7 +72,7 @@ cmp.setup.cmdline(":", {
 
 cmp.setup.filetype("toml", {
     sources = cmp.config.sources({
-        { name = "nvim_lsp" }
+        { name = "nvim_lsp" },
         { name = "crates" },
     }, {
         { name = "buffer" },
