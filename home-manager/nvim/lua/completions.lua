@@ -1,12 +1,12 @@
 -- Completion Plugin Setup
 -- setup copilot support
--- require("copilot").setup({
---     suggestion = { enabled = true },
---     panel = { enabled = true },
--- })
---
+require("copilot").setup({
+    suggestion = { enabled = false },
+    panel = { enabled = false },
+})
+
 -- github copilot
--- require("copilot_cmp").setup()
+require("copilot_cmp").setup()
 
 -- vscode like icons
 local lspkind = require("lspkind")
@@ -31,27 +31,24 @@ cmp.setup({
         }),
     },
     -- Installed sources:
-    sources = {
-        { name = "nvim_lsp",               keyword_length = 3 }, -- from language server
-        { name = "nvim_lsp_signature_help" },                    -- display function signatures with current parameter emphasized
-        { name = "buffer",                 keyword_length = 2 }, -- source current buffer
-    },
+    sources = cmp.config.sources({
+        { name = "nvim_lsp" }, -- from language server
+        -- { name = "nvim_lsp_signature_help" }, -- display function signatures with current parameter emphasized
+        { name = "copilot" }
+        -- { name = "buffer",                 keyword_length = 2 }, -- source current buffer
+    }, {
+        { name = "buffer" }, -- source current buffer
+    }),
     window = {
         completion = cmp.config.window.bordered(),
         documentation = cmp.config.window.bordered(),
     },
-    formatting = { --
-        formatting = {
-            format = lspkind.cmp_format({
-                mode = "symbol_text",
-                menu = {
-                    buffer = "[Buffer]",
-                    nvim_lsp = "[LSP]",
-                    nvim_lua = "[Lua]",
-                    path = "[Path]",
-                }
-            }),
-        },
+    formatting = {
+        format = lspkind.cmp_format({
+            mode = "symbol",
+            maxwidth = 50,
+            symbol_map = { Copilot = "" }
+        }),
     },
 })
 
@@ -75,16 +72,24 @@ cmp.setup.cmdline(":", {
 
 cmp.setup.filetype("toml", {
     sources = cmp.config.sources({
+        { name = "nvim_lsp" }
         { name = "crates" },
     }, {
         { name = "buffer" },
     }),
 })
 
+-- cmp.setup.filetype("lua", {
+--     sources = cmp.config.sources({
+--         { name = "nvim_lua" },
+--     }, {
+--         { name = "buffer" },
+--     }),
+-- })
 cmp.setup.filetype("lua", {
     sources = cmp.config.sources({
         { name = "nvim_lua" },
-    }, {
-        { name = "buffer" },
-    }),
+        { name = "nvim_lsp" },
+        { name = "copilot" },
+    }, { name = "buffer" }),
 })

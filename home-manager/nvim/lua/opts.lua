@@ -41,4 +41,4 @@ vim.o.cursorline = true
 
 vim.o.conceallevel = 2
 
-vim.opt.scrolloff = 999
+-- vim.opt.scrolloff = 999

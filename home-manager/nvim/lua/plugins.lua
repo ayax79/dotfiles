@@ -350,13 +350,13 @@ table.insert(M, {
     --------------------------------------------------------
 
     -- Completion engine
-    -- { "hrsh7th/nvim-cmp" },
+    { "hrsh7th/nvim-cmp" },
     -- Using this fork for nvim-cmp for the ability to put
     -- the completions above the line to avoid conflicting with copilot
-    {
-        "llllvvuu/nvim-cmp",
-        branch = "feat/above"
-    },
+    -- {
+    --     "llllvvuu/nvim-cmp",
+    --     branch = "feat/above"
+    -- },
     -- cmp source for nvim api
     { "hrsh7th/cmp-nvim-lsp" },
     -- cmp source for buffer words
@@ -365,10 +365,12 @@ table.insert(M, {
     { "hrsh7th/cmp-path" },
     { "hrsh7th/cmp-cmdline" },
     -- completions for signatures
-    { "hrsh7th/cmp-nvim-lsp-signature-help" },
+    -- { "hrsh7th/cmp-nvim-lsp-signature-help" },
     { "hrsh7th/cmp-nvim-lua" },
     -- github copilot
-    "github/copilot.vim",
+    { "zbirenbaum/copilot-cmp" },
+    { "zbirenbaum/copilot.lua" },
+    -- "github/copilot.vim",
     "onsails/lspkind.nvim",
     --------------------------------------------------------
     --- LSP SUPPORT
