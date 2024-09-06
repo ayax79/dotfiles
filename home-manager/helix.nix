@@ -1,10 +1,12 @@
-{pkgs, ...}: {
-  home.packages = [
-    pkgs.helix
-  ];
-
-  home.file."./.config/helix/" = {
-    source = ./helix;
-    recursive = true;
+{...}: {
+  programs.helix = {
+    enable = true;
+    settings = {
+      theme = "catppuccin_mocha";
+      editor = {
+        line-number = "relative";
+        lsp.display-messages = true;
+      };
+    };
   };
 }
