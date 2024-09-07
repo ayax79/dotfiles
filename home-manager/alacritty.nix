@@ -28,7 +28,7 @@ in {
         };
 
         window = {
-          opacity = 0.95;
+          opacity = 1;
         };
 
         # Nord theme colors
