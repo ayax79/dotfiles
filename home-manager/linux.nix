@@ -73,7 +73,7 @@
     platformTheme.name = "gtk";
   
     style = {
-      name = "Nordic";
+      name = "Nordic-darker";
       #package = pkgs.nordic;
     };
   };
