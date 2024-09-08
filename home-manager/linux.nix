@@ -18,9 +18,7 @@
     gimp
     signal-desktop
     pavucontrol
-    # thunderbird
     libreoffice
-    # firefox
     winetricks
     wineWowPackages.waylandFull
     gcc
