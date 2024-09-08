@@ -18,8 +18,6 @@
     gimp
     signal-desktop
     pavucontrol
-    jetbrains.rust-rover
-    jetbrains.idea-ultimate
     thunderbird
     libreoffice
     firefox
