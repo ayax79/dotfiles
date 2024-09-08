@@ -66,6 +66,7 @@ home.sessionVariables = {
     # aws-sam-cli
 
     cmake
+    gnumake
     rustup
     # 2024-08-19 - compilaion error on grcov
     # grcov # code coverage tool for rust

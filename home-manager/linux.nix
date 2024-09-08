@@ -10,7 +10,7 @@
   };
 
   imports = [
-    ./sway
+#    ./sway
   ];
 
   home.packages = with pkgs; [
@@ -18,9 +18,9 @@
     gimp
     signal-desktop
     pavucontrol
-    thunderbird
+    # thunderbird
     libreoffice
-    firefox
+    # firefox
     winetricks
     wineWowPackages.waylandFull
     gcc
@@ -34,7 +34,7 @@
   gtk = {
     enable = true;
     theme = {
-      name = "Nordic";
+      name = "Nordic-darker";
       package = pkgs.nordic;
     };
     iconTheme = {
