@@ -541,22 +541,34 @@ table.insert(M, {
         branch = "harpoon2",
         config = true,
     },
+    -- {
+    --     'alexghergh/nvim-tmux-navigation',
+    --     lazy = false,
+    --     config = function()
+    --         require 'nvim-tmux-navigation'.setup {
+    --             disable_when_zoomed = true, -- defaults to false
+    --             keybindings = {
+    --                 left = "<C-h>",
+    --                 down = "<C-j>",
+    --                 up = "<C-k>",
+    --                 right = "<C-l>",
+    --                 last_active = "<C-\\>",
+    --                 next = "<C-Space>",
+    --             }
+    --         }
+    --     end
+    -- },
     {
-        'alexghergh/nvim-tmux-navigation',
-        lazy = false,
-        config = function()
-            require 'nvim-tmux-navigation'.setup {
-                disable_when_zoomed = true, -- defaults to false
-                keybindings = {
-                    left = "<C-h>",
-                    down = "<C-j>",
-                    up = "<C-k>",
-                    right = "<C-l>",
-                    last_active = "<C-\\>",
-                    next = "<C-Space>",
-                }
-            }
-        end
+        "https://git.sr.ht/~swaits/zellij-nav.nvim",
+        lazy = true,
+        event = "VeryLazy",
+        keys = {
+            { "<c-h>", "<cmd>ZellijNavigateLeft<cr>",  { silent = true, desc = "navigate left" } },
+            { "<c-j>", "<cmd>ZellijNavigateDown<cr>",  { silent = true, desc = "navigate down" } },
+            { "<c-k>", "<cmd>ZellijNavigateUp<cr>",    { silent = true, desc = "navigate up" } },
+            { "<c-l>", "<cmd>ZellijNavigateRight<cr>", { silent = true, desc = "navigate right" } },
+        },
+        opts = {},
     },
     {
         "norcalli/nvim-colorizer.lua",

@@ -6,7 +6,7 @@
   imports = [
     ./nushell.nix
     ./git.nix
-    ./tmux.nix
+    # ./tmux.nix
     ./starship.nix
     ./alacritty.nix
     ./zsh.nix
@@ -14,6 +14,7 @@
     ./helix.nix
     ./neovim.nix
     ./go.nix
+    ./zellij
   ];
 
   nixpkgs = {

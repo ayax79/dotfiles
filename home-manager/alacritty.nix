@@ -1,24 +1,26 @@
 {
   pkgs,
   lib,
+  config,
   ...
-}: let
-  tmux = "${pkgs.tmux}/bin/tmux";
-  zsh = "${pkgs.zsh}/bin/zsh";
-in {
+}: {
   programs.alacritty = lib.mkMerge [
     {
       enable = true;
       # Start tmux by default
       settings = {
         shell = {
-          program = "${zsh}";
-          args = [
-            "-l"
-            "-c"
-            "${tmux}"
-          ];
+          program = "zsh";
+          args = ["-l" "-c" "zellij"];
         };
+        # # # shell = {
+        #   program = "${zsh}";
+        #   args = [
+        #     "-l"
+        #     "-c"
+        #     "${tmux}"
+        #   ];
+        # };
 
         font = {
           normal = {
@@ -29,6 +31,7 @@ in {
 
         window = {
           opacity = 1;
+          startup_mode = "Maximized";
         };
 
         # Nord theme colors
