@@ -1,6 +1,6 @@
 {config, pkgs, ...}: let
   font = "SpaceMono";
-  background_image = "${config.mySystem.homeDirectory}/backgrounds/utterly-nord.png";
+  background_image = "${config.home.homeDirectory}/backgrounds/utterly-nord.png";
 in {
 
   home.packages = with pkgs; [

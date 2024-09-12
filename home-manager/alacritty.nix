@@ -1,7 +1,6 @@
 {
   pkgs,
   lib,
-  config,
   ...
 }: {
   programs.alacritty = lib.mkMerge [
@@ -21,6 +20,21 @@
         #     "${tmux}"
         #   ];
         # };
+
+        keyboard = {
+          bindings = [
+            {
+              key = "Q";
+              mods = "Command";
+              action = "None";
+            }
+            {
+              key = "W";
+              mods = "Command";
+              action = "None";
+            }
+          ];
+        };
 
         font = {
           normal = {

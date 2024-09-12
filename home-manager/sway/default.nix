@@ -39,7 +39,7 @@
           mode = "1600x900@60Hz";
         };
         "*" = {
-          bg = "${config.mySystem.homeDirectory}/backgrounds/utterly-nord.png fill";
+          bg = "${config.home.homeDirectory}/backgrounds/utterly-nord.png fill";
         };
       };
       bars = [
