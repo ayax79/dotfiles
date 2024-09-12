@@ -248,10 +248,10 @@ table.insert(M, {
         end,
     },
     -- bookmark support
-    { "MattesGroeger/vim-bookmarks" },
+    "MattesGroeger/vim-bookmarks",
     -- search bookmarks in telescope
-    { "tom-anders/telescope-vim-bookmarks.nvim" },
-    { "jvgrootveld/telescope-zoxide" },
+    "tom-anders/telescope-vim-bookmarks.nvim",
+    "jvgrootveld/telescope-zoxide",
     -- native fzf support
     { 'nvim-telescope/telescope-fzf-native.nvim', build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release' },
     -- project support
@@ -275,11 +275,9 @@ table.insert(M, {
         opts = {}, -- this is equalent to setup({}) function
     },
     -- handy keybindings
-    {
-        "tpope/vim-unimpaired",
-    },
+    "tpope/vim-unimpaired",
     -- illuminates all instances that is selected
-    { "RRethy/vim-illuminate" },
+    "RRethy/vim-illuminate",
 
     -- Provides smart support for comments
     {
@@ -343,14 +341,14 @@ table.insert(M, {
         end,
     },
     -- Git wrapper
-    { "tpope/vim-fugitive",   lazy = false },
+    { "tpope/vim-fugitive",                       lazy = false },
     "f-person/git-blame.nvim",
     -- ---------------------------------------------------------
     --- COMPLETIONS SUPPORT
     --------------------------------------------------------
 
     -- Completion engine
-    { "hrsh7th/nvim-cmp" },
+    "hrsh7th/nvim-cmp",
     -- Using this fork for nvim-cmp for the ability to put
     -- the completions above the line to avoid conflicting with copilot
     -- {
@@ -358,18 +356,26 @@ table.insert(M, {
     --     branch = "feat/above"
     -- },
     -- cmp source for nvim api
-    { "hrsh7th/cmp-nvim-lsp" },
+    "hrsh6th/cmp-nvim-lsp",
     -- cmp source for buffer words
-    { "hrsh7th/cmp-buffer" },
+    "hrsh7th/cmp-buffer",
     -- cmp source for filesystem paths
-    { "hrsh7th/cmp-path" },
-    { "hrsh7th/cmp-cmdline" },
+    "hrsh7th/cmp-path",
+    "hrsh7th/cmp-cmdline",
     -- completions for signatures
-    -- { "hrsh7th/cmp-nvim-lsp-signature-help" },
-    { "hrsh7th/cmp-nvim-lua" },
+    --  "hrsh7th/cmp-nvim-lsp-signature-help" ,
+    "hrsh7th/cmp-nvim-lua",
     -- github copilot
-    { "zbirenbaum/copilot-cmp" },
-    { "zbirenbaum/copilot.lua" },
+    "zbirenbaum/copilot-cmp",
+    "zbirenbaum/copilot.lua",
+    {
+        "CopilotC-Nvim/CopilotChat.nvim",
+        branch = "canary",
+        dependencies = {
+            { "zbirenbaum/copilot.lua" }, -- or github/copilot.vim
+            { "nvim-lua/plenary.nvim" },  -- for curl, log wrapper
+        },
+    },
     -- "github/copilot.vim",
     "onsails/lspkind.nvim",
     --------------------------------------------------------
@@ -390,7 +396,7 @@ table.insert(M, {
         }
     },
     -- provides the underlying debugger support
-    { "mfussenegger/nvim-dap" },
+    "mfussenegger/nvim-dap",
     {
         "theHamsta/nvim-dap-virtual-text",
         config = function()
@@ -624,12 +630,10 @@ table.insert(M, {
     },
     -- using mason for installing packages that are broken in nix.
     -- Looking at you vscode-lldb.
-    {
-        "williamboman/mason.nvim",
-        "williamboman/mason-lspconfig.nvim",
-        "neovim/nvim-lspconfig",
-        "WhoIsSethDaniel/mason-tool-installer.nvim",
-    },
+    "williamboman/mason.nvim",
+    "williamboman/mason-lspconfig.nvim",
+    "neovim/nvim-lspconfig",
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
     -- General testing plugin
     {
         "klen/nvim-test",

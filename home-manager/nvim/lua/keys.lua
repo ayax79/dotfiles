@@ -223,6 +223,29 @@ wk.add({
         { "[h",         function() harpoon:list():prev() end,                        desc = "Harpoon Prev" },
         { "]h",         function() harpoon:list():next() end,                        desc = "Harpoon Next" },
     },
+    -- Copilot Chat
+    {
+        "<leader>p",
+        group = "Copilot",
+        {
+            "<leader>pq",
+            function()
+                local input = vim.fn.input("Quick Chat: ")
+                if input ~= "" then
+                    require("CopilotChat").ask(input, { selection = require("CopilotChat.select").buffer })
+                end
+            end,
+            desc = "CopilotChat - Quick chat"
+        },
+        {
+            "<leader>ph",
+            function()
+                local actions = require("CopilotChat.actions")
+                require("CopilotChat.integrations.telescope").pick(actions.help_actions())
+            end,
+            desc = "CopilotChat - Help actions",
+        },
+    }
 })
 
 -- Global mappings.

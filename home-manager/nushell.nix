@@ -1,7 +1,4 @@
-{
-  config,
-  ...
-}: {
+{config, ...}: {
   programs.nushell = {
     enable = true;
     extraEnv = ''
@@ -54,7 +51,7 @@
       }
       $env.config.show_banner = false
       $env.config.edit_mode = 'vi'
-      
+
       use ~/.config/nushell/ext/java-utils.nu
       use ~/.config/nushell/ext/file-utils.nu
       use ~/.config/nushell/ext/file-utils.nu cds
@@ -62,6 +59,16 @@
       use ~/.config/nushell/ext/neovim.nu *
       # use ~/.config/nushell/ext/tmux-utils.nu
       use ~/.config/nushell/ext/zellij-utils.nu
+
+      def --env y [...args] {
+        let tmp = (mktemp -t "yazi-cwd.XXXXXX")
+        yazi ...$args --cwd-file $tmp
+        let cwd = (open $tmp)
+        if $cwd != "" and $cwd != $env.PWD {
+          cd $cwd
+        }
+        rm -fp $tmp
+      }
     '';
   };
 

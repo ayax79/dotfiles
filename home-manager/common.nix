@@ -80,8 +80,13 @@ home.sessionVariables = {
     dua # disk usage analyzer
     sad # search and replace/bulk edit tool 
     dust # du replacement
-    yazi # file manager
     viu # terminal image view
+
+    yazi # file manager
+    imagemagick
+    poppler
+    ffmpegthumbnailer
+    p7zip
 
     nethack
 
