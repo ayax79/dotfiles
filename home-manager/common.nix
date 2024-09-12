@@ -50,7 +50,7 @@ home.sessionVariables = {
     cargo-lambda # AWS rust lambda toolkit
     lazygit # lazygit git tool
     jq # json utility
-    taskwarrior
+    taskwarrior3
     discord
     wget
 
