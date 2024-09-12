@@ -1,7 +1,7 @@
 {inputs, ...}:
 {
   nixpkgs.overlays = [
-    (import ./zig)
+    # (import ./zig)
     (import ./code-lldb inputs)
     # (import ./lua-language-server)
   ];
