@@ -49,6 +49,12 @@
               _ => $carapace_completer
           } | do $in $spans
       }
+      $env.config.completions = {
+        external: {
+          enable: true,
+          completer: $external_completer
+        }
+      }
       $env.config.show_banner = false
       $env.config.edit_mode = 'vi'
 
@@ -60,6 +66,7 @@
       # use ~/.config/nushell/ext/tmux-utils.nu
       use ~/.config/nushell/ext/zellij-utils.nu
 
+      # yazi integration
       def --env y [...args] {
         let tmp = (mktemp -t "yazi-cwd.XXXXXX")
         yazi ...$args --cwd-file $tmp
