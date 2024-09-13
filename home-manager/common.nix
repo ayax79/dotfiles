@@ -11,7 +11,7 @@
     ./alacritty.nix
     ./zsh.nix
     ./bash.nix
-    ./helix.nix
+    ./helix
     ./neovim.nix
     ./go.nix
     ./zellij

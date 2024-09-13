@@ -1,8 +1,8 @@
-{pkgs, ...}: {
+{pkgs, config, ...}: {
   programs.helix = {
     enable = true;
     settings = {
-      theme = "nord-night";
+      theme = "jack-nord";
       editor = {
         line-number = "relative";
         lsp.display-messages = true;
@@ -13,5 +13,10 @@
         command = "${pkgs.rust-analyzer}/bin/rust-analyzer";
       };
     };
+  };
+
+  home.file."${config.xdg.configHome}/helix" = {
+    source = ./helix;
+    recursive = true;
   };
 }
