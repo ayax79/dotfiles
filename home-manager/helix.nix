@@ -2,7 +2,7 @@
   programs.helix = {
     enable = true;
     settings = {
-      theme = "catppuccin_mocha";
+      theme = "nord-night";
       editor = {
         line-number = "relative";
         lsp.display-messages = true;
