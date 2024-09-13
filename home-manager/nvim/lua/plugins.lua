@@ -356,7 +356,7 @@ table.insert(M, {
     --     branch = "feat/above"
     -- },
     -- cmp source for nvim api
-    "hrsh6th/cmp-nvim-lsp",
+    "hrsh7th/cmp-nvim-lsp",
     -- cmp source for buffer words
     "hrsh7th/cmp-buffer",
     -- cmp source for filesystem paths
