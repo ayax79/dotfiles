@@ -104,6 +104,10 @@ require('CopilotChat').setup({
         complete = {
             insert = '',
         },
+        reset = {
+            insert = '',
+            normal = '<leader>pr',
+        },
     },
     -- rest of your config
 })

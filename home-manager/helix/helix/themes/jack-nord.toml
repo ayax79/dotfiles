@@ -110,14 +110,33 @@
 "ui.linenr.selected" = "nord5"
 
 # Cursor
-"ui.cursor" = { modifiers = [ "reversed" ] }
-"ui.cursor.select" = { fg = "nord8" }
-"ui.cursor.insert" = { fg = "nord4" }
-"ui.cursor.primary.select" = { fg = "nord9" }
-"ui.cursor.primary.insert" = { fg = "nord3" }
+"ui.cursor" = { fg = "nord4", modifiers = [ "reversed" ] }
+# "ui.cursor.select" = { bg = "nord8" }
+# "ui.cursor.insert" = { bg = "nord7" }
+# "ui.cursor.primary.select" = { bg = "nord9" }
+# "ui.cursorcolumn.primary" = { bg = "nord1" }
+# "ui.cursorline.primary" = { bg = "nord1" }
+# "ui.cursor.match" = { bg = "nord10" }
+
+# "ui.cursor" = { fg = "nord4", bg = "secondary_cursor" }
+# "ui.cursor.primary" = { fg = "nord4", bg = "nord9" }
+# "ui.cursor.match" = { fg = "nord4", modifiers = ["bold"] }
+
+"ui.cursor.primary.normal" = { fg = "nord4", bg = "nord7" }
+"ui.cursor.primary.insert" = { fg = "nord4", bg = "nord8" }
+"ui.cursor.primary.select" = { fg = "nord4", bg = "nord9" }
+
+# "ui.cursor.normal" = { fg = "nord4", bg = "secondary_cursor_normal" }
+# "ui.cursor.insert" = { fg = "nord4", bg = "secondary_cursor_insert" }
+# "ui.cursor.select" = { fg = "nord4", bg = "secondary_cursor" }
+
+"ui.cursor.normal" = { fg = "nord4", bg = "nord1" }
+"ui.cursor.insert" = { fg = "nord4", bg = "nord1" }
+"ui.cursor.select" = { fg = "nord4", bg = "nord1" }
+
+# "ui.cursor" = { fg = "nord4", modifiers = [ "reversed" ] }
 "ui.cursorcolumn.primary" = { bg = "nord1" }
 "ui.cursorline.primary" = { bg = "nord1" }
-"ui.cursor.match" = { bg = "nord9" }
 
 "ui.selection" = { bg = "nord3" }
 "ui.highlight" = { fg = "nord8", bg = "nord2" }
