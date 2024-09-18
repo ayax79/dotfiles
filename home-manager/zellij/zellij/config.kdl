@@ -13,11 +13,11 @@ plugins {
     filepicker location="zellij:strider" {
         cwd "/"
     }
-    autolock location="file:~/.cache/zellij/zellij-autolock.wasm" {
-        triggers "nvim|vim"  // Lock when any open these programs open. They are expected to unlock themselves when closed (e.g., using zellij.vim plugin).
-        watch_triggers "fzf|zoxide|atuin"  // Lock when any of these open and monitor until closed.
-        watch_interval "1.0"  // When monitoring, check every X seconds.
-    }
+    // autolock location="file:~/.cache/zellij/zellij-autolock.wasm" {
+    //     triggers "nvim|vim"  // Lock when any open these programs open. They are expected to unlock themselves when closed (e.g., using zellij.vim plugin).
+    //     watch_triggers "fzf|zoxide|atuin"  // Lock when any of these open and monitor until closed.
+    //     watch_interval "1.0"  // When monitoring, check every X seconds.
+    // }
 }
 
 // If you'd like to override the default keybindings completely, be sure to change "keybinds" to "keybinds clear-defaults=true"
