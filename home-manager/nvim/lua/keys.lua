@@ -129,7 +129,7 @@ wk.add({
         "<leader>g",
         name = "Git",
         group = "Git",
-        { "<leader>gg", "<cmd>Lazygit<cr>",            desc = "Lazy Git", },
+        { "<leader>gg", "<cmd>LazyGit<cr>",            desc = "Lazy Git", },
         { "<leader>gf", telescope_builtin.git_files,   desc = "Find Git Files", },
         { "<leader>gz", telescope_builtin.git_status,  desc = "Modified Git files (git_status)", },
         { "<leader>gl", telescope_builtin.git_commits, desc = "Git commits log", },
@@ -180,7 +180,6 @@ wk.add({
             { "<leader>lDu", require("dapui").toggle,        desc = "Toggle Debugger UI", },
         },
     },
-    { "<leader>T", "<cmd>Lspsaga  term_toggle<cr>", group = "Term", desc = "Togggle Term", },
     -- Trouble Group
     {
         "<leader>x",
