@@ -28,14 +28,71 @@ end
 local mc = require("multicursor-nvim")
 mc.setup()
 
--- use MultiCursorCursor and MultiCursorVisual to customize
--- additional cursors appearance
+-- Add cursors above/below the main cursor.
+vim.keymap.set({ "n", "v" }, "<up>", function() mc.addCursor("k") end)
+vim.keymap.set({ "n", "v" }, "<down>", function() mc.addCursor("j") end)
+
+-- Add a cursor and jump to the next word under cursor.
+vim.keymap.set({ "n", "v" }, "<c-n>", function() mc.addCursor("*") end)
+
+-- Jump to the next word under cursor but do not add a cursor.
+vim.keymap.set({ "n", "v" }, "<c-s>", function() mc.skipCursor("*") end)
+
+-- Rotate the main cursor.
+vim.keymap.set({ "n", "v" }, "<left>", mc.nextCursor)
+vim.keymap.set({ "n", "v" }, "<right>", mc.prevCursor)
+
+-- Delete the main cursor.
+vim.keymap.set({ "n", "v" }, "<leader>x", mc.deleteCursor)
+
+-- Add and remove cursors with control + left click.
+vim.keymap.set("n", "<c-leftmouse>", mc.handleMouse)
+
+vim.keymap.set({ "n", "v" }, "<c-q>", function()
+    if mc.cursorsEnabled() then
+        -- Stop other cursors from moving.
+        -- This allows you to reposition the main cursor.
+        mc.disableCursors()
+    else
+        mc.addCursor()
+    end
+end)
+
+vim.keymap.set("n", "<esc>", function()
+    if not mc.cursorsEnabled() then
+        mc.enableCursors()
+    elseif mc.hasCursors() then
+        mc.clearCursors()
+    else
+        -- Default <esc> handler.
+    end
+end)
+
+-- Align cursor columns.
+vim.keymap.set("n", "<leader>a", mc.alignCursors)
+
+-- Split visual selections by regex.
+vim.keymap.set("v", "S", mc.splitCursors)
+
+-- Append/insert for each line of visual selections.
+vim.keymap.set("v", "I", mc.insertVisual)
+vim.keymap.set("v", "A", mc.appendVisual)
+
+-- match new cursors within visual selections by regex.
+vim.keymap.set("v", "M", mc.matchCursors)
+
+-- Rotate visual selection contents.
+vim.keymap.set("v", "<leader>t", function() mc.transposeCursors(1) end)
+vim.keymap.set("v", "<leader>T", function() mc.transposeCursors(-1) end)
+
+-- Customize how cursors look.
 vim.cmd.hi("link", "MultiCursorCursor", "Cursor")
 vim.cmd.hi("link", "MultiCursorVisual", "Visual")
-
+vim.cmd.hi("link", "MultiCursorDisabledCursor", "Visual")
+vim.cmd.hi("link", "MultiCursorDisabledVisual", "Visual")
 -- END MULTICURSOR
 
--- Lua
+-- substitude plugin
 vim.keymap.set("n", "s", require('substitute').operator, { noremap = true })
 vim.keymap.set("n", "ss", require('substitute').line, { noremap = true })
 vim.keymap.set("n", "S", require('substitute').eol, { noremap = true })
@@ -49,32 +106,6 @@ wk.add({
     { "]d",       "<cmd>Lspsaga diagnostic_jump_next<cr>", desc = "Next Diagnostic", },
     { '<space>q', vim.diagnostic.setloclist,               desc = "Set Loclist", },
     { "-",        "<CMD>Oil<CR>",                          desc = "Open parent directory", },
-
-    -- Multi-cursor support
-    { "<esc>", function()
-        if mc.hasCursors() then
-            mc.clearCursors()
-        else
-            -- default <esc> handler
-        end
-    end },
-
-    { "<up>",          function() mc.addCursor("k") end,  mode = { "n", "v" } },
-    { "<down>",        function() mc.addCursor("j") end,  mode = { "n", "v" } },
-    -- add a cursor and jump to the next word under cursor
-    { "<c-n>",         function() mc.addCursor("*") end,  mode = { "n", "v" } },
-    -- jump to the next word under cursor but do not add a cursor
-    { "<c-s>",         function() mc.skipCursor("*") end, mode = { "n", "v" } },
-
-    -- rotate the main cursor
-    { "<left>",        function() mc.nextCursor() end,    mode = { "n", "v" } },
-    { "<right>",       function() mc.prevCursor() end,    mode = { "n", "v" } },
-
-    -- delete the main cursor
-    { "<leader>e",     function() mc.deleteCursor() end,  mode = { "n", "v" } },
-
-    -- add and remove cursors with control + left click
-    { "<c-leftmouse>", mc.handleMouse, },
 
     -- Find Group (Telescope)
     {
