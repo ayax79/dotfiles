@@ -50,7 +50,6 @@ home.sessionVariables = {
     cargo-lambda # AWS rust lambda toolkit
     lazygit # lazygit git tool
     jq # json utility
-    taskwarrior3
     discord
     wget
 
@@ -125,4 +124,14 @@ home.sessionVariables = {
   programs.zoxide = {
     enable = true;
   };
+
+  programs.taskwarrior = {
+    enable = true;
+    colorTheme = "dark-gray-blue-256";
+    config = {
+      color = "on";
+    };
+  };
+
+  programs.tealdeer.enable = true;
 }
