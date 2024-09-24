@@ -1,11 +1,6 @@
 {config, ...}: {
   programs.nushell = {
     enable = true;
-    extraEnv = ''
-      $env.THEME = 'nord'
-      $env.LS_COLORS = (vivid generate $env.THEME)
-      $env.BAT_THEME = 'Nord'
-    '';
     extraConfig = ''
       let fish_completer = {|spans|
           fish --command $'complete "--do-complete=($spans | str join " ")"'

@@ -2,7 +2,9 @@
   config,
   pkgs,
   ...
-}: {
+}: let
+  theme = "nord";
+in {
   imports = [
     ./nushell.nix
     ./git.nix
@@ -15,6 +17,16 @@
     ./neovim.nix
     ./go.nix
     ./zellij
+    ({pkgs, ...}:
+      import ./vivid.nix {
+        inherit pkgs;
+        theme = theme;
+      })
+    ({lib, ...}:
+      import ./bat.nix {
+        inherit lib;
+        theme = theme;
+      })
   ];
 
   nixpkgs = {
@@ -34,9 +46,10 @@
 
   programs.java.enable = true;
 
-home.sessionVariables = {
-  DEFAULT_JAVA_HOME = "${pkgs.jdk.home}";
-};
+  home.sessionVariables = {
+    DEFAULT_JAVA_HOME = "${pkgs.jdk.home}";
+    THEME = theme;
+  };
 
   home.packages = with pkgs; [
     ncurses
@@ -62,7 +75,7 @@ home.sessionVariables = {
     #   echo "Hello, ${config.home.username}!"
     # '')
 
-    # seems to be broken right now 
+    # seems to be broken right now
     # aws-sam-cli
 
     cmake
@@ -77,7 +90,7 @@ home.sessionVariables = {
     fzf
     slack
     dua # disk usage analyzer
-    sad # search and replace/bulk edit tool 
+    sad # search and replace/bulk edit tool
     dust # du replacement
     viu # terminal image view
 
@@ -97,7 +110,6 @@ home.sessionVariables = {
     virtualenv
     unzip
     python3
-
   ];
 
   # Enable home-manager and git
