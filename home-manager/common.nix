@@ -84,7 +84,6 @@ in {
     # 2024-08-19 - compilaion error on grcov
     # grcov # code coverage tool for rust
     pueue # background tasks
-    vivid #LS_COLORS theming
     htop # activity
     bottom # another activity app written in rust
     fzf
