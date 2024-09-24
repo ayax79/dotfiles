@@ -27,7 +27,6 @@ end
 -- START MULTICURSOR
 local mc = require("multicursor-nvim")
 mc.setup()
-
 -- Add cursors above/below the main cursor.
 vim.keymap.set({ "n", "v" }, "<up>", function() mc.addCursor("k") end)
 vim.keymap.set({ "n", "v" }, "<down>", function() mc.addCursor("j") end)
@@ -86,10 +85,10 @@ vim.keymap.set("v", "<leader>t", function() mc.transposeCursors(1) end)
 vim.keymap.set("v", "<leader>T", function() mc.transposeCursors(-1) end)
 
 -- Customize how cursors look.
-vim.cmd.hi("link", "MultiCursorCursor", "Cursor")
-vim.cmd.hi("link", "MultiCursorVisual", "Visual")
-vim.cmd.hi("link", "MultiCursorDisabledCursor", "Visual")
-vim.cmd.hi("link", "MultiCursorDisabledVisual", "Visual")
+vim.api.nvim_set_hl(0, "MultiCursorCursor", { link = "Cursor" })
+vim.api.nvim_set_hl(0, "MultiCursorVisual", { link = "Visual" })
+vim.api.nvim_set_hl(0, "MultiCursorDisabledCursor", { link = "Visual" })
+vim.api.nvim_set_hl(0, "MultiCursorDisabledVisual", { link = "Visual" })
 -- END MULTICURSOR
 
 -- substitude plugin
