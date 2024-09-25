@@ -1,5 +1,4 @@
 {
-  config,
   pkgs,
   lib,
   inputs,
@@ -27,7 +26,7 @@
       pueued = {
         enable = true;
         config = {
-          ProgramArguments = ["${config.home.homeDirectory}/.nix-profile/bin/pueued" "-vv"];
+          ProgramArguments = ["${pkgs.pueue}/bin/pueued" "-vv"];
           RunAtLoad = true;
         };
       };

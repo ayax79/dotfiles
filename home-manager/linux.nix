@@ -75,4 +75,6 @@
       #package = pkgs.nordic;
     };
   };
+
+  services.pueued.enable = true;
 }
