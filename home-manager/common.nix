@@ -54,11 +54,6 @@ in {
   home.packages = with pkgs; [
     ncurses
     _1password # One password cli
-    ripgrep # grep but better and faster
-    eza # supported version of exa the cd replacement
-    bat # Cat but with syntax highlighting
-    fd
-    broot # newer tree view
     nodejs
     cargo-lambda # AWS rust lambda toolkit
     lazygit # lazygit git tool
@@ -84,16 +79,12 @@ in {
     # 2024-08-19 - compilaion error on grcov
     # grcov # code coverage tool for rust
     pueue # background tasks
-    htop # activity
-    bottom # another activity app written in rust
-    fzf
     slack
     dua # disk usage analyzer
     sad # search and replace/bulk edit tool
     dust # du replacement
     viu # terminal image view
 
-    yazi # file manager
     imagemagick
     poppler
     ffmpegthumbnailer
@@ -104,14 +95,12 @@ in {
     gh # github cli
     glab # gitlab cli
 
-    carapace # shell completion
-    fish
     virtualenv
     unzip
     python3
   ];
 
-  # Enable home-manager and git
+  # Enable home-manager
   programs.home-manager.enable = true;
 
   # Nicely reload system units when changing configs
@@ -145,4 +134,12 @@ in {
   };
 
   programs.tealdeer.enable = true;
+  programs.bottom.enable = true;
+  programs.htop.enable = true;
+  programs.yazi.enable = true;
+  programs.carapace.enable = true;
+  programs.fish.enable = true;
+  programs.ripgrep.enable = true;
+  programs.broot.enable = true;
+  programs.fd.enable = true;
 }
