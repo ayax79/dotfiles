@@ -109,6 +109,13 @@ in {
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   home.stateVersion = "24.11";
 
+  programs.readline = {
+    enable = true;
+    variables = {
+      "editing-mode" = "vi";
+    };
+  };
+
   programs.atuin = {
     enable = true;
     flags = [
