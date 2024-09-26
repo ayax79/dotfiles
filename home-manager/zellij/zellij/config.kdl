@@ -200,30 +200,30 @@ keybinds clear-defaults=true {
         bind "Alt [" { PreviousSwapLayout; }
         bind "Alt ]" { NextSwapLayout; }
     }
-    shared_except "normal" "locked" {
+    shared_except "normal" {
         bind "Enter" "Esc" { SwitchToMode "Normal"; }
     }
-    shared_except "pane"  "locked" {
+    shared_except "pane"  {
         // bind "Ctrl p" { SwitchToMode "Pane"; }
         bind "F2" { SwitchToMode "Pane"; }
     }
-    shared_except "resize" "locked" {
+    shared_except "resize" {
         // bind "Ctrl n" { SwitchToMode "Resize"; }
         bind "F4" { SwitchToMode "Resize"; }
     }
-    shared_except "scroll" "locked" {
+    shared_except "scroll" {
         // bind "Ctrl s" { SwitchToMode "Scroll"; }
         bind "F6" { SwitchToMode "Scroll"; }
     }
-    shared_except "session" "locked" {
+    shared_except "session" {
         // bind "Ctrl o" { SwitchToMode "Session"; }
         bind "F7" { SwitchToMode "Session"; }
     }
-    shared_except "tab" "locked" {
+    shared_except "tab" {
         // bind "Ctrl t" { SwitchToMode "Tab"; }
         bind "F3" { SwitchToMode "Tab"; }
     }
-    shared_except "move" "locked" {
+    shared_except "move" {
         // bind "Ctrl h" { SwitchToMode "Move"; }
         bind "F5" { SwitchToMode "Move"; }
     }
