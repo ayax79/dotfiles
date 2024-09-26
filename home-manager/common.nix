@@ -149,5 +149,21 @@ in {
   programs.ripgrep.enable = true;
   programs.broot.enable = true;
   programs.fd.enable = true;
-  programs.fzf.enable = true;
+  programs.fzf = {
+    enable = true;
+    colors = {
+      fg = "#e5e9f0";
+      bg = "#3b4252";
+      hl = "#81a1c1";
+      # "fg+" = "#e5e9f0";
+      # "bg+" = "#3b4252";
+      # "h1+" = "#81a1c1";
+      info = "#88c0d0";
+      prompt = "#8fbcbb";
+      pointer = "#b48dac";
+      marker = "#bf616a";
+      spinner = "#b48dac";
+      header = "#a3be8b";
+    };
+  };
 }
