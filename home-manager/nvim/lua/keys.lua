@@ -219,6 +219,14 @@ wk.add({
             end,
             desc = "CopilotChat - Prompt actions",
         },
+        {
+            "<leader>pt",
+            function()
+                require("CopilotChat").toggle()
+            end,
+            desc = "CopilotChat - Prompt actions",
+        },
+
     }
 })
 
