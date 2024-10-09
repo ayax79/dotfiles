@@ -371,10 +371,16 @@ table.insert(M, {
     {
         "CopilotC-Nvim/CopilotChat.nvim",
         branch = "canary",
+        build = "make tiktoken",
         dependencies = {
             { "zbirenbaum/copilot.lua" }, -- or github/copilot.vim
             { "nvim-lua/plenary.nvim" },  -- for curl, log wrapper
         },
+        opts = {
+            window = {
+                width = 0.33,
+            },
+        }
     },
     -- "github/copilot.vim",
     "onsails/lspkind.nvim",
