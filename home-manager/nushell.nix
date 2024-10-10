@@ -61,7 +61,8 @@
       # use ~/.config/nushell/ext/tmux-utils.nu
       use ~/.config/nushell/ext/zellij-utils.nu
 
-      use std/dirs shells-aliases *
+      # uncomment in the next nushell release
+      # use std/dirs shells-aliases *
     '';
   };
 
