@@ -1,12 +1,12 @@
 -- Completion Plugin Setup
 -- setup copilot support
-require("copilot").setup({
-    suggestion = { enabled = false },
-    panel = { enabled = false },
-})
-
--- github copilot
-require("copilot_cmp").setup()
+-- require("copilot").setup({
+--     suggestion = { enabled = false },
+--     panel = { enabled = false },
+-- })
+--
+-- -- github copilot
+-- require("copilot_cmp").setup()
 
 -- vscode like icons
 local lspkind = require("lspkind")
@@ -34,7 +34,7 @@ cmp.setup({
     sources = cmp.config.sources({
         { name = "nvim_lsp" }, -- from language server
         -- { name = "nvim_lsp_signature_help" }, -- display function signatures with current parameter emphasized
-        { name = "copilot" }
+        -- { name = "copilot" }
         -- { name = "buffer",                 keyword_length = 2 }, -- source current buffer
     }, {
         { name = "buffer" }, -- source current buffer
@@ -47,7 +47,7 @@ cmp.setup({
         format = lspkind.cmp_format({
             mode = "symbol",
             maxwidth = 50,
-            symbol_map = { Copilot = "" }
+            -- symbol_map = { Copilot = "" }
         }),
     },
 })
@@ -90,24 +90,24 @@ cmp.setup.filetype("lua", {
     sources = cmp.config.sources({
         { name = "nvim_lua" },
         { name = "nvim_lsp" },
-        { name = "copilot" },
+        -- { name = "copilot" },
     }, { name = "buffer" }),
 })
 
 -- Registers copilot-chat source and enables it for copilot-chat filetype (so copilot chat window)
-require("CopilotChat.integrations.cmp").setup()
+-- require("CopilotChat.integrations.cmp").setup()
 
 -- You might also want to disable default <tab> complete mapping for copilot chat when doing this
-require('CopilotChat').setup({
-    debug = true,
-    mappings = {
-        complete = {
-            insert = '',
-        },
-        reset = {
-            insert = '',
-            normal = '<leader>pr',
-        },
-    },
-    -- rest of your config
-})
+-- require('CopilotChat').setup({
+--     debug = true,
+--     mappings = {
+--         complete = {
+--             insert = '',
+--         },
+--         reset = {
+--             insert = '',
+--             normal = '<leader>pr',
+--         },
+--     },
+--     -- rest of your config
+-- })
