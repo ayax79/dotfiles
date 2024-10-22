@@ -420,7 +420,7 @@ table.insert(M, {
     -- configures lsp and debugger for rust
     {
         'mrcjkb/rustaceanvim',
-        version = '^4', -- Recommended
+        version = '^5', -- Recommended
         lazy = false,
     },
     {
