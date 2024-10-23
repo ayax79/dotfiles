@@ -183,11 +183,6 @@ table.insert(M, {
             'nvim-tree/nvim-web-devicons',     -- optional
         }
     },
-    {
-        "folke/trouble.nvim",
-        opts = {}, -- for default options, refer to the configuration section for custom setup.
-        cmd = "Trouble",
-    },
     -- Provides a betterquick fix and lsp diagnostics list
     "nvim-telescope/telescope-ui-select.nvim",
     -- Visual Search for files, quickfix, etc
@@ -467,7 +462,7 @@ table.insert(M, {
     -- configures lsp and debugger for rust
     {
         'mrcjkb/rustaceanvim',
-        version = '^5', -- Recommended
+        -- version = '^5', -- Recommended
         lazy = false,
     },
     {
@@ -488,9 +483,11 @@ table.insert(M, {
     -- fork of null-ls
     "nvimtools/none-ls.nvim",
     {
-        "saecki/crates.nvim",
-        event = { "BufRead Cargo.toml" },
-        dependencies = { "nvim-lua/plenary.nvim" },
+        'saecki/crates.nvim',
+        tag = 'stable',
+        config = function()
+            require('crates').setup()
+        end,
     },
     -- LSP support neovim development
     {
@@ -622,7 +619,7 @@ table.insert(M, {
                     -- so I disabled them
                     ["<C-h>"] = false,
                     ["<C-l>"] = false,
-                    ["F5"] = "actions.refresh",
+                    ["F8"] = "actions.refresh",
                     ["gi"] = {
                         desc = "Toggle file detail view",
                         callback = function()
@@ -825,6 +822,40 @@ table.insert(M, {
         dependencies = {
             "nvim-lua/plenary.nvim",
         },
+    },
+    ---@type LazySpec
+    {
+        "mikavilpas/yazi.nvim",
+        event = "VeryLazy",
+        keys = {
+            -- 👇 in this section, choose your own keymappings!
+            {
+                "<leader>-",
+                "<cmd>Yazi<cr>",
+                desc = "Open yazi at the current file",
+            },
+            {
+                -- Open in the current working directory
+                "<leader>cw",
+                "<cmd>Yazi cwd<cr>",
+                desc = "Open the file manager in nvim's working directory",
+            },
+            {
+                -- NOTE: this requires a version of yazi that includes
+                -- https://github.com/sxyazi/yazi/pull/1305 from 2024-07-18
+                '<c-up>',
+                "<cmd>Yazi toggle<cr>",
+                desc = "Resume the last yazi session",
+            },
+        },
+        -- ---@type YaziConfig
+        -- opts = {
+        --     -- if you want to open yazi instead of netrw, see below for more info
+        --     open_for_directories = false,
+        --     keymaps = {
+        --         show_help = '<f1>',
+        --     },
+        -- },
     }
 })
 

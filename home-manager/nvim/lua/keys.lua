@@ -32,12 +32,10 @@ vim.keymap.set("x", "s", require('substitute').visual, { noremap = true })
 
 wk.add({
     -- Global Mappings
-    -- { "[d",       vim.diagnostic.goto_prev,  desc = "Prev Diagnostic", },
-    { "[d",       "<cmd>Lspsaga diagnostic_jump_prev<cr>", desc = "Prev Diagnostic", },
-    -- { "]d",       vim.diagnostic.goto_next,  desc = "Next Diagnostic", },
-    { "]d",       "<cmd>Lspsaga diagnostic_jump_next<cr>", desc = "Next Diagnostic", },
-    { '<space>q', vim.diagnostic.setloclist,               desc = "Set Loclist", },
-    { "-",        "<CMD>Oil<CR>",                          desc = "Open parent directory", },
+    { "[d",       vim.diagnostic.goto_prev,  desc = "Prev Diagnostic", },
+    { "]d",       vim.diagnostic.goto_next,  desc = "Next Diagnostic", },
+    { '<space>q', vim.diagnostic.setloclist, desc = "Set Loclist", },
+    { "-",        "<CMD>Oil<CR>",            desc = "Open parent directory", },
 
     -- Find Group (Telescope)
     {
@@ -47,7 +45,8 @@ wk.add({
         { "<leader>ff", telescope_builtin.find_files,                desc = "Find File", },
         { "<leader>fg", telescope_builtin.live_grep,                 desc = "Live Grep", },
         { "<leader>fb", telescope_builtin.buffers,                   desc = "Find Buffer", },
-        { "<leader>fd", require("telescope").extensions.zoxide.list, desc = "Find Directory", },
+        { "<leader>fd", telescope_builtin.diagnostics,               desc = "Find Diagnostics", },
+        { "<leader>fD", require("telescope").extensions.zoxide.list, desc = "Find Directory", },
         { "<leader>fk", telescope_builtin.keymaps,                   desc = "Find Keymap", },
         { "<leader>fq", telescope_builtin.quickfix,                  desc = "Find Quickfix", },
         { "<leader>fQ", telescope_builtin.quickfix,                  desc = "Find Quickfix History", },
@@ -111,42 +110,8 @@ wk.add({
             { "<leader>lDb", "<cmd>DapToggleBreakpoint<cr>", desc = "Toggle breakpoint", },
             { "<leader>lDu", require("dapui").toggle,        desc = "Toggle Debugger UI", },
         },
-    },
-    -- Trouble Group
-    {
-        "<leader>x",
-        name = "Trouble",
-        group = "Trouble",
-        {
-            "<leader>xx",
-            "<cmd>Trouble diagnostics toggle<cr>",
-            desc = "Diagnostics (Trouble)",
-        },
-        {
-            "<leader>xX",
-            "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
-            desc = "Buffer Diagnostics (Trouble)",
-        },
-        {
-            "<leader>xs",
-            "<cmd>Trouble symbols toggle focus=false<cr>",
-            desc = "Symbols (Trouble)",
-        },
-        {
-            "<leader>xl",
-            "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
-            desc = "LSP Definitions / references / ... (Trouble)",
-        },
-        {
-            "<leader>xL",
-            "<cmd>Trouble loclist toggle<cr>",
-            desc = "Location List (Trouble)",
-        },
-        {
-            "<leader>xQ",
-            "<cmd>Trouble qflist toggle<cr>",
-            desc = "Quickfix List (Trouble)",
-        },
+        { "<leader>lqa", vim.lsp.diagnostic.setqflist,                                                                desc = "Set Quickfixlist all", },
+        { "<leader>lqe", function() vim.lsp.diagnostic.setqflist({ severity = { vim.diagnostic.severity.ERROR } }) end, desc = "Set Quickfixlist all", },
     },
     -- Crates Group
     {
@@ -178,9 +143,9 @@ wk.add({
         "<leader>h",
         name = "Harpooon",
         group = "Harpooon",
-        { "<leader>hf", function() toggle_telescope(harpoon:list()) end,             desc = "Telescope" },
-        { "<leader>ha", function() harpoon:list():add() end,                         desc = "Add File" },
-        { "<leader>hq", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, desc = "Quicklist" },
+        { "<leader>hf", function() toggle_telescope(harpoon:list()) end,             desc = "Harpoon Telescope" },
+        { "<leader>ha", function() harpoon:list():add() end,                         desc = "Harpoon Add File" },
+        { "<leader>hq", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, desc = "Harpoon Quicklist" },
         { "<leader>hr", function() harpoon:list():remove() end,                      desc = "Remove Current File" },
         { "<leader>h1", function() harpoon:list():select(1) end,                     desc = "Select Item 1" },
         { "<leader>h2", function() harpoon:list():select(2) end,                     desc = "Select Item 2" },
@@ -190,44 +155,43 @@ wk.add({
         { "]h",         function() harpoon:list():next() end,                        desc = "Harpoon Next" },
     },
     -- Copilot Chat
-    {
-        "<leader>p",
-        group = "Copilot",
-        {
-            "<leader>pq",
-            function()
-                local input = vim.fn.input("Quick Chat: ")
-                if input ~= "" then
-                    require("CopilotChat").ask(input, { selection = require("CopilotChat.select").buffer })
-                end
-            end,
-            desc = "CopilotChat - Quick chat"
-        },
-        {
-            "<leader>ph",
-            function()
-                local actions = require("CopilotChat.actions")
-                require("CopilotChat.integrations.telescope").pick(actions.help_actions())
-            end,
-            desc = "CopilotChat - Help actions",
-        },
-        {
-            "<leader>pp",
-            function()
-                local actions = require("CopilotChat.actions")
-                require("CopilotChat.integrations.telescope").pick(actions.prompt_actions())
-            end,
-            desc = "CopilotChat - Prompt actions",
-        },
-        {
-            "<leader>pt",
-            function()
-                require("CopilotChat").toggle()
-            end,
-            desc = "CopilotChat - Prompt actions",
-        },
-
-    }
+    -- {
+    --     "<leader>p",
+    --     group = "Copilot",
+    --     {
+    --         "<leader>pq",
+    --         function()
+    --             local input = vim.fn.input("Quick Chat: ")
+    --             if input ~= "" then
+    --                 require("CopilotChat").ask(input, { selection = require("CopilotChat.select").buffer })
+    --             end
+    --         end,
+    --         desc = "CopilotChat - Quick chat"
+    --     },
+    --     {
+    --         "<leader>ph",
+    --         function()
+    --             local actions = require("CopilotChat.actions")
+    --             require("CopilotChat.integrations.telescope").pick(actions.help_actions())
+    --         end,
+    --         desc = "CopilotChat - Help actions",
+    --     },
+    --     {
+    --         "<leader>pp",
+    --         function()
+    --             local actions = require("CopilotChat.actions")
+    --             require("CopilotChat.integrations.telescope").pick(actions.prompt_actions())
+    --         end,
+    --         desc = "CopilotChat - Prompt actions",
+    --     },
+    --     {
+    --         "<leader>pt",
+    --         function()
+    --             require("CopilotChat").toggle()
+    --         end,
+    --         desc = "CopilotChat - Prompt actions",
+    --     },
+    -- }
 })
 
 -- Global mappings.
@@ -252,8 +216,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
         vim.keymap.set("n", "K", "<cmd>Lspsaga hover_doc<cr>", util.with_description(opts, "DOC"))
         vim.keymap.set("n", "gI", vim.lsp.buf.implementation, util.with_description(opts, "Go to implementation"))
         vim.keymap.set("n", "<M-k>", vim.lsp.buf.signature_help, util.with_description(opts, "Signature Help"))
-        vim.keymap.set("n", "gR", function() require("trouble").toggle("lsp_references") end,
-            util.with_description(opts, "Lsp References"))
         vim.keymap.set("n", "gx", vim.lsp.buf.incoming_calls, util.with_description(opts, "Go to incoming calls"))
         vim.keymap.set("n", "gX", vim.lsp.buf.outgoing_calls, util.with_description(opts, "Go to outgoing calls"))
         vim.keymap.set(
