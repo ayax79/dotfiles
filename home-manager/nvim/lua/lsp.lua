@@ -63,7 +63,6 @@ M.setup = function()
             "spring-boot-tools",
         }
     })
-    require("neoconf").setup()
 
     -- LSP Diagnostics Options Setup
     local sign = function(opts)

@@ -23,6 +23,7 @@
     luarocks
     lua5_1
     html-tidy # html/xml formatter
+    typescript-language-server
   ];
 
   programs.neovim = {

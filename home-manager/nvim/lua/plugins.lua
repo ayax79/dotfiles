@@ -431,7 +431,11 @@ table.insert(M, {
     --------------------------------------------------------
 
     -- LSP configuration
-    "folke/neoconf.nvim",
+    {
+        "folke/neoconf.nvim",
+        config = true,
+        priority = 900,
+    },
     {
         "neovim/nvim-lspconfig",
         dependencies = {
@@ -497,6 +501,11 @@ table.insert(M, {
                 library = { plugins = { "nvim-dap-ui" }, types = true },
             })
         end
+    },
+    {
+        "pmizio/typescript-tools.nvim",
+        dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+        opts = {},
     },
     -- Line indentation
     {
