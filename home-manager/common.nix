@@ -98,6 +98,9 @@ in {
     virtualenv
     unzip
     python3
+
+    # code line counter
+    scc
   ];
 
   # Enable home-manager
