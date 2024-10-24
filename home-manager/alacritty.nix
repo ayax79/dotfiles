@@ -8,7 +8,7 @@
       enable = true;
       # Start tmux by default
       settings = {
-        shell = {
+        terminal.shell = {
           program = "zsh";
           args = ["-l" "-c" "zellij"];
         };
