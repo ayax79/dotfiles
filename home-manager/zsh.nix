@@ -5,10 +5,11 @@
       enable = true;
       plugins = ["git" "vi-mode"];
     };
-    # envExtra = ''
-    #   # hack to deal with https://github.com/nix-community/home-manager/issues/3100
-    #   unset __HM_SESS_VARS_SOURCED
-    #   source "/Users/jack.wright/.nix-profile/etc/profile.d/hm-session-vars.sh"
-    # '';
+    envExtra = ''
+      # Source local environment variables if file exists
+      if [ -f "$HOME/.local.env" ]; then
+        source "$HOME/.local.env"
+      fi
+    '';
   };
 }
