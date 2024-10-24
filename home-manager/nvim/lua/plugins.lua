@@ -361,8 +361,8 @@ table.insert(M, {
     --  "hrsh7th/cmp-nvim-lsp-signature-help" ,
     "hrsh7th/cmp-nvim-lua",
     -- github copilot
-    -- "zbirenbaum/copilot-cmp",
-    -- "zbirenbaum/copilot.lua",
+    "zbirenbaum/copilot-cmp",
+    "zbirenbaum/copilot.lua",
     -- {
     --     "CopilotC-Nvim/CopilotChat.nvim",
     --     branch = "canary",
@@ -383,13 +383,9 @@ table.insert(M, {
         event = "VeryLazy",
         lazy = false,
         version = false, -- set this if you want to always pull the latest change
-        opts = {
-            -- add any opts here
-            auto_suggestions_provider = "copilot",
-        },
+        opts = {},
         -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
         build = "make",
-        -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
         dependencies = {
             "nvim-treesitter/nvim-treesitter",
             "stevearc/dressing.nvim",

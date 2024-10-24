@@ -1,23 +1,18 @@
 -- Completion Plugin Setup
 -- setup copilot support
--- require("copilot").setup({
---     suggestion = { enabled = false },
---     panel = { enabled = false },
--- })
---
+require("copilot").setup({
+    suggestion = { enabled = false },
+    panel = { enabled = false },
+})
+
 -- -- github copilot
--- require("copilot_cmp").setup()
+require("copilot_cmp").setup()
 
 -- vscode like icons
 local lspkind = require("lspkind")
 
 local cmp = require("cmp")
 cmp.setup({
-    view = {
-        entries = {
-            vertical_positioning = "above",
-        },
-    },
     mapping = {
         ["<C-p>"] = cmp.mapping.select_prev_item(),
         ["<C-n>"] = cmp.mapping.select_next_item(),
@@ -34,7 +29,7 @@ cmp.setup({
     sources = cmp.config.sources({
         { name = "nvim_lsp" }, -- from language server
         -- { name = "nvim_lsp_signature_help" }, -- display function signatures with current parameter emphasized
-        -- { name = "copilot" }
+        { name = "copilot" }
         -- { name = "buffer",                 keyword_length = 2 }, -- source current buffer
     }, {
         { name = "buffer" }, -- source current buffer
@@ -47,7 +42,7 @@ cmp.setup({
         format = lspkind.cmp_format({
             mode = "symbol",
             maxwidth = 50,
-            -- symbol_map = { Copilot = "" }
+            symbol_map = { Copilot = "" }
         }),
     },
 })
@@ -79,13 +74,6 @@ cmp.setup.filetype("toml", {
     }),
 })
 
--- cmp.setup.filetype("lua", {
---     sources = cmp.config.sources({
---         { name = "nvim_lua" },
---     }, {
---         { name = "buffer" },
---     }),
--- })
 cmp.setup.filetype("lua", {
     sources = cmp.config.sources({
         { name = "nvim_lua" },

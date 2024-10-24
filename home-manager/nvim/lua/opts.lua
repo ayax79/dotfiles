@@ -41,4 +41,5 @@ vim.o.cursorline = true
 
 vim.o.conceallevel = 2
 
--- vim.opt.scrolloff = 999
+-- -- views can only be fully collapsed with the global statusline
+vim.opt.laststatus = 3
